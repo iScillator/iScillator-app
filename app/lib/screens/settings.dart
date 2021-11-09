@@ -40,6 +40,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                         _saveSettings();
 
                         waveTypes? _waveType;
+                        _waveType=waveTypes.SINUSOIDAL;
                         if (widget.userSettings?.waveType == 0)
                           _waveType = waveTypes.SINUSOIDAL;
                         if (widget.userSettings?.waveType == 1)
@@ -49,7 +50,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                         if (widget.userSettings?.waveType == 3)
                           _waveType = waveTypes.SAWTOOTH;
 
-                        //SoundGenerator.setWaveType(_waveType);
+                        SoundGenerator.setWaveType(_waveType);
                         //SoundGenerator.setBalance(widget.userSettings?.balance);
 
                         Navigator.pop(context);

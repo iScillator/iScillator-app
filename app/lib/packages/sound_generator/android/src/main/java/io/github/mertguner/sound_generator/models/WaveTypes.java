@@ -4,7 +4,9 @@ public enum WaveTypes {
     SINUSOIDAL,
     SQUAREWAVE,
     TRIANGLE,
-    SAWTOOTH;
+    SAWTOOTH,
+    MULTI2,
+    MULTI3;
 
     @Override
     public String toString() {

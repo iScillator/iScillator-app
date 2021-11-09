@@ -11,6 +11,9 @@ import io.github.mertguner.sound_generator.generators.signalDataGenerator;
 import io.github.mertguner.sound_generator.generators.sinusoidalGenerator;
 import io.github.mertguner.sound_generator.generators.squareWaveGenerator;
 import io.github.mertguner.sound_generator.generators.triangleGenerator;
+import io.github.mertguner.sound_generator.generators.multi2Generator;
+import io.github.mertguner.sound_generator.generators.multi3Generator;
+
 import io.github.mertguner.sound_generator.handlers.isPlayingStreamHandler;
 import io.github.mertguner.sound_generator.models.WaveTypes;
 
@@ -90,6 +93,10 @@ public class SoundGenerator {
             generator.setGenerator(new squareWaveGenerator());
         else if (waveType.equals(WaveTypes.SAWTOOTH))
             generator.setGenerator(new sawtoothGenerator());
+        else if (waveType.equals(WaveTypes.MULTI2))
+            generator.setGenerator(new multi2Generator());
+        else if (waveType.equals(WaveTypes.MULTI3))
+            generator.setGenerator(new multi3Generator());
     }
 
     //public boolean init(int sampleRate /* ,*/) {
@@ -121,7 +128,7 @@ public class SoundGenerator {
         # Channel position masks
         https://developer.android.com/reference/android/media/AudioFormat#channelPositionMask
         
-        1	CHANNEL_OUT_MONO
+        4!!! 1	CHANNEL_OUT_MONO
         2	CHANNEL_OUT_STEREO
         3	CHANNEL_OUT_STEREO | CHANNEL_OUT_FRONT_CENTER
         4	CHANNEL_OUT_QUAD
@@ -136,10 +143,11 @@ public class SoundGenerator {
                     channelMask, // was AudioFormat.CHANNEL_OUT_MONO,
                     encoding); // was AudioFormat.ENCODING_PCM_16BIT);
 
-            generator = new signalDataGenerator(minSamplesSize, sampleRate);
+            generator = new signalDataGenerator(minSamplesSize, sampleRate, channelMask, encoding);
 
             audioTrack = new AudioTrack(
-                    AudioManager.STREAM_SYSTEM, //was AudioManager.STREAM_MUSIC,
+                    // AudioManager.STREAM_SYSTEM, //update?
+                    AudioManager.STREAM_MUSIC, //original
                     sampleRate,
                     channelMask, //was AudioFormat.CHANNEL_OUT_MONO,
                     encoding, //was AudioFormat.ENCODING_PCM_16BIT,
