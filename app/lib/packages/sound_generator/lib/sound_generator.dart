@@ -21,7 +21,7 @@ class SoundGenerator {
 
       _onIsPlayingChangedInitialized = true;
     }
-      
+
     return _onIsPlayingChanged;
   }
 
@@ -40,9 +40,13 @@ class SoundGenerator {
   }
 
   /// init function
-  static Future<bool> init(int sampleRate) async {
-    final bool init = await _channel
-        .invokeMethod("init", <String, dynamic>{"sampleRate": sampleRate});
+  static Future<bool> init(
+      int sampleRate, int channelMask, int encoding) async {
+    final bool init = await _channel.invokeMethod("init", <String, dynamic>{
+      "sampleRate": sampleRate,
+      "channelMask": channelMask,
+      "encoding": encoding
+    });
     return init;
   }
 
@@ -107,8 +111,7 @@ class SoundGenerator {
 
   /// Set Volume Range from 0 to 1
   static void setVolume(double volume) async {
-    await _channel.invokeMethod("setVolume", <String, dynamic>{
-      "volume": volume
-    });
+    await _channel
+        .invokeMethod("setVolume", <String, dynamic>{"volume": volume});
   }
 }

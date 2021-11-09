@@ -52,7 +52,7 @@ public class signalDataGenerator {
         createOneCycleData();
     }
 
-    public signalDataGenerator(int bufferSamplesSize, int sampleRate) {
+    public signalDataGenerator(int bufferSamplesSize, int sampleRate, int channelMask, int encoding) {
         this.bufferSamplesSize = bufferSamplesSize;
         backgroundBuffer = new short[bufferSamplesSize];
         buffer = new short[bufferSamplesSize];

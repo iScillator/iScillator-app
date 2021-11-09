@@ -92,7 +92,8 @@ public class SoundGenerator {
             generator.setGenerator(new sawtoothGenerator());
     }
 
-    public boolean init(int sampleRate /* ,*/) {
+    //public boolean init(int sampleRate /* ,*/) {
+    public boolean init(int sampleRate, int channelMask, int encoding) {
         try {
 
         /*
@@ -108,10 +109,12 @@ public class SoundGenerator {
         # encoding
         https://developer.android.com/reference/android/media/AudioFormat#encoding
 
-        ENCODING_PCM_FLOAT: Introduced in API Build.VERSION_CODES.LOLLIPOP, this encoding specifies that the audio sample is a 32 bit IEEE single precision float. The sample can be manipulated as a Java float in a float array, though within a ByteBuffer it is stored in native endian byte order. The nominal range of ENCODING_PCM_FLOAT audio data is [-1.0, 1.0]. It is implementation dependent whether the positive maximum of 1.0 is included in the interval. Values outside of the nominal range are clamped before sending to the endpoint device. Beware that the handling of NaN is undefined; subnormals may be treated as zero; and infinities are generally clamped just like other values for AudioTrack – try to avoid infinities because they can easily generate a NaN.
+        2 ENCODING_PCM_16BIT
+
+        4 ENCODING_PCM_FLOAT: Introduced in API Build.VERSION_CODES.LOLLIPOP, this encoding specifies that the audio sample is a 32 bit IEEE single precision float. The sample can be manipulated as a Java float in a float array, though within a ByteBuffer it is stored in native endian byte order. The nominal range of ENCODING_PCM_FLOAT audio data is [-1.0, 1.0]. It is implementation dependent whether the positive maximum of 1.0 is included in the interval. Values outside of the nominal range are clamped before sending to the endpoint device. Beware that the handling of NaN is undefined; subnormals may be treated as zero; and infinities are generally clamped just like other values for AudioTrack – try to avoid infinities because they can easily generate a NaN.
         To achieve higher audio bit depth than a signed 16 bit integer short, it is recommended to use ENCODING_PCM_FLOAT for audio capture, processing, and playback. Floats are efficiently manipulated by modern CPUs, have greater precision than 24 bit signed integers, and have greater dynamic range than 32 bit signed integers. AudioRecord as of API Build.VERSION_CODES.M and AudioTrack as of API Build.VERSION_CODES.LOLLIPOP support ENCODING_PCM_FLOAT.
         
-        ENCODING_PCM_32BIT: Introduced in API Build.VERSION_CODES.S, this encoding specifies the audio sample is an extended precision 32 bit signed integer stored as a 4 Java bytes in a ByteBuffer or byte array in native endian (see ByteOrder.nativeOrder()). Each sample has full range from [-2147483648, 2147483647], and can be interpreted as fixed point Q.31 data.
+        22 ENCODING_PCM_32BIT: Introduced in API Build.VERSION_CODES.S, this encoding specifies the audio sample is an extended precision 32 bit signed integer stored as a 4 Java bytes in a ByteBuffer or byte array in native endian (see ByteOrder.nativeOrder()). Each sample has full range from [-2147483648, 2147483647], and can be interpreted as fixed point Q.31 data.
         
         ==== now using 32BIT, later may be FLOAT
         
@@ -130,16 +133,16 @@ public class SoundGenerator {
         */
             minSamplesSize = AudioTrack.getMinBufferSize(
                     sampleRate,
-                    AudioFormat.CHANNEL_OUT_MONO,
-                    AudioFormat.ENCODING_PCM_16BIT);
+                    channelMask, // was AudioFormat.CHANNEL_OUT_MONO,
+                    encoding); // was AudioFormat.ENCODING_PCM_16BIT);
 
             generator = new signalDataGenerator(minSamplesSize, sampleRate);
 
             audioTrack = new AudioTrack(
-                    AudioManager.STREAM_MUSIC,
+                    AudioManager.STREAM_SYSTEM, //was AudioManager.STREAM_MUSIC,
                     sampleRate,
-                    AudioFormat.CHANNEL_OUT_MONO,
-                    AudioFormat.ENCODING_PCM_16BIT,
+                    channelMask, //was AudioFormat.CHANNEL_OUT_MONO,
+                    encoding, //was AudioFormat.ENCODING_PCM_16BIT,
                     minSamplesSize,
                     AudioTrack.MODE_STREAM);
 

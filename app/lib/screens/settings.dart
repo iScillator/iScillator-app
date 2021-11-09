@@ -49,8 +49,8 @@ class _SettingsScreen extends State<SettingsScreen> {
                         if (widget.userSettings?.waveType == 3)
                           _waveType = waveTypes.SAWTOOTH;
 
-                        SoundGenerator.setWaveType(_waveType);
-                        SoundGenerator.setBalance(widget.userSettings?.balance);
+                        //SoundGenerator.setWaveType(_waveType);
+                        //SoundGenerator.setBalance(widget.userSettings?.balance);
 
                         Navigator.pop(context);
                       },

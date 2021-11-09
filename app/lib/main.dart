@@ -45,7 +45,7 @@ class _MainScreen extends State<MainScreen> {
   bool _isPresetWindowShown = false;
   int _selectedSound = 0;
   double _frequency = 0;
-  final sounds = ['Anahata', 'Pneumonia', 'Influenca'];
+  final sounds = ['Anahata', 'Pneumonia inhibitor', 'Influenza inhibitor'];
   Timer? _timer;
 
   SharedPreferences? prefs;
@@ -63,7 +63,9 @@ class _MainScreen extends State<MainScreen> {
       if (userSettings?.waveType == 2) _waveType = waveTypes.TRIANGLE;
       if (userSettings?.waveType == 3) _waveType = waveTypes.SAWTOOTH;
 
-      SoundGenerator.init(96000);
+      //SoundGenerator.init(96000);
+      SoundGenerator.init(96000, 1, 2);
+
       SoundGenerator.setWaveType(_waveType);
       SoundGenerator.setBalance(userSettings?.balance ?? 0.0);
       SoundGenerator.setVolume(1);
@@ -149,24 +151,26 @@ class _MainScreen extends State<MainScreen> {
       if (_isPlaying) {
         double _presetFrequency = 0;
         if (_selectedSound == 0) {
-          _presetFrequency = 2000;
+          _presetFrequency = 528;
         }
         if (_selectedSound == 1) {
-          _presetFrequency = 1000;
+          _presetFrequency = 426862;
         }
         if (_selectedSound == 2) {
-          _presetFrequency = 200;
+          _presetFrequency = 1946704;
         }
         _frequency = _presetFrequency;
         SoundGenerator.setFrequency(_frequency);
         SoundGenerator.play();
 
+        /*
         _timer = Timer.periodic(Duration(seconds: 2), (timer) {
           setState(() {
             _frequency = _presetFrequency + Random().nextInt(1000);
             SoundGenerator.setFrequency(_frequency);
           });
         });
+        */
       } else {
         setState(() {
           _timer?.cancel();
@@ -380,7 +384,7 @@ class PresetWindow extends StatelessWidget {
                         ListTile(
                           title: Align(
                               child: Text(
-                                'Inner Peace Sounds',
+                                'Anahata',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 23.0),
                               ),
@@ -404,7 +408,7 @@ class PresetWindow extends StatelessWidget {
                         ),
                         ListTile(
                           title: Align(
-                              child: Text('Secret Healing Sound',
+                              child: Text('Pneumonia inhibitor',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 23.0)),
                               alignment: selectedSound == 1
@@ -427,7 +431,7 @@ class PresetWindow extends StatelessWidget {
                         ),
                         ListTile(
                           title: Align(
-                              child: Text('Tumba-Yumba Healing',
+                              child: Text('Influenza inhibitor',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 23.0)),
                               alignment: selectedSound == 2
