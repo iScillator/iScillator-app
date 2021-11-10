@@ -45,7 +45,11 @@ class _MainScreen extends State<MainScreen> {
   bool _isPresetWindowShown = false;
   int _selectedSound = 0;
   double _frequency = 0;
-  final sounds = ['Anahata', 'Pneumonia inhibitor', 'Influenza inhibitor'];
+
+  final sounds=['Muladhara', 'Svadhisthana', 'Manipura','Anahata','Vishudha','Adjna','Sahasrara'];
+
+
+
   Timer? _timer;
 
   SharedPreferences? prefs;
@@ -153,13 +157,25 @@ class _MainScreen extends State<MainScreen> {
       if (_isPlaying) {
         double _presetFrequency = 0;
         if (_selectedSound == 0) {
-          _presetFrequency = 528;
+          _presetFrequency = 285;
         }
         if (_selectedSound == 1) {
-          _presetFrequency = 426862;
+          _presetFrequency = 396;
         }
         if (_selectedSound == 2) {
-          _presetFrequency = 1946704;
+          _presetFrequency = 417;
+        }
+        if (_selectedSound == 3) {
+          _presetFrequency = 528;
+        }
+        if (_selectedSound == 4) {
+          _presetFrequency = 639;
+        }
+        if (_selectedSound == 5) {
+          _presetFrequency = 741;
+        }
+        if (_selectedSound == 6) {
+          _presetFrequency = 852;
         }
         _frequency = _presetFrequency;
         SoundGenerator.setFrequency(_frequency);
@@ -383,10 +399,13 @@ class PresetWindow extends StatelessWidget {
                           endIndent: 20,
                           color: Colors.white,
                         ),
-                        ListTile(
+
+                        //final sounds=['Muladhara', 'Svadhisthana', 'Manipura','Anahata','Vishudha','Adjna','Sahasrara'];
+
+                    ListTile(
                           title: Align(
                               child: Text(
-                                'Anahata',
+                                'Muladhara',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 23.0),
                               ),
@@ -410,7 +429,7 @@ class PresetWindow extends StatelessWidget {
                         ),
                         ListTile(
                           title: Align(
-                              child: Text('Pneumonia inhibitor',
+                              child: Text('Svadhisthana',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 23.0)),
                               alignment: selectedSound == 1
@@ -433,7 +452,7 @@ class PresetWindow extends StatelessWidget {
                         ),
                         ListTile(
                           title: Align(
-                              child: Text('Influenza inhibitor',
+                              child: Text('Manipura',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 23.0)),
                               alignment: selectedSound == 2
@@ -443,6 +462,98 @@ class PresetWindow extends StatelessWidget {
                             selectSound(2);
                           },
                           leading: selectedSound == 2
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Anahata',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 3
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(3);
+                          },
+                          leading: selectedSound == 3
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Vishudha',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 4
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(4);
+                          },
+                          leading: selectedSound == 4
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Adjna',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 5
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(5);
+                          },
+                          leading: selectedSound == 5
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Sahasrara',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 6
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(6);
+                          },
+                          leading: selectedSound == 6
                               ? Icon(
                                   Icons.check,
                                   color: Colors.white,

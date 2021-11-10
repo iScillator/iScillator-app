@@ -2,11 +2,6 @@ class UserSettings {
   double? balance;
   int? waveType;
 /*
- Config={
- "main":{},
- "pro":{},
- "dev":{}
- }
 
  Settings
 
