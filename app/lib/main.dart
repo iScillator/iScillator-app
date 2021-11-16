@@ -66,11 +66,12 @@ class _MainScreen extends State<MainScreen> {
       if (userSettings?.waveType == 1) _waveType = waveTypes.SQUAREWAVE;
       if (userSettings?.waveType == 2) _waveType = waveTypes.TRIANGLE;
       if (userSettings?.waveType == 3) _waveType = waveTypes.SAWTOOTH;
-      if (userSettings?.waveType == 4) _waveType = waveTypes.MULTI2;
-      if (userSettings?.waveType == 5) _waveType = waveTypes.MULTI3;
+      if (userSettings?.waveType == 4) _waveType = waveTypes.MULTI;
+      if (userSettings?.waveType == 5) _waveType = waveTypes.MULTI;
 
-      //SoundGenerator.init(96000);
-      SoundGenerator.init(96000, 4, 2);
+      SoundGenerator.init(96000);
+      //SoundGenerator.init(96000, 4, 2);
+
 
       SoundGenerator.setWaveType(_waveType);
       SoundGenerator.setBalance(userSettings?.balance ?? 0.0);
