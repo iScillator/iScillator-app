@@ -98,6 +98,13 @@ class SoundGenerator {
     });
   }
 
+  /// Set Params
+  static void setParams(double tone_pow,double tone_shift) async {
+    await _channel.invokeMethod(
+        "setParams", <String, dynamic>{
+          "tone_pow": tone_pow,"tone_shift": tone_shift});
+  }
+
   /// Set Frequency
   static void setFrequency(double frequency) async {
     await _channel.invokeMethod(

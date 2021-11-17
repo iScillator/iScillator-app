@@ -49,6 +49,11 @@ public class SoundGenerator {
             generator.createOneCycleData(true);
     }
 
+    public void setParams(double tone_pow,double tone_shift) {
+        if (generator != null)
+            generator.setParams(tone_pow,tone_shift);
+    }
+
     public void setFrequency(float v) {
         if (generator != null)
             generator.setFrequency(v);

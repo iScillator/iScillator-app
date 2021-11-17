@@ -19,9 +19,23 @@ public class multiGenerator extends baseGenerator {
         this.tone_mod_hz = new double[tone_steps];
     }
 
+    public void setParams(double tone_pow,double tone_shift) {
+        this.tone_pow = tone_pow;
+        this.tone_shift = tone_shift;
+        android.util.Log.d("SoundHealer", "tone_shift="+tone_shift);
+    }
+
     public void setFrequency(float frequency) {
         this.frequency = frequency;
         android.util.Log.d("SoundHealer", "frequency="+frequency);
+        
+        tone_shift=3;
+        
+        if (frequency>400000) tone_shift=-4;
+        if (frequency>900000) tone_shift=-4;
+        if (frequency>1900000) tone_shift=-5;
+
+        android.util.Log.d("SoundHealer", "tone_shift="+tone_shift);
         for(int i=0;i<tone_steps;i++)
         {
             tone_hz[i]=frequency/Math.pow(tone_pow,i-tone_shift);
@@ -59,7 +73,7 @@ public class multiGenerator extends baseGenerator {
                     
                 mod_amplitude=Math.sin(t1);
                 y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive
-                y_step=y_step/(Math.pow(3,(tone_steps-1-step)));
+                y_step=y_step/(Math.pow(tone_pow,(tone_steps-1-step)));
 
                 y=y+y_step;        
             }
@@ -103,7 +117,7 @@ public class multiGenerator extends baseGenerator {
                 
             mod_amplitude=Math.sin(t1);
             y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive
-            y_step=y_step/(Math.pow(3,(tone_steps-1-step)));
+            y_step=y_step/(Math.pow(tone_pow,(tone_steps-1-step)));
 
             y=y+y_step;        
         }

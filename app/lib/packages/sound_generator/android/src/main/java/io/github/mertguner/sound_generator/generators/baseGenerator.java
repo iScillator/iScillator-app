@@ -5,6 +5,10 @@ public abstract class baseGenerator {
     {
         return;
     }
+    public void setParams(double tone_pow,double tone_shift)
+    {
+        return;
+    }
     public void getBuffer(short[] backgroundBuffer, int sampleRate, int position, int bufferSamplesSize)
     {
         return;

@@ -46,7 +46,7 @@ class _MainScreen extends State<MainScreen> {
   int _selectedSound = 0;
   double _frequency = 0;
 
-  final sounds=['Muladhara', 'Svadhisthana', 'Manipura','Anahata','Vishudha','Adjna','Sahasrara'];
+  final sounds=['Muladhara', 'Svadhisthana', 'Manipura','Anahata','Vishudha','Adjna','Sahasrara','Adjna/3','Adjna/2','Inf/3','Inf/2','Pn/3','Pn/2','Ps/3','Ps/2'];
 
 
 
@@ -171,7 +171,7 @@ class _MainScreen extends State<MainScreen> {
         }
         if (_selectedSound == 3) {
           _presetFrequency = 528;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
+          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         }
         if (_selectedSound == 4) {
           _presetFrequency = 639;
@@ -185,8 +185,55 @@ class _MainScreen extends State<MainScreen> {
           _presetFrequency = 852;
           SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         }
+        //anahata 3,2
+        if (_selectedSound == 7) {
+          _presetFrequency = 528;
+          SoundGenerator.setWaveType(waveTypes.MULTI);
+          SoundGenerator.setParams(3,3);
+        }
+        if (_selectedSound == 8) {
+          _presetFrequency = 528;
+          SoundGenerator.setWaveType(waveTypes.MULTI);
+          SoundGenerator.setParams(2,3);
+        }
+        // inf 3,2
+        if (_selectedSound == 9) {
+          _presetFrequency = 1946704;
+          SoundGenerator.setWaveType(waveTypes.MULTI);
+          SoundGenerator.setParams(3,-3);
+        }
+        if (_selectedSound == 10) {
+          _presetFrequency = 1946704;
+          SoundGenerator.setWaveType(waveTypes.MULTI);
+          SoundGenerator.setParams(2,-3);
+        }
+        // pneum 3,2
+        if (_selectedSound == 11) {
+          _presetFrequency = 426862;
+          SoundGenerator.setWaveType(waveTypes.MULTI);
+          SoundGenerator.setParams(3,-3);
+        }
+        if (_selectedSound == 12) {
+          _presetFrequency = 426862;
+          SoundGenerator.setWaveType(waveTypes.MULTI);
+          SoundGenerator.setParams(2,-3);
+        }
+        // psor 3,2
+        if (_selectedSound == 13) {
+          _presetFrequency = 925370;
+          SoundGenerator.setWaveType(waveTypes.MULTI);
+          SoundGenerator.setParams(3,-3);
+        }
+        if (_selectedSound == 14) {
+          _presetFrequency = 925370;
+          SoundGenerator.setWaveType(waveTypes.MULTI);
+          SoundGenerator.setParams(2,-3);
+        }
+        
+        
         _frequency = _presetFrequency;
         SoundGenerator.setFrequency(_frequency);
+
         SoundGenerator.play();
 
         /*
@@ -568,6 +615,191 @@ class PresetWindow extends StatelessWidget {
                                 )
                               : null,
                         ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Adjna/3',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 7
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(7);
+                          },
+                          leading: selectedSound == 7
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Adjna/2',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 8
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(8);
+                          },
+                          leading: selectedSound == 8
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Inf/3',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 9
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(9);
+                          },
+                          leading: selectedSound == 9
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Inf/2',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 10
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(10);
+                          },
+                          leading: selectedSound == 10
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Pn/3',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 11
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(11);
+                          },
+                          leading: selectedSound == 11
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Pn/2',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 12
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(12);
+                          },
+                          leading: selectedSound == 12
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Ps/3',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 13
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(13);
+                          },
+                          leading: selectedSound == 13
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          color: Colors.white,
+                        ),
+                        ListTile(
+                          title: Align(
+                              child: Text('Ps/2',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 23.0)),
+                              alignment: selectedSound == 14
+                                  ? Alignment(-2.4, 0)
+                                  : Alignment(-0.1, 0)),
+                          onTap: () {
+                            selectSound(14);
+                          },
+                          leading: selectedSound == 14
+                              ? Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                              : null,
+                        ),
+                        
                         Divider(
                           indent: 20,
                           endIndent: 20,
