@@ -98,9 +98,9 @@ public class SoundGenerator {
     }
 
     public boolean init(int sampleRate ) {
-        return init(sampleRate,4,2);
+        return init2(sampleRate,4,2);
     }
-    public boolean init(int sampleRate, int channelMask, int encoding) {
+    public boolean init2(int sampleRate, int channelMask, int encoding) {
         try {
 
         /*
