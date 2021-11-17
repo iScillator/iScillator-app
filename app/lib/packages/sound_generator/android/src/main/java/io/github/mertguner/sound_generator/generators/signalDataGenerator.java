@@ -27,7 +27,7 @@ public class signalDataGenerator {
     private boolean autoUpdateOneCycleSample = false;
 
     private boolean multi = false;
-    private int position = 0;
+    //private int position = 0;
 
     public boolean isAutoUpdateOneCycleSample() { return autoUpdateOneCycleSample; }
     public void setAutoUpdateOneCycleSample(boolean autoUpdateOneCycleSample) { this.autoUpdateOneCycleSample = autoUpdateOneCycleSample; }
@@ -72,12 +72,17 @@ public class signalDataGenerator {
     }
 
     private void updateData(int position) {
-
+        short y;
 
         creatingNewData = true;
         if (this.multi) 
         {
-            generator.getBuffer(backgroundBuffer,sampleRate,position,bufferSamplesSize);         
+            //generator.getBuffer(backgroundBuffer,sampleRate,position,bufferSamplesSize);         
+            
+            for (int i = 0; i < bufferSamplesSize; i++) {
+                backgroundBuffer[i] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize);;
+            }
+
         } else {
             for (int i = 0; i < bufferSamplesSize; i++) {
                 oldFrequency += ((frequency - oldFrequency) * smoothStep);
@@ -96,15 +101,17 @@ public class signalDataGenerator {
     }
 
     public short[] getData(int position1) {
-        position=position1;
+        final int position2=position1;
         if (!creatingNewData) {
             System.arraycopy(backgroundBuffer, 0, buffer, 0, bufferSamplesSize);
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    updateData(position);
+                    updateData(position2);
                 }
             }).start();
+        } else {
+            android.util.Log.d("SoundHealer", "creatingNewData, bad, send old buffer");
         }
         return this.buffer;
     }

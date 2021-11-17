@@ -69,7 +69,7 @@ class _MainScreen extends State<MainScreen> {
       if (userSettings?.waveType == 4) _waveType = waveTypes.MULTI;
       if (userSettings?.waveType == 5) _waveType = waveTypes.MULTI;
 
-      SoundGenerator.init(96000);
+      SoundGenerator.init(48000);
       //SoundGenerator.init(96000, 4, 2);
 
 
@@ -159,24 +159,31 @@ class _MainScreen extends State<MainScreen> {
         double _presetFrequency = 0;
         if (_selectedSound == 0) {
           _presetFrequency = 285;
+          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         }
         if (_selectedSound == 1) {
           _presetFrequency = 396;
+          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         }
         if (_selectedSound == 2) {
           _presetFrequency = 417;
+          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         }
         if (_selectedSound == 3) {
           _presetFrequency = 528;
+          SoundGenerator.setWaveType(waveTypes.MULTI);
         }
         if (_selectedSound == 4) {
           _presetFrequency = 639;
+          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         }
         if (_selectedSound == 5) {
           _presetFrequency = 741;
+          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         }
         if (_selectedSound == 6) {
           _presetFrequency = 852;
+          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         }
         _frequency = _presetFrequency;
         SoundGenerator.setFrequency(_frequency);
