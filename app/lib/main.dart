@@ -200,34 +200,34 @@ class _MainScreen extends State<MainScreen> {
         if (_selectedSound == 9) {
           _presetFrequency = 1946704;
           SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,-3);
+          SoundGenerator.setParams(3,-5);
         }
         if (_selectedSound == 10) {
           _presetFrequency = 1946704;
           SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,-3);
+          SoundGenerator.setParams(2,-5);
         }
         // pneum 3,2
         if (_selectedSound == 11) {
           _presetFrequency = 426862;
           SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,-3);
+          SoundGenerator.setParams(3,-4);
         }
         if (_selectedSound == 12) {
           _presetFrequency = 426862;
           SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,-3);
+          SoundGenerator.setParams(2,-4);
         }
         // psor 3,2
         if (_selectedSound == 13) {
           _presetFrequency = 925370;
           SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,-3);
+          SoundGenerator.setParams(3,-4);
         }
         if (_selectedSound == 14) {
           _presetFrequency = 925370;
           SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,-3);
+          SoundGenerator.setParams(2,-4);
         }
         
         
