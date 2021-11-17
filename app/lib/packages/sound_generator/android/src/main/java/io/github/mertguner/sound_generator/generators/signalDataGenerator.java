@@ -27,6 +27,7 @@ public class signalDataGenerator {
     private boolean autoUpdateOneCycleSample = false;
 
     private boolean multi = false;
+    private int position = 0;
 
     public boolean isAutoUpdateOneCycleSample() { return autoUpdateOneCycleSample; }
     public void setAutoUpdateOneCycleSample(boolean autoUpdateOneCycleSample) { this.autoUpdateOneCycleSample = autoUpdateOneCycleSample; }
@@ -76,7 +77,7 @@ public class signalDataGenerator {
         creatingNewData = true;
         if (this.multi) 
         {
-            generator.getBuffer(backgroundBuffer,sampleRate,position,bufferSamplesSize)         
+            generator.getBuffer(backgroundBuffer,sampleRate,position,bufferSamplesSize);         
         } else {
             for (int i = 0; i < bufferSamplesSize; i++) {
                 oldFrequency += ((frequency - oldFrequency) * smoothStep);
@@ -94,7 +95,8 @@ public class signalDataGenerator {
         creatingNewData = false;
     }
 
-    public short[] getData(int position) {
+    public short[] getData(int position1) {
+        position=position1;
         if (!creatingNewData) {
             System.arraycopy(backgroundBuffer, 0, buffer, 0, bufferSamplesSize);
             new Thread(new Runnable() {

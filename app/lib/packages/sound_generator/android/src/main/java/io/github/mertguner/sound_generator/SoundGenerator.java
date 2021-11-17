@@ -86,21 +86,21 @@ public class SoundGenerator {
         this.waveType = waveType;
 
         if (waveType.equals(WaveTypes.SINUSOIDAL))
-            generator.setGenerator(new sinusoidalGenerator());
+            generator.setGenerator(new sinusoidalGenerator(),false);
         else if (waveType.equals(WaveTypes.TRIANGLE))
-            generator.setGenerator(new triangleGenerator());
+            generator.setGenerator(new triangleGenerator(),false);
         else if (waveType.equals(WaveTypes.SQUAREWAVE))
-            generator.setGenerator(new squareWaveGenerator());
+            generator.setGenerator(new squareWaveGenerator(),false);
         else if (waveType.equals(WaveTypes.SAWTOOTH))
-            generator.setGenerator(new sawtoothGenerator());
+            generator.setGenerator(new sawtoothGenerator(),false);
         else if (waveType.equals(WaveTypes.MULTI))
-            generator.setGenerator(new multiGenerator());
+            generator.setGenerator(new multiGenerator(),true);
     }
 
     public boolean init(int sampleRate ) {
-    //public boolean init(int sampleRate, int channelMask, int encoding) {
-        int channelMask=4;
-        int encoding=2;
+        return init(sampleRate,4,2);
+    }
+    public boolean init(int sampleRate, int channelMask, int encoding) {
         try {
 
         /*
