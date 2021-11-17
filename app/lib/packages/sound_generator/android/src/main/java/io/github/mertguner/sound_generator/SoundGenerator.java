@@ -11,8 +11,8 @@ import io.github.mertguner.sound_generator.generators.signalDataGenerator;
 import io.github.mertguner.sound_generator.generators.sinusoidalGenerator;
 import io.github.mertguner.sound_generator.generators.squareWaveGenerator;
 import io.github.mertguner.sound_generator.generators.triangleGenerator;
-import io.github.mertguner.sound_generator.generators.multi2Generator;
-import io.github.mertguner.sound_generator.generators.multi3Generator;
+import io.github.mertguner.sound_generator.generators.multiGenerator;
+
 
 import io.github.mertguner.sound_generator.handlers.isPlayingStreamHandler;
 import io.github.mertguner.sound_generator.models.WaveTypes;
@@ -86,21 +86,21 @@ public class SoundGenerator {
         this.waveType = waveType;
 
         if (waveType.equals(WaveTypes.SINUSOIDAL))
-            generator.setGenerator(new sinusoidalGenerator());
+            generator.setGenerator(new sinusoidalGenerator(),false);
         else if (waveType.equals(WaveTypes.TRIANGLE))
-            generator.setGenerator(new triangleGenerator());
+            generator.setGenerator(new triangleGenerator(),false);
         else if (waveType.equals(WaveTypes.SQUAREWAVE))
-            generator.setGenerator(new squareWaveGenerator());
+            generator.setGenerator(new squareWaveGenerator(),false);
         else if (waveType.equals(WaveTypes.SAWTOOTH))
-            generator.setGenerator(new sawtoothGenerator());
-        else if (waveType.equals(WaveTypes.MULTI2))
-            generator.setGenerator(new multi2Generator());
-        else if (waveType.equals(WaveTypes.MULTI3))
-            generator.setGenerator(new multi3Generator());
+            generator.setGenerator(new sawtoothGenerator(),false);
+        else if (waveType.equals(WaveTypes.MULTI))
+            generator.setGenerator(new multiGenerator(),true);
     }
 
-    //public boolean init(int sampleRate /* ,*/) {
-    public boolean init(int sampleRate, int channelMask, int encoding) {
+    public boolean init(int sampleRate ) {
+        return init2(sampleRate,4,2);
+    }
+    public boolean init2(int sampleRate, int channelMask, int encoding) {
         try {
 
         /*
@@ -166,6 +166,7 @@ public class SoundGenerator {
     }
 
     public void startPlayback() {
+        
         if (bufferThread != null || audioTrack == null) return;
 
         isPlaying = true;
@@ -173,11 +174,13 @@ public class SoundGenerator {
         bufferThread = new Thread(new Runnable() {
             @Override
             public void run() {
+                int position=0;
                 audioTrack.flush();
                 audioTrack.setPlaybackHeadPosition(0);
                 audioTrack.play();
                 while (isPlaying) {
-                    audioTrack.write(generator.getData(), 0, minSamplesSize);
+                    audioTrack.write(generator.getData(position), 0, minSamplesSize);
+                    position++;
                 }
             }
         }

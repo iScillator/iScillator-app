@@ -53,9 +53,10 @@ public class SoundGeneratorPlugin implements FlutterPlugin, MethodCallHandler {
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("init")) {
       int sampleRate = call.argument("sampleRate");
-      int channelMask = call.argument("channelMask");
-      int encoding = call.argument("encoding");
-      result.success(soundGenerator.init(sampleRate,channelMask,encoding));
+      //int channelMask = call.argument("channelMask");
+      //int encoding = call.argument("encoding");
+      result.success(soundGenerator.init(sampleRate));
+      //result.success(soundGenerator.init(sampleRate,channelMask,encoding));
     }else if (call.method.equals("release")) {
       soundGenerator.release();
     }else if (call.method.equals("play")) {

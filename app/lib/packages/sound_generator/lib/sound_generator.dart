@@ -40,6 +40,14 @@ class SoundGenerator {
   }
 
   /// init function
+    static Future<bool> init(
+      int sampleRate) async {
+    final bool init = await _channel.invokeMethod("init", <String, dynamic>{
+      "sampleRate": sampleRate
+    });
+    return init;
+  }
+  /*
   static Future<bool> init(
       int sampleRate, int channelMask, int encoding) async {
     final bool init = await _channel.invokeMethod("init", <String, dynamic>{
@@ -48,7 +56,7 @@ class SoundGenerator {
       "encoding": encoding
     });
     return init;
-  }
+  }*/
 
   /// Play sound
   static void play() async {
