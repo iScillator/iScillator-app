@@ -11,8 +11,8 @@ import io.github.mertguner.sound_generator.generators.signalDataGenerator;
 import io.github.mertguner.sound_generator.generators.sinusoidalGenerator;
 import io.github.mertguner.sound_generator.generators.squareWaveGenerator;
 import io.github.mertguner.sound_generator.generators.triangleGenerator;
-import io.github.mertguner.sound_generator.generators.multi2Generator;
-import io.github.mertguner.sound_generator.generators.multi3Generator;
+import io.github.mertguner.sound_generator.generators.multiGenerator;
+
 
 import io.github.mertguner.sound_generator.handlers.isPlayingStreamHandler;
 import io.github.mertguner.sound_generator.models.WaveTypes;
@@ -93,14 +93,14 @@ public class SoundGenerator {
             generator.setGenerator(new squareWaveGenerator());
         else if (waveType.equals(WaveTypes.SAWTOOTH))
             generator.setGenerator(new sawtoothGenerator());
-        else if (waveType.equals(WaveTypes.MULTI2))
-            generator.setGenerator(new multi2Generator());
-        else if (waveType.equals(WaveTypes.MULTI3))
-            generator.setGenerator(new multi3Generator());
+        else if (waveType.equals(WaveTypes.MULTI))
+            generator.setGenerator(new multiGenerator());
     }
 
-    //public boolean init(int sampleRate /* ,*/) {
-    public boolean init(int sampleRate, int channelMask, int encoding) {
+    public boolean init(int sampleRate ) {
+    //public boolean init(int sampleRate, int channelMask, int encoding) {
+        int channelMask=4;
+        int encoding=2;
         try {
 
         /*
@@ -166,6 +166,7 @@ public class SoundGenerator {
     }
 
     public void startPlayback() {
+        
         if (bufferThread != null || audioTrack == null) return;
 
         isPlaying = true;
@@ -173,11 +174,13 @@ public class SoundGenerator {
         bufferThread = new Thread(new Runnable() {
             @Override
             public void run() {
+                int position=0;
                 audioTrack.flush();
                 audioTrack.setPlaybackHeadPosition(0);
                 audioTrack.play();
                 while (isPlaying) {
                     audioTrack.write(generator.getData(), 0, minSamplesSize);
+                    position++;
                 }
             }
         }
