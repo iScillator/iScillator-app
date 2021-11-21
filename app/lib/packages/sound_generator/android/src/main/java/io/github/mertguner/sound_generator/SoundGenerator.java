@@ -49,6 +49,11 @@ public class SoundGenerator {
             generator.createOneCycleData(true);
     }
 
+    public void setParams(double tone_pow,double tone_shift) {
+        if (generator != null)
+            generator.setParams(tone_pow,tone_shift);
+    }
+
     public void setFrequency(float v) {
         if (generator != null)
             generator.setFrequency(v);
@@ -86,12 +91,13 @@ public class SoundGenerator {
         this.waveType = waveType;
 
         if (waveType.equals(WaveTypes.SINUSOIDAL))
-            generator.setGenerator(new sinusoidalGenerator());
+            generator.setGenerator(new sinusoidalGenerator(),false);
         else if (waveType.equals(WaveTypes.TRIANGLE))
-            generator.setGenerator(new triangleGenerator());
+            generator.setGenerator(new triangleGenerator(),false);
         else if (waveType.equals(WaveTypes.SQUAREWAVE))
-            generator.setGenerator(new squareWaveGenerator());
+            generator.setGenerator(new squareWaveGenerator(),false);
         else if (waveType.equals(WaveTypes.SAWTOOTH))
+<<<<<<< HEAD
             generator.setGenerator(new sawtoothGenerator());
         else if (waveType.equals(WaveTypes.MULTI))
             generator.setGenerator(new multiGenerator());
@@ -101,6 +107,17 @@ public class SoundGenerator {
     //public boolean init(int sampleRate, int channelMask, int encoding) {
         int channelMask=4;
         int encoding=2;
+=======
+            generator.setGenerator(new sawtoothGenerator(),false);
+        else if (waveType.equals(WaveTypes.MULTI))
+            generator.setGenerator(new multiGenerator(),true);
+    }
+
+    public boolean init(int sampleRate ) {
+        return init2(sampleRate,4,2);
+    }
+    public boolean init2(int sampleRate, int channelMask, int encoding) {
+>>>>>>> 814d5621adebde1a1f7423251ad2e627a82e0bb8
         try {
 
         /*
@@ -179,7 +196,11 @@ public class SoundGenerator {
                 audioTrack.setPlaybackHeadPosition(0);
                 audioTrack.play();
                 while (isPlaying) {
+<<<<<<< HEAD
                     audioTrack.write(generator.getData(), 0, minSamplesSize);
+=======
+                    audioTrack.write(generator.getData(position), 0, minSamplesSize);
+>>>>>>> 814d5621adebde1a1f7423251ad2e627a82e0bb8
                     position++;
                 }
             }
