@@ -69,7 +69,11 @@ class _MainScreen extends State<MainScreen> {
       if (userSettings?.waveType == 4) _waveType = waveTypes.MULTI;
       if (userSettings?.waveType == 5) _waveType = waveTypes.MULTI;
 
+<<<<<<< HEAD
+      SoundGenerator.init(96000);
+=======
       SoundGenerator.init(48000);
+>>>>>>> 814d5621adebde1a1f7423251ad2e627a82e0bb8
       //SoundGenerator.init(96000, 4, 2);
 
 

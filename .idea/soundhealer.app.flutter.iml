@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/sound_generator.bak/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/sound_generator.bak/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/sound_generator.bak/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/app/lib/packages/sound_generator/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/app/lib/packages/sound_generator/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/app/lib/packages/sound_generator/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/sound_generator.bak/build" />
+      <excludeFolder url="file://$MODULE_DIR$/sound_generator.bak/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/sound_generator.bak/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/app/lib/packages/sound_generator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/app/lib/packages/sound_generator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/app/lib/packages/sound_generator/.dart_tool" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

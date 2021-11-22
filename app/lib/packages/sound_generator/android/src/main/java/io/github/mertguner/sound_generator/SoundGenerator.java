@@ -97,6 +97,17 @@ public class SoundGenerator {
         else if (waveType.equals(WaveTypes.SQUAREWAVE))
             generator.setGenerator(new squareWaveGenerator(),false);
         else if (waveType.equals(WaveTypes.SAWTOOTH))
+<<<<<<< HEAD
+            generator.setGenerator(new sawtoothGenerator());
+        else if (waveType.equals(WaveTypes.MULTI))
+            generator.setGenerator(new multiGenerator());
+    }
+
+    public boolean init(int sampleRate ) {
+    //public boolean init(int sampleRate, int channelMask, int encoding) {
+        int channelMask=4;
+        int encoding=2;
+=======
             generator.setGenerator(new sawtoothGenerator(),false);
         else if (waveType.equals(WaveTypes.MULTI))
             generator.setGenerator(new multiGenerator(),true);
@@ -106,6 +117,7 @@ public class SoundGenerator {
         return init2(sampleRate,4,2);
     }
     public boolean init2(int sampleRate, int channelMask, int encoding) {
+>>>>>>> 814d5621adebde1a1f7423251ad2e627a82e0bb8
         try {
 
         /*
@@ -184,7 +196,11 @@ public class SoundGenerator {
                 audioTrack.setPlaybackHeadPosition(0);
                 audioTrack.play();
                 while (isPlaying) {
+<<<<<<< HEAD
+                    audioTrack.write(generator.getData(), 0, minSamplesSize);
+=======
                     audioTrack.write(generator.getData(position), 0, minSamplesSize);
+>>>>>>> 814d5621adebde1a1f7423251ad2e627a82e0bb8
                     position++;
                 }
             }
