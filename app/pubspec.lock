@@ -206,9 +206,9 @@ packages:
   sound_generator:
     dependency: "direct main"
     description:
-      path: "lib/packages/sound_generator"
-      relative: true
-    source: path
+      name: sound_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.5"
   source_span:
     dependency: transitive
