@@ -66,8 +66,8 @@ class _MainScreen extends State<MainScreen> {
       if (userSettings?.waveType == 1) _waveType = waveTypes.SQUAREWAVE;
       if (userSettings?.waveType == 2) _waveType = waveTypes.TRIANGLE;
       if (userSettings?.waveType == 3) _waveType = waveTypes.SAWTOOTH;
-      if (userSettings?.waveType == 4) _waveType = waveTypes.MULTI;
-      if (userSettings?.waveType == 5) _waveType = waveTypes.MULTI;
+      //if (userSettings?.waveType == 4) _waveType = waveTypes.MULTI;
+      //if (userSettings?.waveType == 5) _waveType = waveTypes.MULTI;
 
       SoundGenerator.init(48000);
       //SoundGenerator.init(96000, 4, 2);
@@ -188,46 +188,46 @@ class _MainScreen extends State<MainScreen> {
         //anahata 3,2
         if (_selectedSound == 7) {
           _presetFrequency = 528;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,3);
+          ///!!! SoundGenerator.setWaveType(waveTypes.MULTI);
+          ///!!! SoundGenerator.setParams(3,3);
         }
         if (_selectedSound == 8) {
           _presetFrequency = 528;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,3);
+          ///!!! SoundGenerator.setWaveType(waveTypes.MULTI);
+          ///!!! SoundGenerator.setParams(2,3);
         }
         // inf 3,2
         if (_selectedSound == 9) {
           _presetFrequency = 1946704;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,-5);
+          ///!!! SoundGenerator.setWaveType(waveTypes.MULTI);
+          ///!!! SoundGenerator.setParams(3,-5);
         }
         if (_selectedSound == 10) {
           _presetFrequency = 1946704;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,-5);
+          ///!!! SoundGenerator.setWaveType(waveTypes.MULTI);
+          ///!!! SoundGenerator.setParams(2,-5);
         }
         // pneum 3,2
         if (_selectedSound == 11) {
           _presetFrequency = 426862;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,-4);
+          ///!!! SoundGenerator.setWaveType(waveTypes.MULTI);
+          ///!!! SoundGenerator.setParams(3,-4);
         }
         if (_selectedSound == 12) {
           _presetFrequency = 426862;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,-4);
+          ///!!! SoundGenerator.setWaveType(waveTypes.MULTI);
+          ///!!! SoundGenerator.setParams(2,-4);
         }
         // psor 3,2
         if (_selectedSound == 13) {
           _presetFrequency = 925370;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,-4);
+          ///!!! SoundGenerator.setWaveType(waveTypes.MULTI);
+          ///!!! SoundGenerator.setParams(3,-4);
         }
         if (_selectedSound == 14) {
           _presetFrequency = 925370;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,-4);
+          ///!!! SoundGenerator.setWaveType(waveTypes.MULTI);
+          ///!!! SoundGenerator.setParams(2,-4);
         }
         
         
