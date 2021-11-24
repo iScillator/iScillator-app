@@ -2,7 +2,6 @@ package io.github.mertguner.sound_generator.generators;
 
 public class multiGenerator extends baseGenerator {
     public short getValue(double phase, double period) {
-<<<<<<< HEAD
         return 0;
     }
 
@@ -38,11 +37,5 @@ public class multiGenerator extends baseGenerator {
         return y_short;
 
         //return (short) (Short.MAX_VALUE * Math.sin(1000.0*x/sampleRate*Math.PI*2));
-=======
-        if (phase < (period / 2))
-            return (short)(Short.MAX_VALUE * (((2. * phase) / Math.PI) - 1));
-        else
-            return (short)(Short.MAX_VALUE * (((2. * phase) / Math.PI) - 3));
->>>>>>> 2aac8a7b8930c42074cae14d7404544030044d0c
     }
 }
