@@ -1,4 +1,4 @@
 git add .
 git pull
-git commit -a -m "no comments"
+git commit -a -m "stereo ok"
 git push

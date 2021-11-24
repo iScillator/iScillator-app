@@ -86,8 +86,8 @@ public class signalDataGenerator {
             //generator.getBuffer(backgroundBuffer,sampleRate,position,bufferSamplesSize);         
             
             for (int i = 0; i < bufferSamplesSize/2; i++) {
-                backgroundBuffer[i*2] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize,1);
-                backgroundBuffer[i*2+1] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize,2);
+                backgroundBuffer[i*2] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize/2,1);
+                backgroundBuffer[i*2+1] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize/2,2);
             }
 
         } else {
