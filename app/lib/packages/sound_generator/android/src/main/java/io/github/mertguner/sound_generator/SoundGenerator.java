@@ -103,7 +103,9 @@ public class SoundGenerator {
     }
 
     public boolean init(int sampleRate ) {
-        return init2(sampleRate,4,2);
+        //return init2(sampleRate,4,2);
+        //return init2(sampleRate,AudioFormat.CHANNEL_OUT_MONO,2);
+        return init2(sampleRate,AudioFormat.CHANNEL_OUT_STEREO,2);
     }
     public boolean init2(int sampleRate, int channelMask, int encoding) {
         try {

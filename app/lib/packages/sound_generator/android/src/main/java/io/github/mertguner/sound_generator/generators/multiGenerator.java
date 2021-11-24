@@ -99,7 +99,7 @@ public class multiGenerator extends baseGenerator {
         return 0;
     }
 
-    public short getValuePos(int xp, int sampleRate, int position, int bufferSamplesSize) {
+    public short getValuePos(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
         double y,y_step,t1,t2,mod_amplitude;
         int x;
         short y_short;
@@ -114,6 +114,8 @@ public class multiGenerator extends baseGenerator {
             t1=(tone_mod_hz[step]*x/sampleRate)*Math.PI*2;
             t2=(tone_hz[step]*x/sampleRate)*Math.PI*2;
             
+            if(channel==2) t1=t1+(Math.PI*2/3);
+            if(channel==2) t2=t2+(Math.PI*2/3);
                 
             mod_amplitude=Math.sin(t1);
             y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive
