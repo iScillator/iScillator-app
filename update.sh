@@ -1,4 +1,4 @@
 git add .
-git pull
-git commit -a -m "stereo ok"
-git push
+git pull --all
+git commit -a -m "+"
+git push --all
