@@ -13,15 +13,26 @@ public class multiGenerator extends baseGenerator {
     private double tone_hz_max=20000;
     private double frequency = 50;
 
+    private int audio=0;
+
     public multiGenerator()
     {
         this.tone_hz = new double[tone_steps];
         this.tone_mod_hz = new double[tone_steps];
     }
 
-    public void setParams(double tone_pow,double tone_shift) {
-        this.tone_pow = tone_pow;
-        this.tone_shift = tone_shift;
+    public void setParams(double modulation,double audio) {
+        if(modulation==-1) this.tone_pow=1;
+        if(modulation==2) this.tone_pow=2;
+        if(modulation==3) this.tone_pow=3;
+        if(modulation==5) this.tone_pow=5;
+        if(modulation==23) this.tone_pow=1.58496250072;
+        if(modulation==74) this.tone_pow=7.0/4.0;
+
+        this.audio=audio;
+
+        //this.tone_pow = tone_pow;
+        //this.tone_shift = tone_shift;
         android.util.Log.d("SoundHealer", "tone_shift="+tone_shift);
     }
 
@@ -114,8 +125,18 @@ public class multiGenerator extends baseGenerator {
             t1=(tone_mod_hz[step]*x/sampleRate)*Math.PI*2;
             t2=(tone_hz[step]*x/sampleRate)*Math.PI*2;
             
-            if(channel==2) t1=t1+(Math.PI*2/4);
-            if(channel==2) t2=t2+(Math.PI*2/4);
+            if (audio==90) {
+                if(channel==2) t1=t1+(Math.PI*2/4);
+                if(channel==2) t2=t2+(Math.PI*2/4);
+            }
+            if (audio==120) {
+                if(channel==2) t1=t1+(Math.PI*2/3);
+                if(channel==2) t2=t2+(Math.PI*2/3);
+            }
+            if (audio==180) {
+                if(channel==2) t1=t1+(Math.PI*2/2);
+                if(channel==2) t2=t2+(Math.PI*2/2);
+            }
                 
             mod_amplitude=Math.sin(t1);
             y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive

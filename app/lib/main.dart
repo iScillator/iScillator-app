@@ -203,8 +203,9 @@ class _MainScreen extends State<MainScreen> {
 
         double _presetFrequency = 0;
         _presetFrequency=targets.values.toList()[_selectedSound].toDouble();
+        
         SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
-
+        SoundGenerator.setParams(modulations.values.toList()[_selectedModulation].toDouble(),audios.values.toList()[_selectedAudio].toDouble());
         
         _frequency = _presetFrequency;
         SoundGenerator.setFrequency(_frequency);
