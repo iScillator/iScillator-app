@@ -114,8 +114,8 @@ public class multiGenerator extends baseGenerator {
             t1=(tone_mod_hz[step]*x/sampleRate)*Math.PI*2;
             t2=(tone_hz[step]*x/sampleRate)*Math.PI*2;
             
-            if(channel==2) t1=t1+(Math.PI*2/3);
-            if(channel==2) t2=t2+(Math.PI*2/3);
+            if(channel==2) t1=t1+(Math.PI*2/4);
+            if(channel==2) t2=t2+(Math.PI*2/4);
                 
             mod_amplitude=Math.sin(t1);
             y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive

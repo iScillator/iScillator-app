@@ -2,11 +2,10 @@
 
 final audios=
 {
-    "audio": {
         "Mono":1,
-        "Stereo 180":180,
-        "Stereo 120":120
-    }
+        "Stereo 90":90,
+        "Stereo 120":120,
+        "Stereo 180":180
 };
 
 /*
