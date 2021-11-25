@@ -204,7 +204,12 @@ class _MainScreen extends State<MainScreen> {
         double _presetFrequency = 0;
         _presetFrequency=targets.values.toList()[_selectedSound].toDouble();
         
-        SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
+        if (_selectedModulation==1)
+        {
+          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
+        } else {
+          SoundGenerator.setWaveType(waveTypes.MULTI);
+        }
         SoundGenerator.setParams(modulations.values.toList()[_selectedModulation].toDouble(),audios.values.toList()[_selectedAudio].toDouble());
         
         _frequency = _presetFrequency;
@@ -279,7 +284,7 @@ class _MainScreen extends State<MainScreen> {
       if (audio == -1) {
         _isPresetWindowAudioShown = false;
       } else {
-        _selectedModulation = audio;
+        _selectedAudio = audio;
         _isPresetWindowAudioShown = false;
       }
     });
