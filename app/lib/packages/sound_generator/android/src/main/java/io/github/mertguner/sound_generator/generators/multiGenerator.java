@@ -29,11 +29,12 @@ public class multiGenerator extends baseGenerator {
         if(modulation==23) this.tone_pow=1.58496250072;
         if(modulation==74) this.tone_pow=7.0/4.0;
 
-        this.audio=audio;
+        this.audio=(int)audio;
 
         //this.tone_pow = tone_pow;
         //this.tone_shift = tone_shift;
         android.util.Log.d("SoundHealer", "tone_shift="+tone_shift);
+        android.util.Log.d("SoundHealer", "audio="+this.audio);
     }
 
     public void setFrequency(float frequency) {
