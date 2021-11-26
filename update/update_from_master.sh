@@ -6,5 +6,5 @@
 #git push -u origin HEAD:master
 
 git fetch origin
-git merge origin/master
+git merge origin/main
 
