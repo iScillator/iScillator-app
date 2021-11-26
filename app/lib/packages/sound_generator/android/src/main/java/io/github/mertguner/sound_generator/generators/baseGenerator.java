@@ -13,7 +13,7 @@ public abstract class baseGenerator {
     {
         return;
     }
-    public short getValuePos(int xp, int sampleRate, int position, int bufferSamplesSize) {
+    public short getValuePos(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
         return 0;
     }
     public abstract short getValue(double phase, double period);

@@ -23,7 +23,7 @@ import 'screens/settings.dart';
 import 'models/user_settings.dart';
 
 import 'config/configs.dart';
-import 'config/targets.dart' as targets;
+import 'config/targets.dart';
 import 'config/modulations.dart';
 import 'config/audios.dart';
 
@@ -47,15 +47,21 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreen extends State<MainScreen> {
   bool _isPlaying = false;
+
   bool _isPresetWindowShown = false;
+  bool _isPresetWindowModulationShown = false;
+  bool _isPresetWindowAudioShown = false;
+  
   int _selectedSound = 0;
+  int _selectedAudio = 0;
+  int _selectedModulation = 0;
+
   double _frequency = 0;
 
 
 
 
-  final sounds=['Muladhara', 'Svadhisthana', 'Manipura','Anahata','Vishudha','Adjna','Sahasrara','Adjna/3','Adjna/2','Inf/3','Inf/2','Pn/3','Pn/2','Ps/3','Ps/2'];
-
+  
 
 
   Timer? _timer;
@@ -122,9 +128,28 @@ class _MainScreen extends State<MainScreen> {
               Padding(
                   padding: EdgeInsets.only(top: 20.0), child: frequencySection),
               Expanded(child: PlayButton(onPlayingChange: _play)),
+              ///!!!
               SelectPresetButton(
-                presetName: sounds[_selectedSound],
+                presetName: targets.keys.toList()[_selectedSound],
                 tapMethod: _showPresetWindow,
+              ),
+              Divider(
+                                  indent: 60,
+                                  endIndent: 60,
+                                  color: Colors.white,
+              ),
+              SelectPresetButton(
+                presetName: modulations.keys.toList()[_selectedModulation],
+                tapMethod: _showPresetWindowModulation,
+              ),
+              Divider(
+                                  indent: 60,
+                                  endIndent: 60,
+                                  color: Colors.white,
+              ),
+              SelectPresetButton(
+                presetName: audios.keys.toList()[_selectedAudio],
+                tapMethod: _showPresetWindowAudio,
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 30.0, top: 40.0),
@@ -152,6 +177,16 @@ class _MainScreen extends State<MainScreen> {
               PresetWindow(
                 selectSound: _selectSound,
                 selectedSound: _selectedSound,
+              ),
+            if (_isPresetWindowModulationShown)
+              PresetWindowModulation(
+                selectModulation: _selectModulation,
+                selectedModulation: _selectedModulation,
+              ),
+            if (_isPresetWindowAudioShown)
+              PresetWindowAudio(
+                selectAudio: _selectAudio,
+                selectedAudio: _selectedAudio,
               )
           ],
         ),
@@ -164,80 +199,18 @@ class _MainScreen extends State<MainScreen> {
       _isPlaying = !_isPlaying;
 
       if (_isPlaying) {
-        double _presetFrequency = 0;
-        if (_selectedSound == 0) {
-          _presetFrequency = 285;
-          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
-        }
-        if (_selectedSound == 1) {
-          _presetFrequency = 396;
-          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
-        }
-        if (_selectedSound == 2) {
-          _presetFrequency = 417;
-          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
-        }
-        if (_selectedSound == 3) {
-          _presetFrequency = 528;
-          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
-        }
-        if (_selectedSound == 4) {
-          _presetFrequency = 639;
-          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
-        }
-        if (_selectedSound == 5) {
-          _presetFrequency = 741;
-          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
-        }
-        if (_selectedSound == 6) {
-          _presetFrequency = 852;
-          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
-        }
-        //anahata 3,2
-        if (_selectedSound == 7) {
-          _presetFrequency = 528;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,3);
-        }
-        if (_selectedSound == 8) {
-          _presetFrequency = 528;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,3);
-        }
-        // inf 3,2
-        if (_selectedSound == 9) {
-          _presetFrequency = 1946704;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,-5);
-        }
-        if (_selectedSound == 10) {
-          _presetFrequency = 1946704;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,-5);
-        }
-        // pneum 3,2
-        if (_selectedSound == 11) {
-          _presetFrequency = 426862;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,-4);
-        }
-        if (_selectedSound == 12) {
-          _presetFrequency = 426862;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,-4);
-        }
-        // psor 3,2
-        if (_selectedSound == 13) {
-          _presetFrequency = 925370;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(3,-4);
-        }
-        if (_selectedSound == 14) {
-          _presetFrequency = 925370;
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-          SoundGenerator.setParams(2,-4);
-        }
         
+
+        double _presetFrequency = 0;
+        _presetFrequency=targets.values.toList()[_selectedSound].toDouble();
+        
+        if (_selectedModulation==1)
+        {
+          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
+        } else {
+          SoundGenerator.setWaveType(waveTypes.MULTI);
+        }
+        SoundGenerator.setParams(modulations.values.toList()[_selectedModulation].toDouble(),audios.values.toList()[_selectedAudio].toDouble());
         
         _frequency = _presetFrequency;
         SoundGenerator.setFrequency(_frequency);
@@ -263,12 +236,27 @@ class _MainScreen extends State<MainScreen> {
     });
   }
 
+  // Показ модального окошка выбора
   void _showPresetWindow() {
     setState(() {
       _isPresetWindowShown = true;
     });
   }
 
+  void _showPresetWindowModulation() {
+    setState(() {
+      _isPresetWindowModulationShown = true;
+    });
+  }
+
+  void _showPresetWindowAudio() {
+    setState(() {
+      _isPresetWindowAudioShown = true;
+    });
+  }
+
+
+  // Запоминание параметров выбора
   void _selectSound(int sound) {
     setState(() {
       if (sound == -1) {
@@ -279,6 +267,30 @@ class _MainScreen extends State<MainScreen> {
       }
     });
   }
+
+  void _selectModulation(int modulation) {
+    setState(() {
+      if (modulation == -1) {
+        _isPresetWindowModulationShown = false;
+      } else {
+        _selectedModulation = modulation;
+        _isPresetWindowModulationShown = false;
+      }
+    });
+  }
+
+  void _selectAudio(int audio) {
+    setState(() {
+      if (audio == -1) {
+        _isPresetWindowAudioShown = false;
+      } else {
+        _selectedAudio = audio;
+        _isPresetWindowAudioShown = false;
+      }
+    });
+  }
+
+
 
   Future<UserSettings> _getSettings() async {
     prefs = await SharedPreferences.getInstance();
@@ -456,372 +468,204 @@ class PresetWindow extends StatelessWidget {
                               color: Colors.white,
                             ))),
                     Expanded(
-                        child: ListView(
-                      children: <Widget>[
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-
-                        //final sounds=['Muladhara', 'Svadhisthana', 'Manipura','Anahata','Vishudha','Adjna','Sahasrara'];
-
-                    ListTile(
-                          title: Align(
-                              child: Text(
-                                'Muladhara',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 23.0),
-                              ),
-                              alignment: selectedSound == 0
-                                  ? Alignment(-1.8, 0)
-                                  : Alignment(-0.3, 0)),
-                          onTap: () {
-                            selectSound(0);
-                          },
-                          leading: selectedSound == 0
-                              ? Icon(
-                                  Icons.check,
+                        child: ListView.builder(
+                          itemCount:targets.keys.toList().length,
+                          itemBuilder: (context,index) {
+                            return Column(children: [
+                                ListTile(
+                                  title: Align(
+                                      child: Text(
+                                        targets.keys.toList()[index],
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 23.0),
+                                      ),
+                                      alignment: selectedSound == index
+                                          ? Alignment(-1.8, 0)
+                                          : Alignment(-0.3, 0)),
+                                  onTap: () {
+                                    selectSound(index);
+                                  },
+                                  leading: selectedSound == index
+                                      ? Icon(
+                                          Icons.check,
+                                          color: Colors.white,
+                                        )
+                                      : null,
+                                ),
+                                Divider(
+                                  indent: 20,
+                                  endIndent: 20,
                                   color: Colors.white,
                                 )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Svadhisthana',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 1
-                                  ? Alignment(-2.1, 0)
-                                  : Alignment(-0.2, 0)),
-                          onTap: () {
-                            selectSound(1);
-                          },
-                          leading: selectedSound == 1
-                              ? Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Manipura',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 2
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(2);
-                          },
-                          leading: selectedSound == 2
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Anahata',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 3
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(3);
-                          },
-                          leading: selectedSound == 3
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Vishudha',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 4
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(4);
-                          },
-                          leading: selectedSound == 4
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Adjna',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 5
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(5);
-                          },
-                          leading: selectedSound == 5
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Sahasrara',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 6
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(6);
-                          },
-                          leading: selectedSound == 6
-                              ? Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Adjna/3',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 7
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(7);
-                          },
-                          leading: selectedSound == 7
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Adjna/2',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 8
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(8);
-                          },
-                          leading: selectedSound == 8
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Inf/3',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 9
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(9);
-                          },
-                          leading: selectedSound == 9
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Inf/2',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 10
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(10);
-                          },
-                          leading: selectedSound == 10
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Pn/3',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 11
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(11);
-                          },
-                          leading: selectedSound == 11
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Pn/2',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 12
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(12);
-                          },
-                          leading: selectedSound == 12
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Ps/3',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 13
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(13);
-                          },
-                          leading: selectedSound == 13
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
-                        ),
-                        ListTile(
-                          title: Align(
-                              child: Text('Ps/2',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 23.0)),
-                              alignment: selectedSound == 14
-                                  ? Alignment(-2.4, 0)
-                                  : Alignment(-0.1, 0)),
-                          onTap: () {
-                            selectSound(14);
-                          },
-                          leading: selectedSound == 14
-                              ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                              : null,
-                        ),
-                        
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.white,
+                              ]);
+                            }
                         )
-                      ]/*..addAll(
-                        return Row(children:
-[for (MenuItem item in targets.targets["target"] ) Text(item.desc)]
-);
-                        
-                      ),*/
-                    ))
-                  ],
-                ))));
+
+                    )])
+                  
+                )));
   }
 }
+
+class PresetWindowModulation extends StatelessWidget {
+  const PresetWindowModulation(
+      {Key? key, required this.selectModulation, required this.selectedModulation})
+      : super(key: key);
+
+  final Function selectModulation;
+  final int selectedModulation;
+
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.only(top: 30, bottom: 30),
+        color: Colors.white60,
+        child: SafeArea(
+            child: Container(
+                constraints: BoxConstraints(maxWidth: 350),
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromRGBO(7, 117, 229, 1.0),
+                          Color.fromRGBO(12, 232, 92, 1.0),
+                        ]),
+                    border: Border.all(width: 3, color: Colors.white),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  children: [
+                    Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                            iconSize: 35,
+                            onPressed: () {
+                              selectModulation(-1);
+                            },
+                            icon: Icon(
+                              Icons.close,
+                              color: Colors.white,
+                            ))),
+                    Expanded(
+                        child: ListView.builder(
+                          itemCount:modulations.keys.toList().length,
+                          itemBuilder: (context,index) {
+                            return Column(children: [
+                                ListTile(
+                                  title: Align(
+                                      child: Text(
+                                        modulations.keys.toList()[index],
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 23.0),
+                                      ),
+                                      alignment: selectedModulation == index
+                                          ? Alignment(-1.8, 0)
+                                          : Alignment(-0.3, 0)),
+                                  onTap: () {
+                                    selectModulation(index);
+                                  },
+                                  leading: selectedModulation == index
+                                      ? Icon(
+                                          Icons.check,
+                                          color: Colors.white,
+                                        )
+                                      : null,
+                                ),
+                                Divider(
+                                  indent: 20,
+                                  endIndent: 20,
+                                  color: Colors.white,
+                                )
+                              ]);
+                            }
+                        )
+
+                    )])
+                  
+                )));
+  }
+}
+
+class PresetWindowAudio extends StatelessWidget {
+  const PresetWindowAudio(
+      {Key? key, required this.selectAudio, required this.selectedAudio})
+      : super(key: key);
+
+  final Function selectAudio;
+  final int selectedAudio;
+
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.only(top: 30, bottom: 30),
+        color: Colors.white60,
+        child: SafeArea(
+            child: Container(
+                constraints: BoxConstraints(maxWidth: 350),
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromRGBO(7, 117, 229, 1.0),
+                          Color.fromRGBO(12, 232, 92, 1.0),
+                        ]),
+                    border: Border.all(width: 3, color: Colors.white),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  children: [
+                    Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                            iconSize: 35,
+                            onPressed: () {
+                              selectAudio(-1);
+                            },
+                            icon: Icon(
+                              Icons.close,
+                              color: Colors.white,
+                            ))),
+                    Expanded(
+                        child: ListView.builder(
+                          itemCount:audios.keys.toList().length,
+                          itemBuilder: (context,index) {
+                            return Column(children: [
+                                ListTile(
+                                  title: Align(
+                                      child: Text(
+                                        audios.keys.toList()[index],
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 23.0),
+                                      ),
+                                      alignment: selectedAudio == index
+                                          ? Alignment(-1.8, 0)
+                                          : Alignment(-0.3, 0)),
+                                  onTap: () {
+                                    selectAudio(index);
+                                  },
+                                  leading: selectedAudio == index
+                                      ? Icon(
+                                          Icons.check,
+                                          color: Colors.white,
+                                        )
+                                      : null,
+                                ),
+                                Divider(
+                                  indent: 20,
+                                  endIndent: 20,
+                                  color: Colors.white,
+                                )
+                              ]);
+                            }
+                        )
+
+                    )])
+                  
+                )));
+  }
+}
+

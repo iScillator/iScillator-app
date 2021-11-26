@@ -85,14 +85,16 @@ public class signalDataGenerator {
         {
             //generator.getBuffer(backgroundBuffer,sampleRate,position,bufferSamplesSize);         
             
-            for (int i = 0; i < bufferSamplesSize; i++) {
-                backgroundBuffer[i] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize);;
+            for (int i = 0; i < bufferSamplesSize/2; i++) {
+                backgroundBuffer[i*2] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize/2,1);
+                backgroundBuffer[i*2+1] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize/2,2);
             }
 
         } else {
-            for (int i = 0; i < bufferSamplesSize; i++) {
+            for (int i = 0; i < bufferSamplesSize/2; i++) {
                 oldFrequency += ((frequency - oldFrequency) * smoothStep);
-                backgroundBuffer[i] = generator.getValue(ph, _2Pi);
+                backgroundBuffer[i*2] = generator.getValue(ph, _2Pi);
+                backgroundBuffer[i*2+1] = generator.getValue(ph, _2Pi);
                 ph += (oldFrequency * phCoefficient);
 
                 //performance of this block is higher than ph %= _2Pi;
