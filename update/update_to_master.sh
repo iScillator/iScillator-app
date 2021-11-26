@@ -6,5 +6,6 @@ git pull  origin HEAD
 git commit -a -m "+"
 #git push --all
 git push -u origin HEAD
-git push -u origin HEAD:master
+git push -u origin HEAD:main
 cd update
+
