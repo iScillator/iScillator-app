@@ -22,6 +22,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/settings.dart';
 import 'models/user_settings.dart';
 
+import 'config/configs.dart';
+import 'config/targets.dart' as targets;
+import 'config/modulations.dart';
+import 'config/audios.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -45,6 +50,9 @@ class _MainScreen extends State<MainScreen> {
   bool _isPresetWindowShown = false;
   int _selectedSound = 0;
   double _frequency = 0;
+
+
+
 
   final sounds=['Muladhara', 'Svadhisthana', 'Manipura','Anahata','Vishudha','Adjna','Sahasrara','Adjna/3','Adjna/2','Inf/3','Inf/2','Pn/3','Pn/2','Ps/3','Ps/2'];
 
@@ -414,6 +422,7 @@ class PresetWindow extends StatelessWidget {
   final Function selectSound;
   final int selectedSound;
 
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -805,7 +814,12 @@ class PresetWindow extends StatelessWidget {
                           endIndent: 20,
                           color: Colors.white,
                         )
-                      ],
+                      ]/*..addAll(
+                        return Row(children:
+[for (MenuItem item in targets.targets["target"] ) Text(item.desc)]
+);
+                        
+                      ),*/
                     ))
                   ],
                 ))));
