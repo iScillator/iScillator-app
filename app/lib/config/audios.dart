@@ -5,6 +5,7 @@ final audios=
         "Mono":1,
         "Stereo 90":90,
         "Stereo 120":120,
+        "Stereo 137.5 Golden":137,
         "Stereo 180":180
 };
 
