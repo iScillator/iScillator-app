@@ -69,7 +69,7 @@ class _MainScreen extends State<MainScreen> {
   int _selectedEnviroment = 0;
   int _selectedModulation = 1; //1024;
   int _selectedMulti = 2; //3;
-  int _selectedTarget = 4; //528;
+  int _selectedTarget = 3; //528;
 
   double _frequency = 0;
 

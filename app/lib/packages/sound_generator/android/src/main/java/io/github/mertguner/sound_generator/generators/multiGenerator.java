@@ -78,8 +78,8 @@ public class multiGenerator extends baseGenerator {
     private void multiHz(double target, double modulation, double multi)
     {
         multi_steps=0;
-        this.tone_hz = new double[100];
-        this.tone_mod_hz = new double[100];
+        this.multi_hz = new double[100];
+        this.multi_mod_hz = new double[100];
         
         multiHzAdd(target, modulation, multi,1,true);
         multiHzAdd(target, modulation, multi,-1,true);
