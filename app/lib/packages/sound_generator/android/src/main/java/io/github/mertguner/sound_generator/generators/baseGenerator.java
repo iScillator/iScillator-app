@@ -5,7 +5,7 @@ public abstract class baseGenerator {
     {
         return;
     }
-    public void setParams(double tone_pow,double tone_shift)
+    public void setParams(double target, double enviroment, double modulation, double multi, double channel, double audio)
     {
         return;
     }

@@ -23,9 +23,13 @@ import 'screens/settings.dart';
 import 'models/user_settings.dart';
 
 import 'config/configs.dart';
-import 'config/targets.dart';
-import 'config/modulations.dart';
+
 import 'config/audios.dart';
+import 'config/channels.dart';
+import 'config/enviroments.dart';
+import 'config/modulations.dart';
+import 'config/multis.dart';
+import 'config/targets.dart';
 
 void main() => runApp(MyApp());
 
@@ -48,21 +52,26 @@ class MainScreen extends StatefulWidget {
 class _MainScreen extends State<MainScreen> {
   bool _isPlaying = false;
 
-  bool _isPresetWindowShown = false;
-  bool _isPresetWindowModulationShown = false;
-  bool _isPresetWindowAudioShown = false;
-  
+  //bool _isPresetWindowShown = false;
+  bool _isPresetWindowAudiosShown = false;
+  bool _isPresetWindowChannelsShown = false;
+  bool _isPresetWindowEnviromentsShown = false;
+  bool _isPresetWindowModulationsShown = false;
+  bool _isPresetWindowMultisShown = false;
+  bool _isPresetWindowTargetsShown = false;
+
+  /*
   int _selectedSound = 0;
+  */
+
   int _selectedAudio = 0;
-  int _selectedModulation = 0;
+  int _selectedChannel = 60;
+  int _selectedEnviroment = 0;
+  int _selectedModulation = 1024;
+  int _selectedMulti = 3;
+  int _selectedTarget = 528;
 
   double _frequency = 0;
-
-
-
-
-  
-
 
   Timer? _timer;
 
@@ -85,7 +94,6 @@ class _MainScreen extends State<MainScreen> {
 
       SoundGenerator.init(48000);
       //SoundGenerator.init(96000, 4, 2);
-
 
       SoundGenerator.setWaveType(_waveType);
       SoundGenerator.setBalance(userSettings?.balance ?? 0.0);
@@ -128,28 +136,66 @@ class _MainScreen extends State<MainScreen> {
               Padding(
                   padding: EdgeInsets.only(top: 20.0), child: frequencySection),
               Expanded(child: PlayButton(onPlayingChange: _play)),
+
               ///!!!
+              /*
               SelectPresetButton(
                 presetName: targets.keys.toList()[_selectedSound],
                 tapMethod: _showPresetWindow,
               ),
               Divider(
-                                  indent: 60,
-                                  endIndent: 60,
-                                  color: Colors.white,
+                indent: 60,
+                endIndent: 60,
+                color: Colors.white,
+              ),*/
+              SelectPresetButton(
+                presetName: targets.keys.toList()[_selectedTarget],
+                tapMethod: _showPresetWindowTargets,
+              ),
+              Divider(
+                indent: 60,
+                endIndent: 60,
+                color: Colors.white,
+              ),
+              SelectPresetButton(
+                presetName: enviroments.keys.toList()[_selectedEnviroment],
+                tapMethod: _showPresetWindowEnviroments,
+              ),
+              Divider(
+                indent: 60,
+                endIndent: 60,
+                color: Colors.white,
               ),
               SelectPresetButton(
                 presetName: modulations.keys.toList()[_selectedModulation],
-                tapMethod: _showPresetWindowModulation,
+                tapMethod: _showPresetWindowModulations,
               ),
               Divider(
-                                  indent: 60,
-                                  endIndent: 60,
-                                  color: Colors.white,
+                indent: 60,
+                endIndent: 60,
+                color: Colors.white,
+              ),
+              SelectPresetButton(
+                presetName: multis.keys.toList()[_selectedMulti],
+                tapMethod: _showPresetWindowMultis,
+              ),
+              Divider(
+                indent: 60,
+                endIndent: 60,
+                color: Colors.white,
+              ),
+              SelectPresetButton(
+                presetName: channels.keys.toList()[_selectedChannel],
+                tapMethod: _showPresetWindowChannels,
+              ),
+              Divider(
+                indent: 60,
+                endIndent: 60,
+                color: Colors.white,
               ),
               SelectPresetButton(
                 presetName: audios.keys.toList()[_selectedAudio],
-                tapMethod: _showPresetWindowAudio,
+                tapMethod: _showPresetWindowAudios,
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 30.0, top: 40.0),
@@ -173,20 +219,48 @@ class _MainScreen extends State<MainScreen> {
                     )),
               )
             ])),
+            /*
             if (_isPresetWindowShown)
               PresetWindow(
                 selectSound: _selectSound,
                 selectedSound: _selectedSound,
               ),
-            if (_isPresetWindowModulationShown)
-              PresetWindowModulation(
-                selectModulation: _selectModulation,
-                selectedModulation: _selectedModulation,
+            */
+            if (_isPresetWindowAudiosShown)
+              PresetWindow(
+                items: audios,
+                selectItem: _selectAudio,
+                selectedItem: _selectedAudio,
               ),
-            if (_isPresetWindowAudioShown)
-              PresetWindowAudio(
-                selectAudio: _selectAudio,
-                selectedAudio: _selectedAudio,
+            if (_isPresetWindowChannelsShown)
+              PresetWindow(
+                items: channels,
+                selectItem: _selectChannel,
+                selectedItem: _selectedChannel,
+              ),
+            if (_isPresetWindowEnviromentsShown)
+              PresetWindow(
+                items: enviroments,
+                selectItem: _selectEnviroment,
+                selectedItem: _selectedEnviroment,
+              ),
+            if (_isPresetWindowModulationsShown)
+              PresetWindow(
+                items: modulations,
+                selectItem: _selectModulation,
+                selectedItem: _selectedModulation,
+              ),
+            if (_isPresetWindowMultisShown)
+              PresetWindow(
+                items: multis,
+                selectItem: _selectMulti,
+                selectedItem: _selectedMulti,
+              ),
+            if (_isPresetWindowTargetsShown)
+              PresetWindow(
+                items: targets,
+                selectItem: _selectTarget,
+                selectedItem: _selectedTarget,
               )
           ],
         ),
@@ -199,19 +273,25 @@ class _MainScreen extends State<MainScreen> {
       _isPlaying = !_isPlaying;
 
       if (_isPlaying) {
-        
-
         double _presetFrequency = 0;
-        _presetFrequency=targets.values.toList()[_selectedSound].toDouble();
-        
-        if (_selectedModulation==1)
-        {
+        _presetFrequency = targets.values.toList()[_selectedTarget].toDouble();
+
+        SoundGenerator.setWaveType(waveTypes.MULTI);
+        /*
+        if (_selectedModulation.toInt() == 1) {
           SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         } else {
           SoundGenerator.setWaveType(waveTypes.MULTI);
-        }
-        SoundGenerator.setParams(modulations.values.toList()[_selectedModulation].toDouble(),audios.values.toList()[_selectedAudio].toDouble());
-        
+        }*/
+
+        SoundGenerator.setParams(
+            targets.values.toList()[_selectedTarget].toDouble(),
+            enviroments.values.toList()[_selectedEnviroment].toDouble(),
+            modulations.values.toList()[_selectedModulation].toDouble(),
+            multis.values.toList()[_selectedMulti].toDouble(),
+            channels.values.toList()[_selectedChannel].toDouble(),
+            audios.values.toList()[_selectedAudio].toDouble());
+
         _frequency = _presetFrequency;
         SoundGenerator.setFrequency(_frequency);
 
@@ -237,60 +317,129 @@ class _MainScreen extends State<MainScreen> {
   }
 
   // Показ модального окошка выбора
+  /*
   void _showPresetWindow() {
     setState(() {
       _isPresetWindowShown = true;
     });
   }
+  */
 
-  void _showPresetWindowModulation() {
+  void _showPresetWindowAudios() {
     setState(() {
-      _isPresetWindowModulationShown = true;
+      _isPresetWindowAudiosShown = true;
     });
   }
 
-  void _showPresetWindowAudio() {
+  void _showPresetWindowChannels() {
     setState(() {
-      _isPresetWindowAudioShown = true;
+      _isPresetWindowChannelsShown = true;
     });
   }
 
+  void _showPresetWindowEnviroments() {
+    setState(() {
+      _isPresetWindowEnviromentsShown = true;
+    });
+  }
+
+  void _showPresetWindowModulations() {
+    setState(() {
+      _isPresetWindowModulationsShown = true;
+    });
+  }
+
+  void _showPresetWindowMultis() {
+    setState(() {
+      _isPresetWindowMultisShown = true;
+    });
+  }
+
+  void _showPresetWindowTargets() {
+    setState(() {
+      _isPresetWindowModulationsShown = true;
+    });
+  }
 
   // Запоминание параметров выбора
-  void _selectSound(int sound) {
+/*
+  void _selectSound(int num) {
     setState(() {
-      if (sound == -1) {
-        _isPresetWindowShown = false;
+      if (num == -1) {
+        _isPresetWindowSoundsShown = false;
       } else {
-        _selectedSound = sound;
-        _isPresetWindowShown = false;
+        _selectedSound = num;
+        _isPresetWindowSoundsShown = false;
+      }
+    });
+  }
+*/
+
+  void _selectAudio(int num) {
+    setState(() {
+      if (num == -1) {
+        _isPresetWindowAudiosShown = false;
+      } else {
+        _selectedAudio = num;
+        _isPresetWindowAudiosShown = false;
       }
     });
   }
 
-  void _selectModulation(int modulation) {
+  void _selectChannel(int num) {
     setState(() {
-      if (modulation == -1) {
-        _isPresetWindowModulationShown = false;
+      if (num == -1) {
+        _isPresetWindowChannelsShown = false;
       } else {
-        _selectedModulation = modulation;
-        _isPresetWindowModulationShown = false;
+        _selectedChannel = num;
+        _isPresetWindowChannelsShown = false;
       }
     });
   }
 
-  void _selectAudio(int audio) {
+  void _selectEnviroment(int num) {
     setState(() {
-      if (audio == -1) {
-        _isPresetWindowAudioShown = false;
+      if (num == -1) {
+        _isPresetWindowEnviromentsShown = false;
       } else {
-        _selectedAudio = audio;
-        _isPresetWindowAudioShown = false;
+        _selectedEnviroment = num;
+        _isPresetWindowEnviromentsShown = false;
       }
     });
   }
 
+  void _selectModulation(int num) {
+    setState(() {
+      if (num == -1) {
+        _isPresetWindowModulationsShown = false;
+      } else {
+        _selectedModulation = num;
+        _isPresetWindowModulationsShown = false;
+      }
+    });
+  }
 
+  void _selectMulti(int num) {
+    setState(() {
+      if (num == -1) {
+        _isPresetWindowMultisShown = false;
+      } else {
+        _selectedMulti = num;
+        _isPresetWindowMultisShown = false;
+      }
+    });
+  }
+
+  void _selectTarget(int num) {
+    setState(() {
+      if (num == -1) {
+        _isPresetWindowTargetsShown = false;
+      } else {
+        _selectedTarget = num;
+        _isPresetWindowTargetsShown = false;
+      }
+    });
+  }
 
   Future<UserSettings> _getSettings() async {
     prefs = await SharedPreferences.getInstance();
@@ -428,13 +577,16 @@ class _SelectPresetButton extends State<SelectPresetButton> {
 
 class PresetWindow extends StatelessWidget {
   const PresetWindow(
-      {Key? key, required this.selectSound, required this.selectedSound})
+      {Key? key,
+      required this.items,
+      required this.selectItem,
+      required this.selectedItem})
       : super(key: key);
 
-  final Function selectSound;
-  final int selectedSound;
+  final items;
+  final Function selectItem;
+  final int selectedItem;
 
-  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -454,68 +606,64 @@ class PresetWindow extends StatelessWidget {
                         ]),
                     border: Border.all(width: 3, color: Colors.white),
                     borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                            iconSize: 35,
-                            onPressed: () {
-                              selectSound(-1);
-                            },
-                            icon: Icon(
-                              Icons.close,
-                              color: Colors.white,
-                            ))),
-                    Expanded(
-                        child: ListView.builder(
-                          itemCount:targets.keys.toList().length,
-                          itemBuilder: (context,index) {
+                child: Column(children: [
+                  Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                          iconSize: 35,
+                          onPressed: () {
+                            selectItem(-1);
+                          },
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ))),
+                  Expanded(
+                      child: ListView.builder(
+                          itemCount: items.keys.toList().length,
+                          itemBuilder: (context, index) {
                             return Column(children: [
-                                ListTile(
-                                  title: Align(
-                                      child: Text(
-                                        targets.keys.toList()[index],
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 23.0),
-                                      ),
-                                      alignment: selectedSound == index
-                                          ? Alignment(-1.8, 0)
-                                          : Alignment(-0.3, 0)),
-                                  onTap: () {
-                                    selectSound(index);
-                                  },
-                                  leading: selectedSound == index
-                                      ? Icon(
-                                          Icons.check,
-                                          color: Colors.white,
-                                        )
-                                      : null,
-                                ),
-                                Divider(
-                                  indent: 20,
-                                  endIndent: 20,
-                                  color: Colors.white,
-                                )
-                              ]);
-                            }
-                        )
-
-                    )])
-                  
-                )));
+                              ListTile(
+                                title: Align(
+                                    child: Text(
+                                      items.keys.toList()[index],
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 23.0),
+                                    ),
+                                    alignment: selectedItem == index
+                                        ? Alignment(-1.8, 0)
+                                        : Alignment(-0.3, 0)),
+                                onTap: () {
+                                  selectItem(index);
+                                },
+                                leading: selectedItem == index
+                                    ? Icon(
+                                        Icons.check,
+                                        color: Colors.white,
+                                      )
+                                    : null,
+                              ),
+                              Divider(
+                                indent: 20,
+                                endIndent: 20,
+                                color: Colors.white,
+                              )
+                            ]);
+                          }))
+                ]))));
   }
 }
 
 class PresetWindowModulation extends StatelessWidget {
   const PresetWindowModulation(
-      {Key? key, required this.selectModulation, required this.selectedModulation})
+      {Key? key,
+      required this.selectModulation,
+      required this.selectedModulation})
       : super(key: key);
 
   final Function selectModulation;
   final int selectedModulation;
 
-  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -535,56 +683,51 @@ class PresetWindowModulation extends StatelessWidget {
                         ]),
                     border: Border.all(width: 3, color: Colors.white),
                     borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                            iconSize: 35,
-                            onPressed: () {
-                              selectModulation(-1);
-                            },
-                            icon: Icon(
-                              Icons.close,
-                              color: Colors.white,
-                            ))),
-                    Expanded(
-                        child: ListView.builder(
-                          itemCount:modulations.keys.toList().length,
-                          itemBuilder: (context,index) {
+                child: Column(children: [
+                  Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                          iconSize: 35,
+                          onPressed: () {
+                            selectModulation(-1);
+                          },
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ))),
+                  Expanded(
+                      child: ListView.builder(
+                          itemCount: modulations.keys.toList().length,
+                          itemBuilder: (context, index) {
                             return Column(children: [
-                                ListTile(
-                                  title: Align(
-                                      child: Text(
-                                        modulations.keys.toList()[index],
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 23.0),
-                                      ),
-                                      alignment: selectedModulation == index
-                                          ? Alignment(-1.8, 0)
-                                          : Alignment(-0.3, 0)),
-                                  onTap: () {
-                                    selectModulation(index);
-                                  },
-                                  leading: selectedModulation == index
-                                      ? Icon(
-                                          Icons.check,
-                                          color: Colors.white,
-                                        )
-                                      : null,
-                                ),
-                                Divider(
-                                  indent: 20,
-                                  endIndent: 20,
-                                  color: Colors.white,
-                                )
-                              ]);
-                            }
-                        )
-
-                    )])
-                  
-                )));
+                              ListTile(
+                                title: Align(
+                                    child: Text(
+                                      modulations.keys.toList()[index],
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 23.0),
+                                    ),
+                                    alignment: selectedModulation == index
+                                        ? Alignment(-1.8, 0)
+                                        : Alignment(-0.3, 0)),
+                                onTap: () {
+                                  selectModulation(index);
+                                },
+                                leading: selectedModulation == index
+                                    ? Icon(
+                                        Icons.check,
+                                        color: Colors.white,
+                                      )
+                                    : null,
+                              ),
+                              Divider(
+                                indent: 20,
+                                endIndent: 20,
+                                color: Colors.white,
+                              )
+                            ]);
+                          }))
+                ]))));
   }
 }
 
@@ -596,7 +739,6 @@ class PresetWindowAudio extends StatelessWidget {
   final Function selectAudio;
   final int selectedAudio;
 
-  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -616,56 +758,50 @@ class PresetWindowAudio extends StatelessWidget {
                         ]),
                     border: Border.all(width: 3, color: Colors.white),
                     borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                            iconSize: 35,
-                            onPressed: () {
-                              selectAudio(-1);
-                            },
-                            icon: Icon(
-                              Icons.close,
-                              color: Colors.white,
-                            ))),
-                    Expanded(
-                        child: ListView.builder(
-                          itemCount:audios.keys.toList().length,
-                          itemBuilder: (context,index) {
+                child: Column(children: [
+                  Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                          iconSize: 35,
+                          onPressed: () {
+                            selectAudio(-1);
+                          },
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ))),
+                  Expanded(
+                      child: ListView.builder(
+                          itemCount: audios.keys.toList().length,
+                          itemBuilder: (context, index) {
                             return Column(children: [
-                                ListTile(
-                                  title: Align(
-                                      child: Text(
-                                        audios.keys.toList()[index],
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 23.0),
-                                      ),
-                                      alignment: selectedAudio == index
-                                          ? Alignment(-1.8, 0)
-                                          : Alignment(-0.3, 0)),
-                                  onTap: () {
-                                    selectAudio(index);
-                                  },
-                                  leading: selectedAudio == index
-                                      ? Icon(
-                                          Icons.check,
-                                          color: Colors.white,
-                                        )
-                                      : null,
-                                ),
-                                Divider(
-                                  indent: 20,
-                                  endIndent: 20,
-                                  color: Colors.white,
-                                )
-                              ]);
-                            }
-                        )
-
-                    )])
-                  
-                )));
+                              ListTile(
+                                title: Align(
+                                    child: Text(
+                                      audios.keys.toList()[index],
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 23.0),
+                                    ),
+                                    alignment: selectedAudio == index
+                                        ? Alignment(-1.8, 0)
+                                        : Alignment(-0.3, 0)),
+                                onTap: () {
+                                  selectAudio(index);
+                                },
+                                leading: selectedAudio == index
+                                    ? Icon(
+                                        Icons.check,
+                                        color: Colors.white,
+                                      )
+                                    : null,
+                              ),
+                              Divider(
+                                indent: 20,
+                                endIndent: 20,
+                                color: Colors.white,
+                              )
+                            ]);
+                          }))
+                ]))));
   }
 }
-

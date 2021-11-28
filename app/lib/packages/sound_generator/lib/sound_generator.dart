@@ -40,11 +40,9 @@ class SoundGenerator {
   }
 
   /// init function
-    static Future<bool> init(
-      int sampleRate) async {
-    final bool init = await _channel.invokeMethod("init", <String, dynamic>{
-      "sampleRate": sampleRate
-    });
+  static Future<bool> init(int sampleRate) async {
+    final bool init = await _channel
+        .invokeMethod("init", <String, dynamic>{"sampleRate": sampleRate});
     return init;
   }
   /*
@@ -99,10 +97,15 @@ class SoundGenerator {
   }
 
   /// Set Params
-  static void setParams(double tone_pow,double tone_shift) async {
-    await _channel.invokeMethod(
-        "setParams", <String, dynamic>{
-          "tone_pow": tone_pow,"tone_shift": tone_shift});
+  static void setParams(double target, double enviroment, double modulation,
+      double multi, double channel, double audio) async {
+    await _channel.invokeMethod("setParams", <String, dynamic>{
+      "target": target,
+      "enviroment": enviroment,
+      "modulation": multi,
+      "channel": channel,
+      "audio": audio
+    });
   }
 
   /// Set Frequency

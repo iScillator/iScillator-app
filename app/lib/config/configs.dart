@@ -1,9 +1,9 @@
 /*
 final configs= {
-  "main":{sounds : ['Anahata', 'Pneumonia inhibitor', 'Influenza inhibitor']},
-  "pub":{sounds : ['Muladhara', 'Svadhisthana', 'Manipura','Anahata','Vishudha','Adjna','Sahasrara']},
-  "pro":{},
-  "dev":{}
+  "soundhealer.com":{sounds : ['Anahata', 'Pneumonia inhibitor', 'Influenza inhibitor']},
+  "pro.soundhealer.com":{},
+  "dev.soundhealer.com":{},
+  "yl.soundhealer.com":{}
 };
 
 

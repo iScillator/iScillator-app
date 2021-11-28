@@ -52,9 +52,9 @@ public class signalDataGenerator {
         return frequency;
     }
     
-    public void setParams(double tone_pow,double tone_shift) {
+    public void setParams(double target, double enviroment, double modulation, double multi, double channel, double audio) {
     
-        generator.setParams(tone_pow,tone_shift);
+        generator.setParams(target, enviroment, modulation, multi, channel, audio);
     }
 
     public void setFrequency(float frequency) {
