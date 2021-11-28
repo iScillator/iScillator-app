@@ -56,6 +56,7 @@ public class multiGenerator extends baseGenerator {
 
                 android.util.Log.d("SoundHealer", "multi_hz["+multi_steps+"]="+multi_hz[multi_steps]);
                 android.util.Log.d("SoundHealer", "multi_mod_hz["+multi_steps+"]="+multi_mod_hz[multi_steps]);
+                android.util.Log.d("SoundHealer", "multi_amp["+multi_steps+"]="+multi_amp[multi_steps]);
 
                 multi_steps++;
             }
@@ -97,6 +98,7 @@ public class multiGenerator extends baseGenerator {
         
         multiHzAdd(target, modulation, multi,1,true,1.0);
         multiHzAdd(target, modulation, multi,-1,true,1.0);
+        android.util.Log.d("SoundHealer", "amp_sum="+amp_sum);
     }
 
     private void setAngle(double channel)
@@ -228,7 +230,7 @@ public class multiGenerator extends baseGenerator {
 
             y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive
 
-            y_step=y_step/multi_amp[step];//(Math.pow(tone_pow,(tone_steps-1-step)));
+            y_step=y_step*multi_amp[step];//(Math.pow(tone_pow,(tone_steps-1-step)));
 
             y=y+y_step;        
         }
