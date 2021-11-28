@@ -4,7 +4,7 @@ public class multiGenerator extends baseGenerator {
     private double[] tone_hz;
     private double[] tone_mod_hz;
 
-    private double angel2=0;
+    private double angle2=0;
     private double tone_pow=3;
     private int tone_steps=7;
     private double tone_mod=1024;
@@ -34,7 +34,7 @@ public class multiGenerator extends baseGenerator {
 
     private double modulationHzGet(double target, double modulation)
     {
-        dumped=false
+        dumped=false;
         if(modulation==0) return 0;
         if(modulation<0) {dumped=true;modulation=-modulation;}
         return target/modulation;
@@ -43,13 +43,13 @@ public class multiGenerator extends baseGenerator {
     private void multiHzAdd(double target, double modulation, double multi, int updown, boolean first)
     {
         if ((target>tone_hz_min)&&(target<tone_hz_max)) { 
-            if ((!first) ???)
+            if ((!first)||(!(updown==1)))
             {
                 multi_hz[multi_steps]=target;
                 multi_mod_hz[multi_steps]=modulationHzGet(target,modulation);
                 
-                android.util.Log.d("SoundHealer", "multi_hz["+i+"]="+multi_hz[i]);
-                android.util.Log.d("SoundHealer", "multi_mod_hz["+i+"]="+multi_mod_hz[i]);
+                android.util.Log.d("SoundHealer", "multi_hz["+multi_steps+"]="+multi_hz[multi_steps]);
+                android.util.Log.d("SoundHealer", "multi_mod_hz["+multi_steps+"]="+multi_mod_hz[multi_steps]);
 
                 multi_steps++;
             }
@@ -62,17 +62,17 @@ public class multiGenerator extends baseGenerator {
         if ((updown==-1)&&(target<tone_hz_min)) return;
 
             
-        if (multi==2) multiHzAdd(Math.pow(target,2*updown), modulation, multi,false);
-        if (multi==3) multiHzAdd(Math.pow(target,3*updown), modulation, multi,false);
-        if (multi==5) multiHzAdd(Math.pow(target,5*updown), modulation, multi,false);
+        if (multi==2) multiHzAdd(Math.pow(target,2*updown), modulation, multi,updown,false);
+        if (multi==3) multiHzAdd(Math.pow(target,3*updown), modulation, multi,updown,false);
+        if (multi==5) multiHzAdd(Math.pow(target,5*updown), modulation, multi,updown,false);
 
-        if (multi==23) {multiHzAdd(Math.pow(target,2*updown), modulation, multi,false);multiHzAdd(Math.pow(target,3*updown), modulation, multi,false);}
-        if (multi==25) {multiHzAdd(Math.pow(target,2*updown), modulation, multi,false);multiHzAdd(Math.pow(target,5*updown), modulation, multi,false);}
+        if (multi==23) {multiHzAdd(Math.pow(target,2*updown), modulation, multi,updown,false);multiHzAdd(Math.pow(target,3*updown), modulation, multi,updown,false);}
+        if (multi==25) {multiHzAdd(Math.pow(target,2*updown), modulation, multi,updown,false);multiHzAdd(Math.pow(target,5*updown), modulation, multi,updown,false);}
 
-        if (multi==235) {multiHzAdd(Math.pow(target,2*updown), modulation, multi,false);multiHzAdd(Math.pow(target,3*updown), modulation, multi,false);multiHzAdd(Math.pow(target,5*updown), modulation, multi,false);}
+        if (multi==235) {multiHzAdd(Math.pow(target,2*updown), modulation, multiupdown,updown,false);multiHzAdd(Math.pow(target,3*updown), modulation, multi,updown,false);multiHzAdd(Math.pow(target,5*updown), modulation, multi,updown,false);}
     
-        if (multi==123) multiHzAdd(Math.pow(target,1.58496250072*updown), modulation, multi,false);
-        if (multi==74) multiHzAdd(Math.pow(target,7.0/4.0*updown), modulation, multi,false);
+        if (multi==123) multiHzAdd(Math.pow(target,1.58496250072*updown), modulation, multi,updown,false);
+        if (multi==74) multiHzAdd(Math.pow(target,7.0/4.0*updown), modulation, multi,updown,false);
     }
 
     private void multiHz(double target, double modulation, double multi)
@@ -85,23 +85,23 @@ public class multiGenerator extends baseGenerator {
         multiHzAdd(target, modulation, multi,-1,true);
     }
 
-    private setAngle(double channel)
+    private void setAngle(double channel)
     {
-            angel2=0;
+            angle2=0;
             if (channel==60) {
-                angel2=(Math.PI*2/6);
+                angle2=(Math.PI*2/6);
             }            
             if (channel==90) {
-                angel2=(Math.PI*2/4);
+                angle2=(Math.PI*2/4);
             }
             if (channel==120) {
-                angel2=(Math.PI*2/3);
+                angle2=(Math.PI*2/3);
             }
             if (channel==180) {
-                angel2=(Math.PI*2/2);
+                angle2=(Math.PI*2/2);
             }
             if (channel==137) {
-                angel2=2.39996322972865332; // TODO : 2*137.5/360 //Math.PI*(3-sqrt(5)
+                angle2=2.39996322972865332; // TODO : 2*137.5/360 //Math.PI*(3-sqrt(5)
             }
             
     }
@@ -168,16 +168,19 @@ public class multiGenerator extends baseGenerator {
     }
 
     public short getValuePos(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
-    {
-        double y=getValuePosDouble(xp, sampleRate, position, bufferSamplesSize, channel) 
+        double y=getValuePosDouble(xp, sampleRate, position, bufferSamplesSize, channel);
         return (short)(y*Short.MAX_VALUE);
     }
 
+    public int getValuePosInt(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
+        double y=getValuePosDouble(xp, sampleRate, position, bufferSamplesSize, channel);
+        return (int)(y*Short.MAX_VALUE);
+    }
+
     public float getValuePosFloat(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
-    {
-        //!!! Возможно стоит перейти на 24/32 Bit
+        //!!! Возможно просто стоит перейти на 32 Bit
         //!!! Важно. Float возможно не самое лучшее решение, т.к. у основной гармоники наибольшая точность, у остальных пострадает. Пока не ясно...
-        double y=getValuePosDouble(xp, sampleRate, position, bufferSamplesSize, channel) 
+        double y=getValuePosDouble(xp, sampleRate, position, bufferSamplesSize, channel);
         return (float)(y*Short.MAX_VALUE);
     }
 
@@ -218,6 +221,6 @@ public class multiGenerator extends baseGenerator {
 
         y=y/(1.0+0.5+0.25+0.125+0.0625+0.03125+0.015625);
         
-        return y_short;
+        return y;
     }
 }
