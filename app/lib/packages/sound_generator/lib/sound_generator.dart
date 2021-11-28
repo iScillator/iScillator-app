@@ -102,7 +102,8 @@ class SoundGenerator {
     await _channel.invokeMethod("setParams", <String, dynamic>{
       "target": target,
       "enviroment": enviroment,
-      "modulation": multi,
+      "modulation": modulation,
+      "multi": multi,
       "channel": channel,
       "audio": audio
     });

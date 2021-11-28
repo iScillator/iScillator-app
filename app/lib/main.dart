@@ -65,11 +65,11 @@ class _MainScreen extends State<MainScreen> {
   */
 
   int _selectedAudio = 0;
-  int _selectedChannel = 60;
+  int _selectedChannel = 1; // 60;
   int _selectedEnviroment = 0;
-  int _selectedModulation = 1024;
-  int _selectedMulti = 3;
-  int _selectedTarget = 528;
+  int _selectedModulation = 1; //1024;
+  int _selectedMulti = 2; //3;
+  int _selectedTarget = 4; //528;
 
   double _frequency = 0;
 
@@ -357,7 +357,7 @@ class _MainScreen extends State<MainScreen> {
 
   void _showPresetWindowTargets() {
     setState(() {
-      _isPresetWindowModulationsShown = true;
+      _isPresetWindowTargetsShown = true;
     });
   }
 
