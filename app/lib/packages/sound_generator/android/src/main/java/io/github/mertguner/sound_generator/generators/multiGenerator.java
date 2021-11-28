@@ -200,10 +200,10 @@ public class multiGenerator extends baseGenerator {
 
         y=0;
 
-        for(int step=0;step<tone_steps;step++) {
-            if (tone_hz[step]==0) continue;
-            t1=(tone_mod_hz[step]*x/sampleRate)*Math.PI*2;
-            t2=(tone_hz[step]*x/sampleRate)*Math.PI*2;
+        for(int step=0;step<multi_steps;step++) {
+            if (multi_hz[step]==0) continue;
+            t1=(multi_mod_hz[step]*x/sampleRate)*Math.PI*2;
+            t2=(multi_hz[step]*x/sampleRate)*Math.PI*2;
             
             if(channel==2)
             {
