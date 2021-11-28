@@ -71,19 +71,19 @@ public class multiGenerator extends baseGenerator {
         if ((updown==-1)&&(target<tone_hz_min)) return;
         android.util.Log.d("SoundHealer","3");
             
-        if (multi==2) multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/2);
-        if (multi==3) multiHzAdd(target*Math.pow(3.0,updown), modulation, multi,updown,false,amp/3);
-        if (multi==5) multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/5);
+        if (multi==2) multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/Math.sqrt(2));
+        if (multi==3) multiHzAdd(target*Math.pow(3.0,updown), modulation, multi,updown,false,amp/Math.sqrt(3));
+        if (multi==5) multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/Math.sqrt(5));
 
-        if (multi==23) {multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/2);multiHzAdd(target*Math.pow(3.0,updown), modulation, multi,updown,false,amp/3);}
-        if (multi==25) {multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/2);multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/5);}
+        if (multi==23) {multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/Math.sqrt(2));multiHzAdd(target*Math.pow(3.0,updown), modulation, multi,updown,false,amp/Math.sqrt(3));}
+        if (multi==25) {multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/Math.sqrt((2));multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/Math.sqrt(5));}
 
-        if (multi==35) {multiHzAdd(target*Math.pow(3.0,updown), modulation, multi,updown,false,amp/3);multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/5);}
+        if (multi==35) {multiHzAdd(target*Math.pow(3.0,updown), modulation, multi,updown,false,amp/Math.sqrt(3));multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/Math.sqrt(5));}
 
-        if (multi==235) {multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/2);multiHzAdd(target*Math.pow(3.0,updown), modulation, multi,updown,false,amp/3);multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/5);}
+        if (multi==235) {multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/Math.sqrt(2));multiHzAdd(target*Math.pow(3.0,updown), modulation, multi,updown,false,amp/Math.sqrt(3));multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/Math.sqrt(5));}
     
-        if (multi==123) multiHzAdd(target*Math.pow(1.58496250072,updown), modulation, multi,updown,false,amp/(1.58496250072));
-        if (multi==74) multiHzAdd(target*Math.pow(7.0/4.0,updown), modulation, multi,updown,false,amp/(7.0/4.0));
+        if (multi==123) multiHzAdd(target*Math.pow(1.58496250072,updown), modulation, multi,updown,false,amp/Math.sqrt(1.58496250072));
+        if (multi==74) multiHzAdd(target*Math.pow(7.0/4.0,updown), modulation, multi,updown,false,amp/Math.sqrt(7.0/4.0));
     
         android.util.Log.d("SoundHealer","4");
     }
@@ -92,9 +92,9 @@ public class multiGenerator extends baseGenerator {
     {
         this.multi_steps=0;
         this.amp_sum=0;
-        this.multi_hz = new double[100];
-        this.multi_mod_hz = new double[100];
-        this.multi_amp = new double[100];
+        this.multi_hz = new double[1000];
+        this.multi_mod_hz = new double[1000];
+        this.multi_amp = new double[1000];
         
         multiHzAdd(target, modulation, multi,1,true,1.0);
         multiHzAdd(target, modulation, multi,-1,true,1.0);
