@@ -6,6 +6,12 @@ You can see real signal shape with one Cycle snapshot properties
 
 ## Example Application Screenshot
 
-<p align="center">
-  <img src="https://github.com/mertguner/sound_generator/raw/master/Screenshot.png" width="350" title="hover text">
-</p>
+#android install
+flutter pub get
+
+#ios install
+cd ios/
+pod install
+cd ../
+flutter pub get
+flutter run
