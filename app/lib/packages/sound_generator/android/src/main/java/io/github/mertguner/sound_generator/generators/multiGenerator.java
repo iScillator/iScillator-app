@@ -76,7 +76,7 @@ public class multiGenerator extends baseGenerator {
         if (multi==5) multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/Math.sqrt(5));
 
         if (multi==23) {multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/Math.sqrt(2));multiHzAdd(target*Math.pow(3.0,updown), modulation, multi,updown,false,amp/Math.sqrt(3));}
-        if (multi==25) {multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/Math.sqrt((2));multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/Math.sqrt(5));}
+        if (multi==25) {multiHzAdd(target*Math.pow(2.0,updown), modulation, multi,updown,false,amp/Math.sqrt(2));multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/Math.sqrt(5));}
 
         if (multi==35) {multiHzAdd(target*Math.pow(3.0,updown), modulation, multi,updown,false,amp/Math.sqrt(3));multiHzAdd(target*Math.pow(5.0,updown), modulation, multi,updown,false,amp/Math.sqrt(5));}
 

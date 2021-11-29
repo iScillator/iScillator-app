@@ -268,11 +268,8 @@ class _MainScreen extends State<MainScreen> {
     );
   }
 
-  void _play() {
-    setState(() {
-      _isPlaying = !_isPlaying;
-
-      if (_isPlaying) {
+  void setParams()
+  {
         double _presetFrequency = 0;
         _presetFrequency = targets.values.toList()[_selectedTarget].toDouble();
 
@@ -293,8 +290,15 @@ class _MainScreen extends State<MainScreen> {
             audios.values.toList()[_selectedAudio].toDouble());
 
         _frequency = _presetFrequency;
-        SoundGenerator.setFrequency(_frequency);
+        SoundGenerator.setFrequency(_frequency);    
+  }
 
+  void _play() {
+    setState(() {
+      _isPlaying = !_isPlaying;
+
+      if (_isPlaying) {
+        setParams();
         SoundGenerator.play();
 
         /*
@@ -307,8 +311,8 @@ class _MainScreen extends State<MainScreen> {
         */
       } else {
         setState(() {
-          _timer?.cancel();
-          _timer = null;
+          //_timer?.cancel();
+          //_timer = null;
           SoundGenerator.stop();
           _frequency = 0;
         });
@@ -382,6 +386,7 @@ class _MainScreen extends State<MainScreen> {
       } else {
         _selectedAudio = num;
         _isPresetWindowAudiosShown = false;
+        setParams();
       }
     });
   }
@@ -393,6 +398,7 @@ class _MainScreen extends State<MainScreen> {
       } else {
         _selectedChannel = num;
         _isPresetWindowChannelsShown = false;
+        setParams();
       }
     });
   }
@@ -404,6 +410,7 @@ class _MainScreen extends State<MainScreen> {
       } else {
         _selectedEnviroment = num;
         _isPresetWindowEnviromentsShown = false;
+        setParams();
       }
     });
   }
@@ -415,6 +422,7 @@ class _MainScreen extends State<MainScreen> {
       } else {
         _selectedModulation = num;
         _isPresetWindowModulationsShown = false;
+        setParams();
       }
     });
   }
@@ -426,6 +434,7 @@ class _MainScreen extends State<MainScreen> {
       } else {
         _selectedMulti = num;
         _isPresetWindowMultisShown = false;
+        setParams();
       }
     });
   }
@@ -437,6 +446,7 @@ class _MainScreen extends State<MainScreen> {
       } else {
         _selectedTarget = num;
         _isPresetWindowTargetsShown = false;
+        setParams();
       }
     });
   }
