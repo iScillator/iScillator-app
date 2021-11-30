@@ -27,8 +27,7 @@ const targets_pro = {
   "Etherium": -1
 };
 
-
-var targets_lite = {
+const targets_lite = {
   "Muladhara": 285,
   "Svadhisthana": 396,
   "Manipura": 417,
@@ -38,7 +37,7 @@ var targets_lite = {
   "Sahasrara": 852,
 };
 
-var targets=targets_pro;
+var targets = targets_pro;
 
 
 

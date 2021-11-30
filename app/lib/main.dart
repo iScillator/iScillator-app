@@ -24,13 +24,6 @@ import 'models/user_settings.dart';
 
 import 'config/configs.dart';
 
-import 'config/audios.dart';
-import 'config/channels.dart';
-import 'config/enviroments.dart';
-import 'config/modulations.dart';
-import 'config/multis.dart';
-
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -64,7 +57,15 @@ class _MainScreen extends State<MainScreen> {
   int _selectedSound = 0;
   */
 
-  final targets=configs["soundhealer.com"]["targets"];
+  final menu = config["menu"];
+  //final targets = config["menu"]["targets"];
+
+  var audio = config["default"]["audio"];
+  var channel = config["default"]["channel"];
+  var enviroment = config["default"]["enviroment"];
+  var modulation = config["default"]["modulation"];
+  var multi = config["default"]["multi"];
+  var target = config["default"]["target"];
 
   int _selectedAudio = 0;
   int _selectedChannel = 1; // 60;
@@ -151,7 +152,7 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),*/
               SelectPresetButton(
-                presetName: targets.keys.toList()[_selectedTarget],
+                presetName: menu["targets"].keys.toList()[_selectedTarget],
                 tapMethod: _showPresetWindowTargets,
               ),
               Divider(
@@ -160,7 +161,8 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),
               SelectPresetButton(
-                presetName: enviroments.keys.toList()[_selectedEnviroment],
+                presetName:
+                    menu["enviroments"].keys.toList()[_selectedEnviroment],
                 tapMethod: _showPresetWindowEnviroments,
               ),
               Divider(
@@ -169,7 +171,8 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),
               SelectPresetButton(
-                presetName: modulations.keys.toList()[_selectedModulation],
+                presetName:
+                    menu["modulations"].keys.toList()[_selectedModulation],
                 tapMethod: _showPresetWindowModulations,
               ),
               Divider(
@@ -178,7 +181,7 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),
               SelectPresetButton(
-                presetName: multis.keys.toList()[_selectedMulti],
+                presetName: menu["multis"].keys.toList()[_selectedMulti],
                 tapMethod: _showPresetWindowMultis,
               ),
               Divider(
@@ -187,7 +190,7 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),
               SelectPresetButton(
-                presetName: channels.keys.toList()[_selectedChannel],
+                presetName: menu["channels"].keys.toList()[_selectedChannel],
                 tapMethod: _showPresetWindowChannels,
               ),
               Divider(
@@ -196,7 +199,7 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),
               SelectPresetButton(
-                presetName: audios.keys.toList()[_selectedAudio],
+                presetName: menu["audios"].keys.toList()[_selectedAudio],
                 tapMethod: _showPresetWindowAudios,
               ),
               Padding(
@@ -230,37 +233,37 @@ class _MainScreen extends State<MainScreen> {
             */
             if (_isPresetWindowAudiosShown)
               PresetWindow(
-                items: audios,
+                items: menu["audios"],
                 selectItem: _selectAudio,
                 selectedItem: _selectedAudio,
               ),
             if (_isPresetWindowChannelsShown)
               PresetWindow(
-                items: channels,
+                items: menu["channels"],
                 selectItem: _selectChannel,
                 selectedItem: _selectedChannel,
               ),
             if (_isPresetWindowEnviromentsShown)
               PresetWindow(
-                items: enviroments,
+                items: menu["enviroments"],
                 selectItem: _selectEnviroment,
                 selectedItem: _selectedEnviroment,
               ),
             if (_isPresetWindowModulationsShown)
               PresetWindow(
-                items: modulations,
+                items: menu["modulations"],
                 selectItem: _selectModulation,
                 selectedItem: _selectedModulation,
               ),
             if (_isPresetWindowMultisShown)
               PresetWindow(
-                items: multis,
+                items: menu["multis"],
                 selectItem: _selectMulti,
                 selectedItem: _selectedMulti,
               ),
             if (_isPresetWindowTargetsShown)
               PresetWindow(
-                items: targets,
+                items: menu["targets"],
                 selectItem: _selectTarget,
                 selectedItem: _selectedTarget,
               )
@@ -270,29 +273,28 @@ class _MainScreen extends State<MainScreen> {
     );
   }
 
-  void setParams()
-  {
-        double _presetFrequency = 0;
-        _presetFrequency = targets.values.toList()[_selectedTarget].toDouble();
+  void setParams() {
+    double _presetFrequency = 0;
+    _presetFrequency = targets.values.toList()[_selectedTarget].toDouble();
 
-        SoundGenerator.setWaveType(waveTypes.MULTI);
-        /*
+    SoundGenerator.setWaveType(waveTypes.MULTI);
+    /*
         if (_selectedModulation.toInt() == 1) {
           SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         } else {
           SoundGenerator.setWaveType(waveTypes.MULTI);
         }*/
 
-        SoundGenerator.setParams(
-            targets.values.toList()[_selectedTarget].toDouble(),
-            enviroments.values.toList()[_selectedEnviroment].toDouble(),
-            modulations.values.toList()[_selectedModulation].toDouble(),
-            multis.values.toList()[_selectedMulti].toDouble(),
-            channels.values.toList()[_selectedChannel].toDouble(),
-            audios.values.toList()[_selectedAudio].toDouble());
+    SoundGenerator.setParams(
+        targets.values.toList()[_selectedTarget].toDouble(),
+        enviroments.values.toList()[_selectedEnviroment].toDouble(),
+        modulations.values.toList()[_selectedModulation].toDouble(),
+        multis.values.toList()[_selectedMulti].toDouble(),
+        channels.values.toList()[_selectedChannel].toDouble(),
+        audios.values.toList()[_selectedAudio].toDouble());
 
-        _frequency = _presetFrequency;
-        SoundGenerator.setFrequency(_frequency);    
+    _frequency = _presetFrequency;
+    SoundGenerator.setFrequency(_frequency);
   }
 
   void _play() {
@@ -387,6 +389,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowAudiosShown = false;
       } else {
         _selectedAudio = num;
+        audio = menu["audios"][num];
         _isPresetWindowAudiosShown = false;
         setParams();
       }
@@ -399,6 +402,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowChannelsShown = false;
       } else {
         _selectedChannel = num;
+        channel = menu["channels"][num];
         _isPresetWindowChannelsShown = false;
         setParams();
       }
@@ -411,6 +415,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowEnviromentsShown = false;
       } else {
         _selectedEnviroment = num;
+        enviroment = menu["enviroments"][num];
         _isPresetWindowEnviromentsShown = false;
         setParams();
       }
@@ -423,6 +428,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowModulationsShown = false;
       } else {
         _selectedModulation = num;
+        modulation = menu["modulations"][num];
         _isPresetWindowModulationsShown = false;
         setParams();
       }
@@ -435,6 +441,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowMultisShown = false;
       } else {
         _selectedMulti = num;
+        multi = menu["multis"][num];
         _isPresetWindowMultisShown = false;
         setParams();
       }
@@ -447,6 +454,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowTargetsShown = false;
       } else {
         _selectedTarget = num;
+        target = menu["targets"][num];
         _isPresetWindowTargetsShown = false;
         setParams();
       }
