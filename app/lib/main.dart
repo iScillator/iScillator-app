@@ -29,7 +29,7 @@ import 'config/channels.dart';
 import 'config/enviroments.dart';
 import 'config/modulations.dart';
 import 'config/multis.dart';
-import 'config/targets.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -63,6 +63,8 @@ class _MainScreen extends State<MainScreen> {
   /*
   int _selectedSound = 0;
   */
+
+  final targets=configs["soundhealer.com"]["targets"];
 
   int _selectedAudio = 0;
   int _selectedChannel = 1; // 60;
