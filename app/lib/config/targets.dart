@@ -1,9 +1,8 @@
-library my_prj.targets;
-
+//library my_prj.targets;
 //,'Adjna/3','Adjna/2','Inf/3','Inf/2','Pn/3','Pn/2','Ps/3','Ps/2'
 //['Muladhara', 'Svadhisthana', 'Manipura','Anahata','Vishudha','Adjna','Sahasrara','Adjna/3','Adjna/2','Inf/3','Inf/2','Pn/3','Pn/2','Ps/3','Ps/2'];
 
-var targets = {
+const targets_pro = {
   "Muladhara": 285,
   "Svadhisthana": 396,
   "Manipura": 417,
@@ -27,6 +26,22 @@ var targets = {
   "Ps3": 725470,
   "Etherium": -1
 };
+
+
+var targets_lite = {
+  "Muladhara": 285,
+  "Svadhisthana": 396,
+  "Manipura": 417,
+  "Anahata": 528,
+  "Vishudha": 639,
+  "Adjna": 741,
+  "Sahasrara": 852,
+};
+
+var targets=targets_pro;
+
+
+
 
 /*
 
