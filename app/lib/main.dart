@@ -67,7 +67,8 @@ class _MainScreen extends State<MainScreen> {
   static int multi = config["default"]["multi"];
   static int target = config["default"]["target"];
 
-  int _selectedChannel = menu_rev["audios"][audio];
+  int _selectedAudio = menu_rev["audios"][audio];
+  int _selectedChannel = menu_rev["channels"][channel];
   int _selectedEnviroment = menu_rev["enviroments"][enviroment];
   int _selectedModulation = menu_rev["modulations"][modulation];
   int _selectedMulti = menu_rev["multis"][multi];
@@ -274,7 +275,8 @@ class _MainScreen extends State<MainScreen> {
 
   void setParams() {
     double _presetFrequency = 0;
-    _presetFrequency = targets.values.toList()[_selectedTarget].toDouble();
+    _presetFrequency = target.toDouble();
+    //s.values.toList()[_selectedTarget].toDouble();
 
     SoundGenerator.setWaveType(waveTypes.MULTI);
     /*
@@ -285,12 +287,12 @@ class _MainScreen extends State<MainScreen> {
         }*/
 
     SoundGenerator.setParams(
-        targets.values.toList()[_selectedTarget].toDouble(),
-        enviroments.values.toList()[_selectedEnviroment].toDouble(),
-        modulations.values.toList()[_selectedModulation].toDouble(),
-        multis.values.toList()[_selectedMulti].toDouble(),
-        channels.values.toList()[_selectedChannel].toDouble(),
-        audios.values.toList()[_selectedAudio].toDouble());
+        target.toDouble(),
+        enviroment.toDouble(),
+        modulation.toDouble(),
+        multi.toDouble(),
+        channel.toDouble(),
+        audio.toDouble());
 
     _frequency = _presetFrequency;
     SoundGenerator.setFrequency(_frequency);
