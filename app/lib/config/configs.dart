@@ -50,3 +50,13 @@ const Map<String, dynamic> configs = {
 
 const config_current = "soundhealer.com";
 final config = configs[config_current];
+
+final menu = config["menu"];
+final Map<String, dynamic> menu_rev = {
+  "audios": config["menu"]["audios"].map((k, v) => MapEntry(v, k)),
+  "channels": config["menu"]["channels"].map((k, v) => MapEntry(v, k)),
+  "enviroments": config["menu"]["enviroments"].map((k, v) => MapEntry(v, k)),
+  "modulations": config["menu"]["modulations"].map((k, v) => MapEntry(v, k)),
+  "multis": config["menu"]["multis"].map((k, v) => MapEntry(v, k)),
+  "targets": config["menu"]["targets"].map((k, v) => MapEntry(v, k)),
+};
