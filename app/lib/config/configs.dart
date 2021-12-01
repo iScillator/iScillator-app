@@ -42,3 +42,4 @@ const Map<String, dynamic> configs = {
 };
 
 const config_current = "soundhealer.com";
+final config = configs[config_current];

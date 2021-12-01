@@ -1,4 +1,4 @@
-final modulations = {
+const modulations = {
   "Line": 0,
   
   "Sinus 2^10=1024 (V/sqr2)": 1024,

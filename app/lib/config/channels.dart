@@ -1,4 +1,4 @@
-final channels = {
+const channels = {
   "Mono 0": 0,
   "Stereo 60": 60,
   "Stereo 90": 90,
