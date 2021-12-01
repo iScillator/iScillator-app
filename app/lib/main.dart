@@ -67,12 +67,12 @@ class _MainScreen extends State<MainScreen> {
   static int multi = config["default"]["multi"];
   static int target = config["default"]["target"];
 
-  int _selectedAudio = menu_rev["audios"][audio];
-  int _selectedChannel = menu_rev["channels"][channel];
-  int _selectedEnviroment = menu_rev["enviroments"][enviroment];
-  int _selectedModulation = menu_rev["modulations"][modulation];
-  int _selectedMulti = menu_rev["multis"][multi];
-  int _selectedTarget = menu_rev["targets"][target];
+  int _selectedAudio = menu_rev["audios"][audio.toString()];
+  int _selectedChannel = menu_rev["channels"][channel.toString()];
+  int _selectedEnviroment = menu_rev["enviroments"][enviroment.toString()];
+  int _selectedModulation = menu_rev["modulations"][modulation.toString()];
+  int _selectedMulti = menu_rev["multis"][multi.toString()];
+  int _selectedTarget = menu_rev["targets"][target.toString()];
 
   double _frequency = 0;
 
@@ -152,7 +152,7 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),*/
               SelectPresetButton(
-                presetName: menu["targets"].keys.toList()[_selectedTarget],
+                presetName: targets.keys.toList()[_selectedTarget],
                 tapMethod: _showPresetWindowTargets,
               ),
               Divider(
@@ -161,8 +161,7 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),
               SelectPresetButton(
-                presetName:
-                    menu["enviroments"].keys.toList()[_selectedEnviroment],
+                presetName: menu["enviroments"][_selectedEnviroment],
                 tapMethod: _showPresetWindowEnviroments,
               ),
               Divider(
@@ -171,8 +170,7 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),
               SelectPresetButton(
-                presetName:
-                    menu["modulations"].keys.toList()[_selectedModulation],
+                presetName: menu["modulations"][_selectedModulation],
                 tapMethod: _showPresetWindowModulations,
               ),
               Divider(
@@ -181,7 +179,7 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),
               SelectPresetButton(
-                presetName: menu["multis"].keys.toList()[_selectedMulti],
+                presetName: menu["multis"][_selectedMulti],
                 tapMethod: _showPresetWindowMultis,
               ),
               Divider(
@@ -190,7 +188,7 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),
               SelectPresetButton(
-                presetName: menu["channels"].keys.toList()[_selectedChannel],
+                presetName: menu["channels"][_selectedChannel],
                 tapMethod: _showPresetWindowChannels,
               ),
               Divider(
@@ -199,7 +197,7 @@ class _MainScreen extends State<MainScreen> {
                 color: Colors.white,
               ),
               SelectPresetButton(
-                presetName: menu["audios"].keys.toList()[_selectedAudio],
+                presetName: menu["audios"][_selectedAudio],
                 tapMethod: _showPresetWindowAudios,
               ),
               Padding(
