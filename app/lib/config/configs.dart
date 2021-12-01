@@ -35,7 +35,14 @@ const Map<String, dynamic> configs = {
       "multi": 3,
       "target": 528
     },
-    "targets": targets_pro
+    "menu": {
+      "targets": targets_pro,
+      "enviroments": enviroments,
+      "modulations": modulations,
+      "multis": multis,
+      "audios": audios,
+      "channels": channels
+    }
   },
   "dev.soundhealer.com": {"title": "SoundHealer DEV"},
   "yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}

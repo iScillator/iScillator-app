@@ -60,23 +60,22 @@ class _MainScreen extends State<MainScreen> {
   final menu = config["menu"];
   //final targets = config["menu"]["targets"];
 
-  var audio = config["default"]["audio"];
-  var channel = config["default"]["channel"];
-  var enviroment = config["default"]["enviroment"];
-  var modulation = config["default"]["modulation"];
-  var multi = config["default"]["multi"];
-  var target = config["default"]["target"];
+  static int audio = config["default"]["audio"];
+  static int channel = config["default"]["channel"];
+  static int enviroment = config["default"]["enviroment"];
+  static int modulation = config["default"]["modulation"];
+  static int multi = config["default"]["multi"];
+  static int target = config["default"]["target"];
 
-  int _selectedAudio = 0;
-  int _selectedChannel = 1; // 60;
-  int _selectedEnviroment = 0;
-  int _selectedModulation = 1; //1024;
-  int _selectedMulti = 2; //3;
-  int _selectedTarget = 3; //528;
+  int _selectedChannel = menu_rev["audios"][audio];
+  int _selectedEnviroment = menu_rev["enviroments"][enviroment];
+  int _selectedModulation = menu_rev["modulations"][modulation];
+  int _selectedMulti = menu_rev["multis"][multi];
+  int _selectedTarget = menu_rev["targets"][target];
 
   double _frequency = 0;
 
-  Timer? _timer;
+  //Timer? _timer;
 
   SharedPreferences? prefs;
   UserSettings? userSettings;
