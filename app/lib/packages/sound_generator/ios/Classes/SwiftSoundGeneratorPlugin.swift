@@ -8,8 +8,8 @@ public class SwiftSoundGeneratorPlugin: NSObject, FlutterPlugin {
   // This is not used yet.
   var sampleRate: Int = 48000;
   var isPlaying: Bool = false;
-  var oscillator: Oscillator = Oscillator();
-  var mixer: Mixer?;
+  var oscillator: AKOscillator = AKOscillator();
+  var mixer: AKMixer?;
 
   public static func register(with registrar: FlutterPluginRegistrar) {
     /*let instance =*/ _ = SwiftSoundGeneratorPlugin(registrar: registrar)
@@ -17,9 +17,9 @@ public class SwiftSoundGeneratorPlugin: NSObject, FlutterPlugin {
 
   public init(registrar: FlutterPluginRegistrar) {
     super.init()
-    self.mixer = Mixer(self.oscillator)
+    self.mixer = AKMixer(self.oscillator)
     self.mixer!.volume = 1.0
-    Settings.disableAVAudioSessionCategoryManagement = true
+    AKSettings.disableAVAudioSessionCategoryManagement = true
     ///!!! Settings.disableAudioSessionDeactivationOnStop = true
     ///!!! Manager.output = self.mixer!
     let methodChannel = FlutterMethodChannel(name: "sound_generator", binaryMessenger: registrar.messenger())
@@ -65,7 +65,7 @@ public class SwiftSoundGeneratorPlugin: NSObject, FlutterPlugin {
         break;
       case "setFrequency":
         let args = call.arguments as! [String: Any]
-        self.oscillator.frequency = args["frequency"] as! Float ///!!!Double
+        self.oscillator.frequency = args["frequency"] as! Double
         result(nil);
         break;
       case "setWaveform":
@@ -76,7 +76,7 @@ public class SwiftSoundGeneratorPlugin: NSObject, FlutterPlugin {
         break;
       case "setVolume":
         let args = call.arguments as! [String: Any]
-        self.mixer!.volume = args["volume"] as! Float///!!!Double
+        self.mixer!.volume = args["volume"] as! Double
         result(nil);
         break;
       case "getSampleRate":
