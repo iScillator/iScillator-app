@@ -15,12 +15,17 @@
 
 import 'dart:async';
 import 'dart:math';
+import 'dart:developer';
+//import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:sound_generator/sound_generator.dart';
 import 'package:sound_generator/waveTypes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/settings.dart';
 import 'models/user_settings.dart';
+
+//import 'package:flutter/foundation.dart';
 
 import 'config/configs.dart';
 
@@ -53,26 +58,21 @@ class _MainScreen extends State<MainScreen> {
   bool _isPresetWindowMultisShown = false;
   bool _isPresetWindowTargetsShown = false;
 
-  /*
-  int _selectedSound = 0;
-  */
+  static int audio = defaults["audio"];
+  static int channel = defaults["channel"];
+  static int enviroment = defaults["enviroment"];
+  static int modulation = defaults["modulation"];
+  static int multi = defaults["multi"];
+  static int target = defaults["target"];
 
-  final menu = config["menu"];
-  //final targets = config["menu"]["targets"];
-
-  static int audio = config["default"]["audio"];
-  static int channel = config["default"]["channel"];
-  static int enviroment = config["default"]["enviroment"];
-  static int modulation = config["default"]["modulation"];
-  static int multi = config["default"]["multi"];
-  static int target = config["default"]["target"];
-
-  int _selectedAudio = menu_rev["audios"][audio.toString()];
-  int _selectedChannel = menu_rev["channels"][channel.toString()];
-  int _selectedEnviroment = menu_rev["enviroments"][enviroment.toString()];
-  int _selectedModulation = menu_rev["modulations"][modulation.toString()];
-  int _selectedMulti = menu_rev["multis"][multi.toString()];
-  int _selectedTarget = menu_rev["targets"][target.toString()];
+  int _selectedAudio = menu_rev["audios"].keys.toList().indexOf(audio);
+  int _selectedChannel = menu_rev["channels"].keys.toList().indexOf(channel);
+  int _selectedEnviroment =
+      menu_rev["enviroments"].keys.toList().indexOf(enviroment);
+  int _selectedModulation =
+      menu_rev["modulations"].keys.toList().indexOf(modulation);
+  int _selectedMulti = menu_rev["multis"].keys.toList().indexOf(multi);
+  int _selectedTarget = menu_rev["targets"].keys.toList().indexOf(target);
 
   double _frequency = 0;
 
@@ -84,6 +84,17 @@ class _MainScreen extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+
+    //log(audio);
+    //print(menu.targets);
+    print(menu);
+    print(menu_rev);
+    print(audio);
+    print(_selectedAudio);
+    //print(audios_rev);
+
+    //test = 12345;
+    //print(test);
 
     _getSettings().then((settings) {
       userSettings = settings;
@@ -146,60 +157,80 @@ class _MainScreen extends State<MainScreen> {
                 presetName: targets.keys.toList()[_selectedSound],
                 tapMethod: _showPresetWindow,
               ),
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),*/
-              SelectPresetButton(
-                presetName: targets.keys.toList()[_selectedTarget],
-                tapMethod: _showPresetWindowTargets,
-              ),
+              */
               Divider(
                 indent: 60,
                 endIndent: 60,
                 color: Colors.white,
               ),
-              SelectPresetButton(
-                presetName: menu["enviroments"][_selectedEnviroment],
-                tapMethod: _showPresetWindowEnviroments,
-              ),
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),
-              SelectPresetButton(
-                presetName: menu["modulations"][_selectedModulation],
-                tapMethod: _showPresetWindowModulations,
-              ),
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),
-              SelectPresetButton(
-                presetName: menu["multis"][_selectedMulti],
-                tapMethod: _showPresetWindowMultis,
-              ),
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),
-              SelectPresetButton(
-                presetName: menu["channels"][_selectedChannel],
-                tapMethod: _showPresetWindowChannels,
-              ),
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),
-              SelectPresetButton(
-                presetName: menu["audios"][_selectedAudio],
-                tapMethod: _showPresetWindowAudios,
-              ),
+              if (menu["targets"] != null)
+                SelectPresetButton(
+                  presetName: menu["targets"].keys.toList()[_selectedTarget],
+                  tapMethod: _showPresetWindowTargets,
+                ),
+              if (menu["targets"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
+              if (menu["enviroments"] != null)
+                SelectPresetButton(
+                  presetName:
+                      menu["enviroments"].keys.toList()[_selectedEnviroment],
+                  tapMethod: _showPresetWindowEnviroments,
+                ),
+              if (menu["enviroments"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
+              if (menu["modulations"] != null)
+                SelectPresetButton(
+                  presetName:
+                      menu["modulations"].keys.toList()[_selectedModulation],
+                  tapMethod: _showPresetWindowModulations,
+                ),
+              if (menu["modulations"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
+              if (menu["multis"] != null)
+                SelectPresetButton(
+                  presetName: menu["multis"].keys.toList()[_selectedMulti],
+                  tapMethod: _showPresetWindowMultis,
+                ),
+              if (menu["multis"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
+              if (menu["channels"] != null)
+                SelectPresetButton(
+                  presetName: menu["channels"].keys.toList()[_selectedChannel],
+                  tapMethod: _showPresetWindowChannels,
+                ),
+              if (menu["channels"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
+              if (menu["audios"] != null)
+                SelectPresetButton(
+                  presetName: menu["audios"].keys.toList()[_selectedAudio],
+                  tapMethod: _showPresetWindowAudios,
+                ),
+              if (menu["audios"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
               Padding(
                 padding: EdgeInsets.only(bottom: 30.0, top: 40.0),
                 child: TextButton.icon(
@@ -273,6 +304,7 @@ class _MainScreen extends State<MainScreen> {
 
   void setParams() {
     double _presetFrequency = 0;
+
     _presetFrequency = target.toDouble();
     //s.values.toList()[_selectedTarget].toDouble();
 
@@ -388,7 +420,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowAudiosShown = false;
       } else {
         _selectedAudio = num;
-        audio = menu["audios"][num];
+        audio = menu["audios"].values.toList()[num];
         _isPresetWindowAudiosShown = false;
         setParams();
       }
@@ -401,7 +433,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowChannelsShown = false;
       } else {
         _selectedChannel = num;
-        channel = menu["channels"][num];
+        channel = menu["channels"].values.toList()[num];
         _isPresetWindowChannelsShown = false;
         setParams();
       }
@@ -414,7 +446,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowEnviromentsShown = false;
       } else {
         _selectedEnviroment = num;
-        enviroment = menu["enviroments"][num];
+        enviroment = menu["enviroments"].values.toList()[num];
         _isPresetWindowEnviromentsShown = false;
         setParams();
       }
@@ -427,7 +459,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowModulationsShown = false;
       } else {
         _selectedModulation = num;
-        modulation = menu["modulations"][num];
+        modulation = menu["modulations"].values.toList()[num];
         _isPresetWindowModulationsShown = false;
         setParams();
       }
@@ -440,7 +472,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowMultisShown = false;
       } else {
         _selectedMulti = num;
-        multi = menu["multis"][num];
+        multi = menu["multis"].values.toList()[num];
         _isPresetWindowMultisShown = false;
         setParams();
       }
@@ -453,7 +485,7 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowTargetsShown = false;
       } else {
         _selectedTarget = num;
-        target = menu["targets"][num];
+        target = menu["targets"].values.toList()[num];
         _isPresetWindowTargetsShown = false;
         setParams();
       }
