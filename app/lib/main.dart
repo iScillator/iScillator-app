@@ -25,6 +25,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/settings.dart';
 import 'models/user_settings.dart';
 
+import 'dart:io' show Platform;
+
 //import 'package:flutter/foundation.dart';
 
 import 'config/configs.dart';
@@ -306,24 +308,19 @@ class _MainScreen extends State<MainScreen> {
     double _presetFrequency = 0;
 
     _presetFrequency = target.toDouble();
-    //s.values.toList()[_selectedTarget].toDouble();
 
-    SoundGenerator.setWaveType(waveTypes.MULTI);
-    /*
-        if (_selectedModulation.toInt() == 1) {
-          SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
-        } else {
-          SoundGenerator.setWaveType(waveTypes.MULTI);
-        }*/
-
-    SoundGenerator.setParams(
-        target.toDouble(),
-        enviroment.toDouble(),
-        modulation.toDouble(),
-        multi.toDouble(),
-        channel.toDouble(),
-        audio.toDouble());
-
+    if (Platform.isIOS) {
+      SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
+    } else {
+      SoundGenerator.setWaveType(waveTypes.MULTI);
+      SoundGenerator.setParams(
+          target.toDouble(),
+          enviroment.toDouble(),
+          modulation.toDouble(),
+          multi.toDouble(),
+          channel.toDouble(),
+          audio.toDouble());
+    }
     _frequency = _presetFrequency;
     SoundGenerator.setFrequency(_frequency);
   }
