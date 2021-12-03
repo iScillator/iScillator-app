@@ -6,7 +6,7 @@ multi -> to fractal
 fix=no modulation
  */
 
-final multis = {
+const multis = {
   "Fix": 1,
   "Fractal ^2": 2,
   "Fractal ^3": 3,

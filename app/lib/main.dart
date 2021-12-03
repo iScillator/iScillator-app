@@ -15,6 +15,9 @@
 
 import 'dart:async';
 import 'dart:math';
+import 'dart:developer';
+//import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:sound_generator/sound_generator.dart';
 import 'package:sound_generator/waveTypes.dart';
@@ -22,14 +25,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/settings.dart';
 import 'models/user_settings.dart';
 
-import 'config/configs.dart';
+//import 'package:flutter/foundation.dart';
 
-import 'config/audios.dart';
-import 'config/channels.dart';
-import 'config/enviroments.dart';
-import 'config/modulations.dart';
-import 'config/multis.dart';
-import 'config/targets.dart';
+import 'config/configs.dart';
 
 void main() => runApp(MyApp());
 
@@ -60,20 +58,25 @@ class _MainScreen extends State<MainScreen> {
   bool _isPresetWindowMultisShown = false;
   bool _isPresetWindowTargetsShown = false;
 
-  /*
-  int _selectedSound = 0;
-  */
+  static int audio = defaults["audio"];
+  static int channel = defaults["channel"];
+  static int enviroment = defaults["enviroment"];
+  static int modulation = defaults["modulation"];
+  static int multi = defaults["multi"];
+  static int target = defaults["target"];
 
-  int _selectedAudio = 0;
-  int _selectedChannel = 1; // 60;
-  int _selectedEnviroment = 0;
-  int _selectedModulation = 1; //1024;
-  int _selectedMulti = 2; //3;
-  int _selectedTarget = 3; //528;
+  int _selectedAudio = menu_rev["audios"].keys.toList().indexOf(audio);
+  int _selectedChannel = menu_rev["channels"].keys.toList().indexOf(channel);
+  int _selectedEnviroment =
+      menu_rev["enviroments"].keys.toList().indexOf(enviroment);
+  int _selectedModulation =
+      menu_rev["modulations"].keys.toList().indexOf(modulation);
+  int _selectedMulti = menu_rev["multis"].keys.toList().indexOf(multi);
+  int _selectedTarget = menu_rev["targets"].keys.toList().indexOf(target);
 
   double _frequency = 0;
 
-  Timer? _timer;
+  //Timer? _timer;
 
   SharedPreferences? prefs;
   UserSettings? userSettings;
@@ -81,6 +84,17 @@ class _MainScreen extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+
+    //log(audio);
+    //print(menu.targets);
+    print(menu);
+    print(menu_rev);
+    print(audio);
+    print(_selectedAudio);
+    //print(audios_rev);
+
+    //test = 12345;
+    //print(test);
 
     _getSettings().then((settings) {
       userSettings = settings;
@@ -143,60 +157,80 @@ class _MainScreen extends State<MainScreen> {
                 presetName: targets.keys.toList()[_selectedSound],
                 tapMethod: _showPresetWindow,
               ),
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),*/
-              SelectPresetButton(
-                presetName: targets.keys.toList()[_selectedTarget],
-                tapMethod: _showPresetWindowTargets,
-              ),
+              */
               Divider(
                 indent: 60,
                 endIndent: 60,
                 color: Colors.white,
               ),
-              SelectPresetButton(
-                presetName: enviroments.keys.toList()[_selectedEnviroment],
-                tapMethod: _showPresetWindowEnviroments,
-              ),
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),
-              SelectPresetButton(
-                presetName: modulations.keys.toList()[_selectedModulation],
-                tapMethod: _showPresetWindowModulations,
-              ),
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),
-              SelectPresetButton(
-                presetName: multis.keys.toList()[_selectedMulti],
-                tapMethod: _showPresetWindowMultis,
-              ),
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),
-              SelectPresetButton(
-                presetName: channels.keys.toList()[_selectedChannel],
-                tapMethod: _showPresetWindowChannels,
-              ),
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),
-              SelectPresetButton(
-                presetName: audios.keys.toList()[_selectedAudio],
-                tapMethod: _showPresetWindowAudios,
-              ),
+              if (menu["targets"] != null)
+                SelectPresetButton(
+                  presetName: menu["targets"].keys.toList()[_selectedTarget],
+                  tapMethod: _showPresetWindowTargets,
+                ),
+              if (menu["targets"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
+              if (menu["enviroments"] != null)
+                SelectPresetButton(
+                  presetName:
+                      menu["enviroments"].keys.toList()[_selectedEnviroment],
+                  tapMethod: _showPresetWindowEnviroments,
+                ),
+              if (menu["enviroments"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
+              if (menu["modulations"] != null)
+                SelectPresetButton(
+                  presetName:
+                      menu["modulations"].keys.toList()[_selectedModulation],
+                  tapMethod: _showPresetWindowModulations,
+                ),
+              if (menu["modulations"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
+              if (menu["multis"] != null)
+                SelectPresetButton(
+                  presetName: menu["multis"].keys.toList()[_selectedMulti],
+                  tapMethod: _showPresetWindowMultis,
+                ),
+              if (menu["multis"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
+              if (menu["channels"] != null)
+                SelectPresetButton(
+                  presetName: menu["channels"].keys.toList()[_selectedChannel],
+                  tapMethod: _showPresetWindowChannels,
+                ),
+              if (menu["channels"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
+              if (menu["audios"] != null)
+                SelectPresetButton(
+                  presetName: menu["audios"].keys.toList()[_selectedAudio],
+                  tapMethod: _showPresetWindowAudios,
+                ),
+              if (menu["audios"] != null)
+                Divider(
+                  indent: 60,
+                  endIndent: 60,
+                  color: Colors.white,
+                ),
               Padding(
                 padding: EdgeInsets.only(bottom: 30.0, top: 40.0),
                 child: TextButton.icon(
@@ -228,37 +262,37 @@ class _MainScreen extends State<MainScreen> {
             */
             if (_isPresetWindowAudiosShown)
               PresetWindow(
-                items: audios,
+                items: menu["audios"],
                 selectItem: _selectAudio,
                 selectedItem: _selectedAudio,
               ),
             if (_isPresetWindowChannelsShown)
               PresetWindow(
-                items: channels,
+                items: menu["channels"],
                 selectItem: _selectChannel,
                 selectedItem: _selectedChannel,
               ),
             if (_isPresetWindowEnviromentsShown)
               PresetWindow(
-                items: enviroments,
+                items: menu["enviroments"],
                 selectItem: _selectEnviroment,
                 selectedItem: _selectedEnviroment,
               ),
             if (_isPresetWindowModulationsShown)
               PresetWindow(
-                items: modulations,
+                items: menu["modulations"],
                 selectItem: _selectModulation,
                 selectedItem: _selectedModulation,
               ),
             if (_isPresetWindowMultisShown)
               PresetWindow(
-                items: multis,
+                items: menu["multis"],
                 selectItem: _selectMulti,
                 selectedItem: _selectedMulti,
               ),
             if (_isPresetWindowTargetsShown)
               PresetWindow(
-                items: targets,
+                items: menu["targets"],
                 selectItem: _selectTarget,
                 selectedItem: _selectedTarget,
               )
@@ -268,33 +302,38 @@ class _MainScreen extends State<MainScreen> {
     );
   }
 
-  void _play() {
-    setState(() {
-      _isPlaying = !_isPlaying;
+  void setParams() {
+    double _presetFrequency = 0;
 
-      if (_isPlaying) {
-        double _presetFrequency = 0;
-        _presetFrequency = targets.values.toList()[_selectedTarget].toDouble();
+    _presetFrequency = target.toDouble();
+    //s.values.toList()[_selectedTarget].toDouble();
 
-        SoundGenerator.setWaveType(waveTypes.MULTI);
-        /*
+    SoundGenerator.setWaveType(waveTypes.MULTI);
+    /*
         if (_selectedModulation.toInt() == 1) {
           SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
         } else {
           SoundGenerator.setWaveType(waveTypes.MULTI);
         }*/
 
-        SoundGenerator.setParams(
-            targets.values.toList()[_selectedTarget].toDouble(),
-            enviroments.values.toList()[_selectedEnviroment].toDouble(),
-            modulations.values.toList()[_selectedModulation].toDouble(),
-            multis.values.toList()[_selectedMulti].toDouble(),
-            channels.values.toList()[_selectedChannel].toDouble(),
-            audios.values.toList()[_selectedAudio].toDouble());
+    SoundGenerator.setParams(
+        target.toDouble(),
+        enviroment.toDouble(),
+        modulation.toDouble(),
+        multi.toDouble(),
+        channel.toDouble(),
+        audio.toDouble());
 
-        _frequency = _presetFrequency;
-        SoundGenerator.setFrequency(_frequency);
+    _frequency = _presetFrequency;
+    SoundGenerator.setFrequency(_frequency);
+  }
 
+  void _play() {
+    setState(() {
+      _isPlaying = !_isPlaying;
+
+      if (_isPlaying) {
+        setParams();
         SoundGenerator.play();
 
         /*
@@ -307,8 +346,8 @@ class _MainScreen extends State<MainScreen> {
         */
       } else {
         setState(() {
-          _timer?.cancel();
-          _timer = null;
+          //_timer?.cancel();
+          //_timer = null;
           SoundGenerator.stop();
           _frequency = 0;
         });
@@ -381,7 +420,9 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowAudiosShown = false;
       } else {
         _selectedAudio = num;
+        audio = menu["audios"].values.toList()[num];
         _isPresetWindowAudiosShown = false;
+        setParams();
       }
     });
   }
@@ -392,7 +433,9 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowChannelsShown = false;
       } else {
         _selectedChannel = num;
+        channel = menu["channels"].values.toList()[num];
         _isPresetWindowChannelsShown = false;
+        setParams();
       }
     });
   }
@@ -403,7 +446,9 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowEnviromentsShown = false;
       } else {
         _selectedEnviroment = num;
+        enviroment = menu["enviroments"].values.toList()[num];
         _isPresetWindowEnviromentsShown = false;
+        setParams();
       }
     });
   }
@@ -414,7 +459,9 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowModulationsShown = false;
       } else {
         _selectedModulation = num;
+        modulation = menu["modulations"].values.toList()[num];
         _isPresetWindowModulationsShown = false;
+        setParams();
       }
     });
   }
@@ -425,7 +472,9 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowMultisShown = false;
       } else {
         _selectedMulti = num;
+        multi = menu["multis"].values.toList()[num];
         _isPresetWindowMultisShown = false;
+        setParams();
       }
     });
   }
@@ -436,7 +485,9 @@ class _MainScreen extends State<MainScreen> {
         _isPresetWindowTargetsShown = false;
       } else {
         _selectedTarget = num;
+        target = menu["targets"].values.toList()[num];
         _isPresetWindowTargetsShown = false;
+        setParams();
       }
     });
   }
@@ -637,158 +688,6 @@ class PresetWindow extends StatelessWidget {
                                   selectItem(index);
                                 },
                                 leading: selectedItem == index
-                                    ? Icon(
-                                        Icons.check,
-                                        color: Colors.white,
-                                      )
-                                    : null,
-                              ),
-                              Divider(
-                                indent: 20,
-                                endIndent: 20,
-                                color: Colors.white,
-                              )
-                            ]);
-                          }))
-                ]))));
-  }
-}
-
-class PresetWindowModulation extends StatelessWidget {
-  const PresetWindowModulation(
-      {Key? key,
-      required this.selectModulation,
-      required this.selectedModulation})
-      : super(key: key);
-
-  final Function selectModulation;
-  final int selectedModulation;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.only(top: 30, bottom: 30),
-        color: Colors.white60,
-        child: SafeArea(
-            child: Container(
-                constraints: BoxConstraints(maxWidth: 350),
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromRGBO(7, 117, 229, 1.0),
-                          Color.fromRGBO(12, 232, 92, 1.0),
-                        ]),
-                    border: Border.all(width: 3, color: Colors.white),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(children: [
-                  Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                          iconSize: 35,
-                          onPressed: () {
-                            selectModulation(-1);
-                          },
-                          icon: Icon(
-                            Icons.close,
-                            color: Colors.white,
-                          ))),
-                  Expanded(
-                      child: ListView.builder(
-                          itemCount: modulations.keys.toList().length,
-                          itemBuilder: (context, index) {
-                            return Column(children: [
-                              ListTile(
-                                title: Align(
-                                    child: Text(
-                                      modulations.keys.toList()[index],
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 23.0),
-                                    ),
-                                    alignment: selectedModulation == index
-                                        ? Alignment(-1.8, 0)
-                                        : Alignment(-0.3, 0)),
-                                onTap: () {
-                                  selectModulation(index);
-                                },
-                                leading: selectedModulation == index
-                                    ? Icon(
-                                        Icons.check,
-                                        color: Colors.white,
-                                      )
-                                    : null,
-                              ),
-                              Divider(
-                                indent: 20,
-                                endIndent: 20,
-                                color: Colors.white,
-                              )
-                            ]);
-                          }))
-                ]))));
-  }
-}
-
-class PresetWindowAudio extends StatelessWidget {
-  const PresetWindowAudio(
-      {Key? key, required this.selectAudio, required this.selectedAudio})
-      : super(key: key);
-
-  final Function selectAudio;
-  final int selectedAudio;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.only(top: 30, bottom: 30),
-        color: Colors.white60,
-        child: SafeArea(
-            child: Container(
-                constraints: BoxConstraints(maxWidth: 350),
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromRGBO(7, 117, 229, 1.0),
-                          Color.fromRGBO(12, 232, 92, 1.0),
-                        ]),
-                    border: Border.all(width: 3, color: Colors.white),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(children: [
-                  Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                          iconSize: 35,
-                          onPressed: () {
-                            selectAudio(-1);
-                          },
-                          icon: Icon(
-                            Icons.close,
-                            color: Colors.white,
-                          ))),
-                  Expanded(
-                      child: ListView.builder(
-                          itemCount: audios.keys.toList().length,
-                          itemBuilder: (context, index) {
-                            return Column(children: [
-                              ListTile(
-                                title: Align(
-                                    child: Text(
-                                      audios.keys.toList()[index],
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 23.0),
-                                    ),
-                                    alignment: selectedAudio == index
-                                        ? Alignment(-1.8, 0)
-                                        : Alignment(-0.3, 0)),
-                                onTap: () {
-                                  selectAudio(index);
-                                },
-                                leading: selectedAudio == index
                                     ? Icon(
                                         Icons.check,
                                         color: Colors.white,

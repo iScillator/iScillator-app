@@ -1,4 +1,4 @@
-final audios = {
+const audios = {
   "Speakers": 0,
   "Diffusor 1.7 + Speakers": 17,
   "Ray Tube 5.2": 52,

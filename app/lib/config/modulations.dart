@@ -1,6 +1,14 @@
-final modulations = {
+const modulations = {
   "Line": 0,
-  "Sinus 2^10=1024": 1024,
+  
+  "Sinus 2^10=1024 (V/sqr2)": 1024,
+
+  "Sinus 2^10=1024 V1": 10241,
+  "Sinus 2^10=1024 V/2": 10242,
+  "Sinus 2^10=1024 V/X": 10243,
+  "Sinus 2^10=1024 V/sqrX": 10244,
+  
+
   "Dumped 2^10=1024": -1024,
 
   "Sinus=1333": 1333,
