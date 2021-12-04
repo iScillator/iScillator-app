@@ -66,11 +66,11 @@ const Map<String, dynamic> configs = {
   "yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}
 };
 
-final config_current = "com.soundhealer";
+final config_current = "com.soundhealer.pro";
 final config_current_os =
     (Platform.isIOS ? "ios/" : "android/") + config_current;
 
-//final config_current_os = "ios/com.soundhealer";
+//final config_current_os = "ios/com.soundhealer.pro";
 
 final config = configs[config_current_os];
 
