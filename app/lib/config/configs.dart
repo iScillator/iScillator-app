@@ -5,21 +5,14 @@ import 'modulations.dart';
 import 'multis.dart';
 import 'programs.dart';
 import 'targets.dart';
+import 'defaults.dart';
 
 import 'dart:io' show Platform;
 
 const Map<String, dynamic> configs = {
   "android/com.soundhealer": {
     "title": "SoundHealer",
-    "defaults": {
-      "audio": 0,
-      "channel": 120,
-      "enviroment": 0,
-      "modulation": 1024,
-      "multi": 3,
-      "target": 528,
-      "program": 528,
-    },
+    "defaults": defaults_lite,
     "menu": {
       "programs": programs_lite,
       "targets": targets_lite,
@@ -27,15 +20,7 @@ const Map<String, dynamic> configs = {
   },
   "ios/com.soundhealer": {
     "title": "SoundHealer",
-    "defaults": {
-      "audio": 0,
-      "channel": 120,
-      "enviroment": 0,
-      "modulation": 1024,
-      "multi": 3,
-      "target": 528,
-      "program": 528,
-    },
+    "defaults": defaults_lite,
     "menu": {
       "programs": programs_lite,
       "targets": targets_lite,
@@ -43,15 +28,7 @@ const Map<String, dynamic> configs = {
   },
   "android/com.soundhealer.pro": {
     "title": "SoundHealer PRO",
-    "defaults": {
-      "audio": 0,
-      "channel": 120,
-      "enviroment": 0,
-      "modulation": 1024,
-      "multi": 3,
-      "target": 528,
-      "program": 528,
-    },
+    "defaults": defaults_pro,
     "menu": {
       "programs": programs_pro,
       "targets": targets_pro,
@@ -66,7 +43,7 @@ const Map<String, dynamic> configs = {
   "yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}
 };
 
-final config_current = "com.soundhealer";
+final config_current = "com.soundhealer.pro";
 final config_current_os =
     (Platform.isIOS ? "ios/" : "android/") + config_current;
 
@@ -97,11 +74,3 @@ final Map<String, dynamic> menu_rev = {
       ? menu["targets"].map((k, v) => MapEntry(v, k))
       : {}),
 };
-
-
-
-//final Map<String, dynamic> targets = targets_pro; //menu["targets"];
-
-//final Map<String, dynamic> audios_rev =
-//    config["menu"]["audios"].map((k, v) => MapEntry(v, k));
-
