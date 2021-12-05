@@ -7,6 +7,8 @@ import 'programs.dart';
 import 'targets.dart';
 import 'defaults.dart';
 
+import 'current.dart';
+
 import 'dart:io' show Platform;
 
 const Map<String, dynamic> configs = {
@@ -39,12 +41,12 @@ const Map<String, dynamic> configs = {
       "channels": channels
     }
   },
-  "dev.soundhealer.com": {
+  "android/dev.soundhealer.com": {
     "title": "SoundHealer DEV",
-    "defaults": defaults_pro,
+    "defaults": defaults_dev,
     "menu": {
-      "programs": programs_pro,
-      "targets": targets_pro,
+      "programs": programs_dev,
+      "targets": targets_dev,
       "enviroments": enviroments,
       "modulations": modulations,
       "multis": multis,
@@ -55,7 +57,6 @@ const Map<String, dynamic> configs = {
   "yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}
 };
 
-final config_current = "com.soundhealer.dev";
 final config_current_os =
     (Platform.isIOS ? "ios/" : "android/") + config_current;
 

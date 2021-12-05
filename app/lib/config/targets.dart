@@ -1,5 +1,5 @@
 const targets_dev = {
-  "Flower of Life": [144, 209, 302],
+  "Flower of Life": 144,
   "Flower of Life²": [144, 209, 302],
   "Fundamental": 174,
   "Muladhara": 285,
