@@ -1,9 +1,17 @@
 const targets_dev = {
   "Flower of Life": 144,
   "Flower of Life²": [144, 209, 302],
+  // 141?144-145, 209-211, 457 665-668/668 810-812, 920??? /// 457 ((457/144)^2=10 => 144*sqrt(10)=457) 667 (209*sqrt(10)? ) 810 (144*sqrt(15))
+  // 141 -65db, 211 -58db, 305 -44db, 457 -50db
+  // -65 -85 -44 - 50
+  //8:23 => 396 -52, 694 -68
+  //7:15???
+
   "Fundamental": 174,
   "Muladhara": 285,
-  "Svadhisthana": 396,
+  "Svadhisthana": 396, // 694
+  "Svadhisthana Bil": [396, 694],
+
   "Manipura": 417,
   "Anahata": 528,
   "Anahata Binaural": [-528, -531],
@@ -67,9 +75,6 @@ const targets_lite = {
 
 var targets = targets_pro;
 
-
-
-
 /*
 
 var targets=
@@ -111,4 +116,3 @@ https://yogavedi.ru/samorazvitie/astrology/svyaz-chakr-i-planet-stroenie-tonkogo
 
 
  */
-

@@ -25,6 +25,8 @@ public class multiGenerator extends baseGenerator {
 
     private double multi_amp_diff=0;
 
+    private double multi;
+
     private int multi_steps=7;
 
 
@@ -121,6 +123,29 @@ public class multiGenerator extends baseGenerator {
         android.util.Log.d("SoundHealer", "amp_sum="+amp_sum);
     }
 
+    private void bilHz(double target, double modulation, double multi)
+    {
+        this.multi_steps=2;
+        this.amp_sum=2;
+        this.multi_hz = new double[2];
+        this.multi_mod_hz = new double[2];
+        this.multi_amp = new double[2];
+        
+        this.multi_hz[0]=target;
+        this.multi_hz[1]=target*1.732050807568877; // sqrt(3)
+        if (multi==-2) this.multi_hz[1]=target*1.414213562373095; // sqrt(2)
+        this.multi_amp[0]=1;
+        this.multi_amp[1]=1;
+
+        this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+        this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+
+        //multiHzAdd(target, modulation, multi,1,true,1.0,1.0);
+        //multiHzAdd(target, modulation, multi,-1,true,1.0,1.0);
+        //android.util.Log.d("SoundHealer", "amp_sum="+amp_sum);
+    }
+
+
     private void setAngle(double channel)
     {
             angle2=0;
@@ -151,7 +176,8 @@ public class multiGenerator extends baseGenerator {
         android.util.Log.d("SoundHealer", "audio="+audio);
 
         this.audio=(int)audio;
-        
+        this.multi=multi;
+
         this.mod_frequency=modulation;
 
         if ((modulation==2)&&(enviroment!=0))
@@ -175,7 +201,14 @@ public class multiGenerator extends baseGenerator {
 
 
         setAngle(channel);
-        multiHz(target, modulation, multi);
+
+        if (multi>=0)
+        {
+            multiHz(target, modulation, multi);
+        } else 
+        {
+            bilHz(target, modulation, multi);
+        }
     }
 
     public void setFrequency(float frequency) {
@@ -256,6 +289,11 @@ public class multiGenerator extends baseGenerator {
             if (multi_hz[step]==0) continue;
             t1=(multi_mod_hz[step]*x/sampleRate)*Math.PI*2;
             t2=(multi_hz[step]*x/sampleRate)*Math.PI*2;
+            
+            if ((this.multi==-33)&&(channel==2)) 
+            {
+                t2=((multi_hz[step]+3)*x/sampleRate)*Math.PI*2;
+            }
             
             if(channel==2)
             {
