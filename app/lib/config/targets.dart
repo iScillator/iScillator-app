@@ -32,6 +32,7 @@ const targets_pro = {
   "Svadhisthana": 396,
   "Manipura": 417,
   "Anahata": 528,
+  //"532": 532,
   "Vishudha": 639,
   "Adjna": 741,
   "Sahasrara": 852,
