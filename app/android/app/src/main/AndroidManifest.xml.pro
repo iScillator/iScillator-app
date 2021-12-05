@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.soundhealer">
+    package="com.soundhealer.pro">
    <application
         android:label="Sound Healer PRO"
         android:icon="@mipmap/ic_launcher">

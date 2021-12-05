@@ -39,11 +39,23 @@ const Map<String, dynamic> configs = {
       "channels": channels
     }
   },
-  "dev.soundhealer.com": {"title": "SoundHealer DEV"},
+  "dev.soundhealer.com": {
+    "title": "SoundHealer DEV",
+    "defaults": defaults_pro,
+    "menu": {
+      "programs": programs_pro,
+      "targets": targets_pro,
+      "enviroments": enviroments,
+      "modulations": modulations,
+      "multis": multis,
+      "audios": audios,
+      "channels": channels
+    },
+  },
   "yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}
 };
 
-final config_current = "com.soundhealer.pro";
+final config_current = "com.soundhealer.dev";
 final config_current_os =
     (Platform.isIOS ? "ios/" : "android/") + config_current;
 
