@@ -41,9 +41,7 @@ public class multiGenerator extends baseGenerator {
 
     private double modulationHzGet(double target, double modulation)
     {
-        dumped=false;
         if(modulation==0) return 0;
-        if(modulation<0) {dumped=true;modulation=-modulation;}
         
         if (modulation==10241) modulation=1024;
         if (modulation==10242) modulation=1024;
@@ -61,11 +59,11 @@ public class multiGenerator extends baseGenerator {
     {
         if (amp_n!=1)
         {
-            if (multi_amp_diff==0) amp=amp/Math.sqrt(2);
+            if (multi_amp_diff==0) amp=amp*Math.pow(2.0,updown/2);// /Math.sqrt(2);
             if (multi_amp_diff==1) amp=amp;
-            if (multi_amp_diff==2) amp=amp/2;
-            if (multi_amp_diff==3) amp=amp/amp_n;
-            if (multi_amp_diff==4) amp=amp/Math.sqrt(amp_n);
+            if (multi_amp_diff==2) amp=amp*Math.pow(2.0,updown);// /2;
+            if (multi_amp_diff==3) amp=amp*Math.pow(amp_n,updown);// /amp_n;
+            if (multi_amp_diff==4) amp=amp*Math.pow(amp_n,updown/2);// /Math.sqrt(amp_n);
         }
 
         android.util.Log.d("SoundHealer", "?target="+target);
@@ -162,7 +160,10 @@ public class multiGenerator extends baseGenerator {
             target=enviroment;
         }
 
-        if (modulation<0) {this.mod_frequency=-modulation;}
+        this.dumped=false;
+        
+
+        if (modulation<0) {this.mod_frequency=-modulation; this.dumped=true;}
         
         
         this.multi_amp_diff=0; //sqrt(2)
@@ -265,8 +266,8 @@ public class multiGenerator extends baseGenerator {
 
 
             mod_amplitude=Math.sin(t1);
-            if (audio==1333) {
-                mod_amplitude=1.0-Math.sin((t1 % (Math.PI/2)));                
+            if (this.dumped==true) {
+                mod_amplitude=1.0-Math.sin(((t1/4) % (Math.PI/2)));                
             }
 
             y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive

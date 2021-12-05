@@ -1,3 +1,4 @@
+//⁰¹²³⁵⁶₂₃₅ ⁺ √  ∛
 /* 7/4 - малая септима ???*/
 
 /* 
@@ -8,13 +9,13 @@ fix=no modulation
 
 const multis = {
   "Fix": 1,
-  "Fractal ^2": 2,
-  "Fractal ^3": 3,
-  "Fractal ^5": 5,
-  //"Fractal ^2,^3": 23,
-  //"Fractal ^2,^5": 25,
-  "Fractal ^3,^5": 35,
-  //"Fractal 2^,^3,^5": 235,
-  "Fractal log2(3)": 123,
+  "Fractal²": 2,
+  "Fractal³": 3,
+  "Fractal⁵": 5,
+  //"Fractal ²,³": 23,
+  //"Fractal ²,⁵": 25,
+  "Fractal ³,⁵": 35,
+  //"Fractal ²,³,⁵": 235,
+  "Fractal log₂(3)": 123,
   "Fractal 7/4": 74,
 };

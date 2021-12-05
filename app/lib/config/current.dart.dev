@@ -1,3 +1,3 @@
 //const config_current = "com.soundhealer.dev";
-const config_current = "com.soundhealer";
-//const config_current = "com.soundhealer.pro";
+//const config_current = "com.soundhealer";
+const config_current = "com.soundhealer.pro";

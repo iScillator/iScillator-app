@@ -41,7 +41,7 @@ const Map<String, dynamic> configs = {
       "channels": channels
     }
   },
-  "android/dev.soundhealer.com": {
+  "android/com.soundhealer.dev": {
     "title": "SoundHealer DEV",
     "defaults": defaults_dev,
     "menu": {
