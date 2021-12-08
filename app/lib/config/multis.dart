@@ -13,6 +13,9 @@ const multis = {
   "Bil 2³ Binaural": -33,
   "Bil 3²": -2,
   "Voice": -5,
+  "Voice,*2,*3": -6,
+  "Target,*2,*3": -7,
+  "Voice,*2,*3,*4,*5": -66,
 
   "Fractal³": 3,
   "Fractal⁵": 5,

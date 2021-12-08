@@ -1,5 +1,35 @@
 {
     "helloWorld": "Привет мир!",
-    "frequency":"Частота",
-    "settings":"Настройки"
+    "frequency": "Частота",
+    "settings": "Настройки",
+
+
+    "Folders":"Папки",
+    "Chackras":"Чакры",
+    "Bils":"Билы",
+    "Singing Bowls":"Поющие чаши",
+    "Immunomodulator":"Имунномодулятор",
+    "Prophylaxis":"Профилактика",
+
+
+    "Targets": "Цели",
+    "Fundamental": "Фундаментальная",
+    "Muladhara": "Муладхара",
+    "Svadhisthana": "Свадхистана",
+    "Manipura": "Манипура",
+    "Anahata": "Анахата",
+    "Vishudha": "Вишудха",
+    "Adjna": "Аджна",
+    "Sahasrara": "Сахасрара",
+    "Sahasradala": "Сахасрадала",
+    
+    "Influenza": "Грипп",
+    "Пневмония": "Пневмония",
+    "Psoriasis": "Псориаз",
+
+    "Essential oil": "Эфирное масло",
+    "Rose (essential oil)": "Rose (эфирное масло)",
+    "Peppermint (essential oil)": "Peppermint (эфирное масло)",
+    "White Angelica (essential oil)": "White Angelica (эфирное масло)",
+    "Thieves (essential oil)": "Thieves (эфирное масло)"
 }

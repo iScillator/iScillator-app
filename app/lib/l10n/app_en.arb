@@ -3,6 +3,6 @@
     "@helloWorld": {
       "description": "The conventional newborn programmer greeting"
     },
-    "frequency":"Frequency",
-    "settings":"Settings"
+    "frequency": "Frequency",
+    "settings": "Settings"
 }

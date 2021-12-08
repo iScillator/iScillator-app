@@ -516,6 +516,25 @@ class _MainScreen extends State<MainScreen> {
     prefs = await SharedPreferences.getInstance();
     double? balance = prefs?.getDouble('balance');
     int? waveType = prefs?.getInt('waveType');
+
+    /* TODO: add last settings from saved
+
+      static int audio = defaults["audio"];
+  static int channel = defaults["channel"];
+  static int enviroment = defaults["enviroment"];
+  static int modulation = defaults["modulation"];
+  static int multi = defaults["multi"];
+  static int target = defaults["target"];
+
+  int _selectedAudio = menu_rev["audios"].keys.toList().indexOf(audio);
+  int _selectedChannel = menu_rev["channels"].keys.toList().indexOf(channel);
+  int _selectedEnviroment =
+      menu_rev["enviroments"].keys.toList().indexOf(enviroment);
+  int _selectedModulation =
+      menu_rev["modulations"].keys.toList().indexOf(modulation);
+  int _selectedMulti = menu_rev["multis"].keys.toList().indexOf(multi);
+  int _selectedTarget = menu_rev["targets"].keys.toList().indexOf(target);
+     */
     return UserSettings(balance, waveType);
   }
 }

@@ -157,13 +157,15 @@ public class multiGenerator extends baseGenerator {
         if(multi==-5)
         {
             this.multi_steps=3;
-            this.amp_sum=4;
+            this.amp_sum=3;
             this.multi_hz[0]=116; // sqrt(2)
             this.multi_hz[1]=233; // sqrt(2)
             this.multi_hz[2]=349; // sqrt(2)
-            this.multi_amp[0]=2;
+            this.multi_amp[0]=1;
             this.multi_amp[1]=1;
             this.multi_amp[2]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
             this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
 
         }
@@ -173,11 +175,51 @@ public class multiGenerator extends baseGenerator {
             this.multi_steps=3;
             this.amp_sum=3;
             this.multi_hz[0]=116; // sqrt(2)
-            this.multi_hz[1]=233; // sqrt(2)
-            this.multi_hz[2]=349; // sqrt(2)
+            this.multi_hz[1]=this.multi_hz[0]*2; // sqrt(2)
+            this.multi_hz[2]=this.multi_hz[0]*3; // sqrt(2)
             this.multi_amp[0]=1;
             this.multi_amp[1]=1;
             this.multi_amp[2]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+            this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
+
+        }
+
+        if(multi==-66)
+        {
+            this.multi_steps=5;
+            this.amp_sum=5;
+            this.multi_hz[0]=116; // sqrt(2)
+            this.multi_hz[1]=this.multi_hz[0]*2; // sqrt(2)
+            this.multi_hz[2]=this.multi_hz[0]*3; // sqrt(2)
+            this.multi_hz[4]=this.multi_hz[0]*4; // sqrt(2)
+            this.multi_hz[5]=this.multi_hz[0]*5; // sqrt(2)
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_amp[2]=1;
+            this.multi_amp[3]=1;
+            this.multi_amp[4]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+            this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
+            this.multi_mod_hz[3]=modulationHzGet(this.multi_hz[3],modulation);
+            this.multi_mod_hz[4]=modulationHzGet(this.multi_hz[4],modulation);
+
+        }
+
+        if(multi==-7)
+        {
+            this.multi_steps=3;
+            this.amp_sum=3;
+            this.multi_hz[0]=target; // sqrt(2)
+            this.multi_hz[1]=target*2; // sqrt(2)
+            this.multi_hz[2]=target*3; // sqrt(2)
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_amp[2]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
             this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
 
         }

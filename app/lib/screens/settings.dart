@@ -4,8 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sound_generator/sound_generator.dart';
 import 'package:sound_generator/waveTypes.dart';
 
-import '../config/configs.dart';
-
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen(
       {Key? key, required this.userSettings, required this.prefs})

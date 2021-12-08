@@ -40,3 +40,7 @@ const programs_pro = {
   "Adjna": 741,
   "Sahasrara": 852,
 };
+
+// TODO: Для первичной публикации в продакшне(сторах), без пугающих названий!
+
+const programs_prod = programs_lite;

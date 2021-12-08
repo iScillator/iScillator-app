@@ -16,6 +16,12 @@ const folders_lite = {
     "Adjna": 741,
     "Sahasrara": 852,
   },
-  "Bils": {},
+  "Chackras": "Чакры",
+  "Bils": "Билы",
+  //"Singing Bowls": "Поющие чаши",
+  "Rife audio frequencies": "Папки",
+  "Rife RF frequencies": "Папки",
+  "Immunomodulator": "Имунномодулятор",
+  "Prophylaxis": "Профилактика",
   "Treatment": {}
 };
