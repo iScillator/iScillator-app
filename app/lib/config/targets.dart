@@ -13,6 +13,8 @@ const targets_dev = {
 
   //116 233 349 385 464 456 693
 
+  "116": 116,
+
   "Fundamental": 174,
   "Muladhara": 285,
   "Svadhisthana": 396, // 694
@@ -26,10 +28,13 @@ const targets_dev = {
   "Sahasrara": 852,
   "Sahasradala": 963,
   "Anahata+Sahasrara": [528, 852],
-  "5k": 5000,
-  "10k": 10000,
-  "20k": 20000,
-  "40k": 40000,
+  "100Hz": 100,
+  "400Hz": 400,
+  "900Hz": 900,
+  "4kHz": 4000,
+  "9kHz": 9000,
+  "20kHz": 20000,
+  "40kHz": 40000,
   "Inf": [1946704, 1674000],
   "Inf1": 1946704,
   "Inf2": 1674000,

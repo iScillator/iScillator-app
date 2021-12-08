@@ -155,136 +155,148 @@ class _MainScreen extends State<MainScreen> {
       ],
     );
 
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-              Color.fromRGBO(12, 232, 92, 1.0),
-              Color.fromRGBO(7, 117, 229, 1.0),
-            ])),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            SafeArea(
-                child: Column(children: [
-              Padding(
-                  padding: EdgeInsets.only(top: 20.0), child: frequencySection),
-              Expanded(child: PlayButton(onPlayingChange: _play)),
+    //Widget topSection = Column(children: [
+    //]);
 
-              ///!!!
-              /*
-              SelectPresetButton(
-                presetName: targets.keys.toList()[_selectedSound],
-                tapMethod: _showPresetWindow,
-              ),
-              */
-              Divider(
-                indent: 60,
-                endIndent: 60,
-                color: Colors.white,
-              ),
-              if (menu["targets"] != null)
-                SelectPresetButton(
-                  presetName: menu["targets"].keys.toList()[_selectedTarget],
-                  tapMethod: _showPresetWindowTargets,
-                ),
-              if (menu["targets"] != null)
-                Divider(
-                  indent: 60,
-                  endIndent: 60,
-                  color: Colors.white,
-                ),
-              if (menu["enviroments"] != null)
-                SelectPresetButton(
-                  presetName:
-                      menu["enviroments"].keys.toList()[_selectedEnviroment],
-                  tapMethod: _showPresetWindowEnviroments,
-                ),
-              if (menu["enviroments"] != null)
-                Divider(
-                  indent: 60,
-                  endIndent: 60,
-                  color: Colors.white,
-                ),
-              if (menu["modulations"] != null)
-                SelectPresetButton(
-                  presetName:
-                      menu["modulations"].keys.toList()[_selectedModulation],
-                  tapMethod: _showPresetWindowModulations,
-                ),
-              if (menu["modulations"] != null)
-                Divider(
-                  indent: 60,
-                  endIndent: 60,
-                  color: Colors.white,
-                ),
-              if (menu["multis"] != null)
-                SelectPresetButton(
-                  presetName: menu["multis"].keys.toList()[_selectedMulti],
-                  tapMethod: _showPresetWindowMultis,
-                ),
-              if (menu["multis"] != null)
-                Divider(
-                  indent: 60,
-                  endIndent: 60,
-                  color: Colors.white,
-                ),
-              if (menu["channels"] != null)
-                SelectPresetButton(
-                  presetName: menu["channels"].keys.toList()[_selectedChannel],
-                  tapMethod: _showPresetWindowChannels,
-                ),
-              if (menu["channels"] != null)
-                Divider(
-                  indent: 60,
-                  endIndent: 60,
-                  color: Colors.white,
-                ),
-              if (menu["audios"] != null)
-                SelectPresetButton(
-                  presetName: menu["audios"].keys.toList()[_selectedAudio],
-                  tapMethod: _showPresetWindowAudios,
-                ),
-              if (menu["audios"] != null)
-                Divider(
-                  indent: 60,
-                  endIndent: 60,
-                  color: Colors.white,
-                ),
+    //alignment: Alignment.center,
+
+    Widget menu1Section = Column(children: [
+      Divider(
+        indent: 60,
+        endIndent: 60,
+        color: Colors.white,
+      ),
+      if (menu["targets"] != null)
+        SelectPresetButton(
+          presetName: menu["targets"].keys.toList()[_selectedTarget],
+          tapMethod: _showPresetWindowTargets,
+        ),
+      if (menu["targets"] != null)
+        Divider(
+          indent: 60,
+          endIndent: 60,
+          color: Colors.white,
+        ),
+      if (menu["enviroments"] != null)
+        SelectPresetButton(
+          presetName: menu["enviroments"].keys.toList()[_selectedEnviroment],
+          tapMethod: _showPresetWindowEnviroments,
+        ),
+      if (menu["enviroments"] != null)
+        Divider(
+          indent: 60,
+          endIndent: 60,
+          color: Colors.white,
+        ),
+      if (menu["modulations"] != null)
+        SelectPresetButton(
+          presetName: menu["modulations"].keys.toList()[_selectedModulation],
+          tapMethod: _showPresetWindowModulations,
+        ),
+      if (menu["modulations"] != null)
+        Divider(
+          indent: 60,
+          endIndent: 60,
+          color: Colors.white,
+        ),
+      if (menu["multis"] != null)
+        SelectPresetButton(
+          presetName: menu["multis"].keys.toList()[_selectedMulti],
+          tapMethod: _showPresetWindowMultis,
+        ),
+      if (menu["multis"] != null)
+        Divider(
+          indent: 60,
+          endIndent: 60,
+          color: Colors.white,
+        )
+    ]);
+
+    Widget menu2Section = Column(children: [
+      Divider(
+        indent: 60,
+        endIndent: 60,
+        color: Colors.white,
+      ),
+      if (menu["channels"] != null)
+        SelectPresetButton(
+          presetName: menu["channels"].keys.toList()[_selectedChannel],
+          tapMethod: _showPresetWindowChannels,
+        ),
+      if (menu["channels"] != null)
+        Divider(
+          indent: 60,
+          endIndent: 60,
+          color: Colors.white,
+        ),
+      if (menu["audios"] != null)
+        SelectPresetButton(
+          presetName: menu["audios"].keys.toList()[_selectedAudio],
+          tapMethod: _showPresetWindowAudios,
+        ),
+      if (menu["audios"] != null)
+        Divider(
+          indent: 60,
+          endIndent: 60,
+          color: Colors.white,
+        )
+    ]);
+
+    Widget settingsSection = Padding(
+      padding: EdgeInsets.only(bottom: 30.0, top: 40.0),
+      child: TextButton.icon(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => SettingsScreen(
+                          userSettings: userSettings,
+                          prefs: prefs,
+                        )));
+          },
+          icon: Icon(
+            Icons.settings,
+            size: 20,
+          ),
+          label: Text(AppLocalizations.of(context)!.settings), //, 'Settings'),
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(Colors.white),
+          )),
+    );
+
+    final PageController controller = PageController(initialPage: 0);
+
+    return Scaffold(
+        //appBar: AppBar(title: const Text("_title")),
+        body: Container(
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+            Color.fromRGBO(12, 232, 92, 1.0),
+            Color.fromRGBO(7, 117, 229, 1.0),
+          ])),
+      child: SafeArea(
+        child: Stack(
+          children: [
+            Column(children: [
               Padding(
-                padding: EdgeInsets.only(bottom: 30.0, top: 40.0),
-                child: TextButton.icon(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SettingsScreen(
-                                    userSettings: userSettings,
-                                    prefs: prefs,
-                                  )));
-                    },
-                    icon: Icon(
-                      Icons.settings,
-                      size: 20,
-                    ),
-                    label: Text(AppLocalizations.of(context)!
-                        .settings), //, 'Settings'),
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(Colors.white),
-                    )),
-              )
-            ])),
-            /*
-            if (_isPresetWindowShown)
-              PresetWindow(
-                selectSound: _selectSound,
-                selectedSound: _selectedSound,
+                  padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
+                  child: frequencySection),
+              PlayButton(onPlayingChange: _play),
+
+              Expanded(
+                child: PageView(
+                    scrollDirection: Axis.horizontal,
+                    controller: controller,
+                    children: [menu1Section, menu2Section]),
               ),
-            */
+              //Container(child:
+              settingsSection
+              //)
+            ]),
             if (_isPresetWindowAudiosShown)
               PresetWindow(
                 items: menu["audios"],
@@ -324,7 +336,7 @@ class _MainScreen extends State<MainScreen> {
           ],
         ),
       ),
-    );
+    ));
   }
 
   void setParams() {

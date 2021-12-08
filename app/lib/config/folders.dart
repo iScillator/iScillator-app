@@ -16,7 +16,7 @@ const folders_lite = {
     "Adjna": 741,
     "Sahasrara": 852,
   },
-  "Chackras": "Чакры",
+  "Chackras2": "Чакры",
   "Bils": "Билы",
   //"Singing Bowls": "Поющие чаши",
   "Rife audio frequencies": "Папки",
