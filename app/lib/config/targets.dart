@@ -7,6 +7,8 @@ const targets_dev = {
   //8:23 => 396 -52, 694 -68
   //7:15???
 
+  //116 233 349 385 464 456 693
+
   "Fundamental": 174,
   "Muladhara": 285,
   "Svadhisthana": 396, // 694

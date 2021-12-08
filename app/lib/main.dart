@@ -18,18 +18,23 @@ import 'dart:math';
 import 'dart:developer';
 //import 'package:flutter/foundation.dart';
 
+// https://docs.flutter.dev/development/accessibility-and-localization/internationalization
+// Text(AppLocalizations.of(context)!.helloWorld);
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:flutter/material.dart';
 import 'package:sound_generator/sound_generator.dart';
 import 'package:sound_generator/waveTypes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'screens/settings.dart';
 import 'models/user_settings.dart';
 
 import 'dart:io' show Platform;
 
 //import 'package:flutter/foundation.dart';
-
 import 'config/configs.dart';
+
+import 'screens/settings.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,7 +43,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MainScreen(), debugShowCheckedModeBanner: false);
+    return MaterialApp(
+        home: MainScreen(),
+        debugShowCheckedModeBanner:
+            false, //Чтобы не было бейджика debug при разработке
+        /* 
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          Locale('en', ''), // English, no country code
+          Locale('ru', ''), // Russian, no country code
+        ]
+        */
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales);
   }
 }
 
@@ -126,7 +148,7 @@ class _MainScreen extends State<MainScreen> {
         Text('${_frequency.toInt()} Hz',
             style: TextStyle(color: Colors.white70, fontSize: 60.0)),
         Positioned(
-          child: Text('Frequency',
+          child: Text(AppLocalizations.of(context)!.frequency, // 'Frequency',
               style: TextStyle(color: Colors.white70, fontSize: 20.0)),
           top: 65.0,
         )
@@ -249,7 +271,8 @@ class _MainScreen extends State<MainScreen> {
                       Icons.settings,
                       size: 20,
                     ),
-                    label: Text('Settings'),
+                    label: Text(AppLocalizations.of(context)!
+                        .settings), //, 'Settings'),
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all(Colors.white),
                     )),

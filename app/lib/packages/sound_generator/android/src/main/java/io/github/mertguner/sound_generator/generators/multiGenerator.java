@@ -127,18 +127,60 @@ public class multiGenerator extends baseGenerator {
     {
         this.multi_steps=2;
         this.amp_sum=2;
-        this.multi_hz = new double[2];
-        this.multi_mod_hz = new double[2];
-        this.multi_amp = new double[2];
-        
+        this.multi_hz = new double[3];
+        this.multi_mod_hz = new double[3];
+        this.multi_amp = new double[3];
+
+        this.multi_steps=2;
+        this.amp_sum=2;
+
         this.multi_hz[0]=target;
         this.multi_hz[1]=target*1.732050807568877; // sqrt(3)
-        if (multi==-2) this.multi_hz[1]=target*1.414213562373095; // sqrt(2)
+        
         this.multi_amp[0]=1;
         this.multi_amp[1]=1;
 
         this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
         this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+
+        if(multi==-2)
+        {
+            this.multi_steps=3;
+            this.amp_sum=3;
+            this.multi_hz[1]=target*1.451388888888889; // sqrt(2)
+            this.multi_hz[2]=target*2.097222222222222; // sqrt(2)
+            this.multi_amp[2]=1;
+            this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
+
+        }
+
+        if(multi==-5)
+        {
+            this.multi_steps=3;
+            this.amp_sum=4;
+            this.multi_hz[0]=116; // sqrt(2)
+            this.multi_hz[1]=233; // sqrt(2)
+            this.multi_hz[2]=349; // sqrt(2)
+            this.multi_amp[0]=2;
+            this.multi_amp[1]=1;
+            this.multi_amp[2]=1;
+            this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
+
+        }
+
+        if(multi==-6)
+        {
+            this.multi_steps=3;
+            this.amp_sum=3;
+            this.multi_hz[0]=116; // sqrt(2)
+            this.multi_hz[1]=233; // sqrt(2)
+            this.multi_hz[2]=349; // sqrt(2)
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_amp[2]=1;
+            this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
+
+        }
 
         //multiHzAdd(target, modulation, multi,1,true,1.0,1.0);
         //multiHzAdd(target, modulation, multi,-1,true,1.0,1.0);

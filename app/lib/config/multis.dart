@@ -9,9 +9,10 @@ fix=no modulation
 
 const multis = {
   "Fix": 1,
-  "Bil³": -3,
-  "Bil³ Binaural": -33,
-  "Bil²": -2,
+  "Bil 2³": -3,
+  "Bil 2³ Binaural": -33,
+  "Bil 3²": -2,
+  "Voice": -5,
 
   "Fractal³": 3,
   "Fractal⁵": 5,
