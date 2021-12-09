@@ -1,5 +1,12 @@
 {
     "@@locale": "en",
     "frequency": "Frequency",
-    "settings": "Settings"
+
+    "home":"Home",
+    "d3d":"3D",
+    "imask":"iMask",
+    "settings": "Settings",
+
+    "@transtlations":{"Abc":"Abc"},
+    "searchHint":"Search..."
 }

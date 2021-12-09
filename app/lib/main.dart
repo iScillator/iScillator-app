@@ -1,18 +1,3 @@
-// iOS issues resolving:
-// 1. Set AudioKit version in sound_generator.podspecs to: s.dependency 'AudioKit', '~> 4.11.1'
-// 2. Set minimum iOS version in podfil to 13
-// 3. Do the following changes in public init(registrar: FlutterPluginRegistrar) method implementation in SwiftSoundGeneratorPlugin:
-//    ...
-//    let messenger = (registrar as? NSObject)?.value(forKey: "messenger")
-//      if messenger == nil {
-//              return
-//          }
-//    let methodChannel = FlutterMethodChannel(name: "sound_generator", binaryMessenger: messenger as! FlutterBinaryMessenger)
-//    self.onChangeIsPlaying = BetterEventChannel(name: "io.github.mertguner.sound_generator/onChangeIsPlaying", messenger: messenger as! FlutterBinaryMessenger)
-//    self.onOneCycleDataHandler = BetterEventChannel(name: "io.github.mertguner.sound_generator/onOneCycleDataHandler", messenger: messenger as! FlutterBinaryMessenger)
-
-// ignore_for_file: import_of_legacy_library_into_null_safe
-
 import 'dart:async';
 import 'dart:math';
 import 'dart:developer';
@@ -36,6 +21,12 @@ import 'config/configs.dart';
 
 import 'screens/settings.dart';
 
+import 'components/selectpresetbutton.dart';
+import 'components/presetwindow.dart';
+import 'components/appbar.dart';
+import 'components/bottom.dart';
+import 'components/menu.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -44,10 +35,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: MainScreen(),
-        debugShowCheckedModeBanner:
-            false, //Чтобы не было бейджика debug при разработке
-        /* 
+      home: MainScreen(),
+      debugShowCheckedModeBanner:
+          false, //Чтобы не было бейджика debug при разработке
+      /* Вручную прописанную локализацию заменяют 2 строчки ниже
         localizationsDelegates: [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -59,8 +50,12 @@ class MyApp extends StatelessWidget {
           Locale('ru', ''), // Russian, no country code
         ]
         */
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales);
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+      ),
+    );
   }
 }
 
@@ -122,6 +117,7 @@ class _MainScreen extends State<MainScreen> {
 
     _getSettings().then((settings) {
       userSettings = settings;
+      channel = userSettings?.angle ?? defaults["channel"];
 
       waveTypes _waveType = waveTypes.SINUSOIDAL;
       if (userSettings?.waveType == 1) _waveType = waveTypes.SQUAREWAVE;
@@ -154,11 +150,6 @@ class _MainScreen extends State<MainScreen> {
         )
       ],
     );
-
-    //Widget topSection = Column(children: [
-    //]);
-
-    //alignment: Alignment.center,
 
     Widget menu1Section = Column(children: [
       Divider(
@@ -242,101 +233,89 @@ class _MainScreen extends State<MainScreen> {
         )
     ]);
 
-    Widget settingsSection = Padding(
-      padding: EdgeInsets.only(bottom: 30.0, top: 40.0),
-      child: TextButton.icon(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => SettingsScreen(
-                          userSettings: userSettings,
-                          prefs: prefs,
-                        )));
-          },
-          icon: Icon(
-            Icons.settings,
-            size: 20,
-          ),
-          label: Text(AppLocalizations.of(context)!.settings), //, 'Settings'),
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-          )),
-    );
-
     final PageController controller = PageController(initialPage: 0);
 
     return Scaffold(
-        //appBar: AppBar(title: const Text("_title")),
+        appBar: myAppBar(context, config["title"], ""),
+        bottomNavigationBar: myBottomNavigationBar(context, setState),
         body: Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-            Color.fromRGBO(12, 232, 92, 1.0),
-            Color.fromRGBO(7, 117, 229, 1.0),
-          ])),
-      child: SafeArea(
-        child: Stack(
-          children: [
-            Column(children: [
-              Padding(
-                  padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
-                  child: frequencySection),
-              PlayButton(onPlayingChange: _play),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                Color.fromRGBO(12, 232, 92, 1.0),
+                Color.fromRGBO(7, 117, 229, 1.0),
+              ])),
+          child: SafeArea(
+            child: Stack(
+              children: [
+                Column(children: [
+                  Padding(
+                      padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
+                      child: frequencySection),
+                  PlayButton(onPlayingChange: _play),
 
-              Expanded(
-                child: PageView(
-                    scrollDirection: Axis.horizontal,
-                    controller: controller,
-                    children: [menu1Section, menu2Section]),
-              ),
-              //Container(child:
-              settingsSection
-              //)
-            ]),
-            if (_isPresetWindowAudiosShown)
-              PresetWindow(
-                items: menu["audios"],
-                selectItem: _selectAudio,
-                selectedItem: _selectedAudio,
-              ),
-            if (_isPresetWindowChannelsShown)
-              PresetWindow(
-                items: menu["channels"],
-                selectItem: _selectChannel,
-                selectedItem: _selectedChannel,
-              ),
-            if (_isPresetWindowEnviromentsShown)
-              PresetWindow(
-                items: menu["enviroments"],
-                selectItem: _selectEnviroment,
-                selectedItem: _selectedEnviroment,
-              ),
-            if (_isPresetWindowModulationsShown)
-              PresetWindow(
-                items: menu["modulations"],
-                selectItem: _selectModulation,
-                selectedItem: _selectedModulation,
-              ),
-            if (_isPresetWindowMultisShown)
-              PresetWindow(
-                items: menu["multis"],
-                selectItem: _selectMulti,
-                selectedItem: _selectedMulti,
-              ),
-            if (_isPresetWindowTargetsShown)
-              PresetWindow(
-                items: menu["targets"],
-                selectItem: _selectTarget,
-                selectedItem: _selectedTarget,
-              )
-          ],
-        ),
-      ),
-    ));
+                  Expanded(
+                    child: PageView(
+                        scrollDirection: Axis.horizontal,
+                        controller: controller,
+                        /*
+                        TODO: добавить индикатор точечками
+
+                         onPageChanged: (int page) {
+         setState(() {
+             selectedindex = page;
+         }),*/
+                        children: [menu1Section, menu2Section]),
+                  ) /*,
+                  Center(child: Row(children: _buildPageIndicator()))
+                  ,
+                  //Container(child:
+                  settingsSection*/
+                  //)
+                ]),
+                if (_isPresetWindowAudiosShown)
+                  PresetWindow(
+                    items: menu["audios"],
+                    selectItem: _selectAudio,
+                    selectedItem: _selectedAudio,
+                  ),
+                if (_isPresetWindowChannelsShown)
+                  PresetWindow(
+                    items: menu["channels"],
+                    selectItem: _selectChannel,
+                    selectedItem: _selectedChannel,
+                  ),
+                if (_isPresetWindowEnviromentsShown)
+                  PresetWindow(
+                    items: menu["enviroments"],
+                    selectItem: _selectEnviroment,
+                    selectedItem: _selectedEnviroment,
+                  ),
+                if (_isPresetWindowModulationsShown)
+                  PresetWindow(
+                    items: menu["modulations"],
+                    selectItem: _selectModulation,
+                    selectedItem: _selectedModulation,
+                  ),
+                if (_isPresetWindowMultisShown)
+                  PresetWindow(
+                    items: menu["multis"],
+                    selectItem: _selectMulti,
+                    selectedItem: _selectedMulti,
+                  ),
+                if (_isPresetWindowTargetsShown)
+                  PresetWindow(
+                    items: menu["targets"],
+                    selectItem: _selectTarget,
+                    selectedItem: _selectedTarget,
+                  )
+              ],
+            ),
+          ),
+        ));
   }
 
   void setParams() {
@@ -524,13 +503,26 @@ class _MainScreen extends State<MainScreen> {
     });
   }
 
+/*
+  //TODO: save
+  void _saveSettings() async {
+    SharedPreferences? prefs = widget.prefs;
+    if (prefs != null) {
+      //await prefs.setInt('angle', widget.userSettings?.waveType ?? 0);
+    } else {
+      prefs = await SharedPreferences.getInstance();
+      //await prefs.setInt('angle', widget.userSettings?.waveType ?? 0);
+    }
+  }
+*/
+
   Future<UserSettings> _getSettings() async {
-    prefs = await SharedPreferences.getInstance();
     double? balance = prefs?.getDouble('balance');
     int? waveType = prefs?.getInt('waveType');
 
-    /* TODO: add last settings from saved
+    int? angle = prefs?.getInt('angle');
 
+    /* TODO: add last settings from saved
       static int audio = defaults["audio"];
   static int channel = defaults["channel"];
   static int enviroment = defaults["enviroment"];
@@ -538,6 +530,7 @@ class _MainScreen extends State<MainScreen> {
   static int multi = defaults["multi"];
   static int target = defaults["target"];
 
+  // TODO: add selection
   int _selectedAudio = menu_rev["audios"].keys.toList().indexOf(audio);
   int _selectedChannel = menu_rev["channels"].keys.toList().indexOf(channel);
   int _selectedEnviroment =
@@ -547,7 +540,7 @@ class _MainScreen extends State<MainScreen> {
   int _selectedMulti = menu_rev["multis"].keys.toList().indexOf(multi);
   int _selectedTarget = menu_rev["targets"].keys.toList().indexOf(target);
      */
-    return UserSettings(balance, waveType);
+    return UserSettings(balance, waveType, angle);
   }
 }
 
@@ -602,156 +595,5 @@ class _PlayButton extends State<PlayButton> {
           ),
           opacity: _highlight ? 0.7 : 1.0,
         ));
-  }
-}
-
-class SelectPresetButton extends StatefulWidget {
-  const SelectPresetButton(
-      {Key? key, required this.tapMethod, required this.presetName})
-      : super(key: key);
-
-  final Function tapMethod;
-  final String presetName;
-
-  @override
-  _SelectPresetButton createState() => _SelectPresetButton();
-}
-
-class _SelectPresetButton extends State<SelectPresetButton> {
-  bool _highlight = false;
-
-  void _handleTapDown(TapDownDetails details) {
-    setState(() {
-      _highlight = true;
-    });
-  }
-
-  void _handleTapUp(TapUpDetails details) {
-    setState(() {
-      _highlight = false;
-    });
-  }
-
-  void _handleTapCancel() {
-    setState(() {
-      _highlight = false;
-    });
-  }
-
-  void _handleTap() {
-    widget.tapMethod();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-        onTapDown: _handleTapDown,
-        onTapUp: _handleTapUp,
-        onTap: _handleTap,
-        onTapCancel: _handleTapCancel,
-        child: Container(
-          child: Row(
-            children: [
-              Expanded(
-                  child: Text(widget.presetName,
-                      style: TextStyle(
-                          fontSize: 19.0,
-                          color: _highlight ? Colors.white70 : Colors.white))),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: _highlight ? Colors.white70 : Colors.white,
-              ),
-            ],
-          ),
-          width: 300.0,
-          height: 45.0,
-          padding: EdgeInsets.only(left: 15.0, right: 5.0),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: _highlight ? Colors.white70 : Colors.white,
-              width: 2.0,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          ),
-        ));
-  }
-}
-
-class PresetWindow extends StatelessWidget {
-  const PresetWindow(
-      {Key? key,
-      required this.items,
-      required this.selectItem,
-      required this.selectedItem})
-      : super(key: key);
-
-  final items;
-  final Function selectItem;
-  final int selectedItem;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.only(top: 30, bottom: 30),
-        color: Colors.white60,
-        child: SafeArea(
-            child: Container(
-                constraints: BoxConstraints(maxWidth: 350),
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromRGBO(7, 117, 229, 1.0),
-                          Color.fromRGBO(12, 232, 92, 1.0),
-                        ]),
-                    border: Border.all(width: 3, color: Colors.white),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(children: [
-                  Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                          iconSize: 35,
-                          onPressed: () {
-                            selectItem(-1);
-                          },
-                          icon: Icon(
-                            Icons.close,
-                            color: Colors.white,
-                          ))),
-                  Expanded(
-                      child: ListView.builder(
-                          itemCount: items.keys.toList().length,
-                          itemBuilder: (context, index) {
-                            return Column(children: [
-                              ListTile(
-                                title: Align(
-                                    child: Text(
-                                      items.keys.toList()[index],
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 23.0),
-                                    ),
-                                    alignment: selectedItem == index
-                                        ? Alignment(-1.8, 0)
-                                        : Alignment(-0.3, 0)),
-                                onTap: () {
-                                  selectItem(index);
-                                },
-                                leading: selectedItem == index
-                                    ? Icon(
-                                        Icons.check,
-                                        color: Colors.white,
-                                      )
-                                    : null,
-                              ),
-                              Divider(
-                                indent: 20,
-                                endIndent: 20,
-                                color: Colors.white,
-                              )
-                            ]);
-                          }))
-                ]))));
   }
 }

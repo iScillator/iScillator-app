@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+
+class SelectPresetButton extends StatefulWidget {
+  const SelectPresetButton(
+      {Key? key, required this.tapMethod, required this.presetName})
+      : super(key: key);
+
+  final Function tapMethod;
+  final String presetName;
+
+  @override
+  _SelectPresetButton createState() => _SelectPresetButton();
+}
+
+class _SelectPresetButton extends State<SelectPresetButton> {
+  bool _highlight = false;
+
+  void _handleTapDown(TapDownDetails details) {
+    setState(() {
+      _highlight = true;
+    });
+  }
+
+  void _handleTapUp(TapUpDetails details) {
+    setState(() {
+      _highlight = false;
+    });
+  }
+
+  void _handleTapCancel() {
+    setState(() {
+      _highlight = false;
+    });
+  }
+
+  void _handleTap() {
+    widget.tapMethod();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTapDown: _handleTapDown,
+        onTapUp: _handleTapUp,
+        onTap: _handleTap,
+        onTapCancel: _handleTapCancel,
+        child: Container(
+          child: Row(
+            children: [
+              Expanded(
+                  child: Text(widget.presetName,
+                      style: TextStyle(
+                          fontSize: 19.0,
+                          color: _highlight ? Colors.white70 : Colors.white))),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: _highlight ? Colors.white70 : Colors.white,
+              ),
+            ],
+          ),
+          width: 300.0,
+          height: 45.0,
+          padding: EdgeInsets.only(left: 15.0, right: 5.0),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: _highlight ? Colors.white70 : Colors.white,
+              width: 2.0,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          ),
+        ));
+  }
+}
