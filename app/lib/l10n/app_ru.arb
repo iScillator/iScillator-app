@@ -3,6 +3,11 @@
     "frequency": "Частота",
 
     "home":"Главная",
+    "programs":"Программы",
+    "targets":"Цели",
+    "modulation":"Модуляция",
+    "devices":"Устройства",
+
     "d3d":"3D",
     "imask":"iMask",
     "settings": "Настройки",

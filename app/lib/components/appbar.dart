@@ -7,12 +7,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
 
+import '/globals.dart' as globals;
 //PreferredSizeWidget
 //StatelessWidget
 
-AppBar myAppBar(context, myTitle, searchPage) {
+AppBar myAppBar(context) {
   return AppBar(
-    title: Text(myTitle),
+    title: Text(globals.config["title"]),
     actions: [
       // Navigate to the Search Screen
       IconButton(
