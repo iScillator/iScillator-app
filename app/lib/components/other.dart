@@ -6,14 +6,6 @@
   static int multi = defaults["multi"];
   static int target = defaults["target"];
 
-  int _selectedAudio = menu_rev["audios"].keys.toList().indexOf(audio);
-  int _selectedChannel = menu_rev["channels"].keys.toList().indexOf(channel);
-  int _selectedEnviroment =
-      menu_rev["enviroments"].keys.toList().indexOf(enviroment);
-  int _selectedModulation =
-      menu_rev["modulations"].keys.toList().indexOf(modulation);
-  int _selectedMulti = menu_rev["multis"].keys.toList().indexOf(multi);
-  int _selectedTarget = menu_rev["targets"].keys.toList().indexOf(target);
     //log(audio);
     //print(menu.targets);
     print(menu);

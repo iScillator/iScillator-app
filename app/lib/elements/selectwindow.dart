@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
 
-class PresetWindow extends StatelessWidget {
-  const PresetWindow(
-      {Key? key,
-      required this.items,
-      required this.selectItem,
-      required this.selectedItem})
-      : super(key: key);
+import '/globals.dart' as globals;
 
+class SelectWindow extends StatelessWidget {
+  const SelectWindow({
+    Key? key,
+    required this.item,
+    required this.items,
+    //required this.selectItem,
+    //required this.selectedItem
+  }) : super(key: key);
+
+  final item;
   final items;
-  final Function selectItem;
-  final int selectedItem;
+  //final Function selectItem;
+  //final int selectedItem;
+
+  void selectItem(int num) {
+    globals.setState(() {
+      if (num == -1) {
+        globals.isWindowShown[item] = false;
+      } else {
+        globals.selected[item] = num;
+        globals.userSettings[item] =
+            globals.menu[item].values.toList()[num]; //was audio=
+        globals.isWindowShown[item] = false;
+        globals.setParams();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +73,13 @@ class PresetWindow extends StatelessWidget {
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 23.0),
                                     ),
-                                    alignment: selectedItem == index
+                                    alignment: globals.selected[item] == index
                                         ? Alignment(-1.8, 0)
                                         : Alignment(-0.3, 0)),
                                 onTap: () {
                                   selectItem(index);
                                 },
-                                leading: selectedItem == index
+                                leading: globals.selected[item] == index
                                     ? Icon(
                                         Icons.check,
                                         color: Colors.white,

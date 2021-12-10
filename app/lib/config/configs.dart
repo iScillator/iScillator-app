@@ -3,9 +3,8 @@ import '/config/channels.dart';
 import '/config/enviroments.dart';
 import '/config/modulations.dart';
 import '/config/multis.dart';
-import '/config/programs.dart';
 import '/config/targets.dart';
-import '/config/defaults.dart';
+import '/config/folders.dart';
 
 const Map<String, dynamic> configs = {
   "android/com.soundhealer": {

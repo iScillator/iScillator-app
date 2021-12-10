@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 
-class SelectPresetButton extends StatefulWidget {
-  const SelectPresetButton(
-      {Key? key, required this.tapMethod, required this.presetName})
+class SelectButton extends StatefulWidget {
+  const SelectButton(
+      {Key? key,
+      required this.item,
+      required this.items,
+      required this.tapMethod,
+      required this.buttonName})
       : super(key: key);
 
+  final item;
+  final items;
+
   final Function tapMethod;
-  final String presetName;
+  final String buttonName;
 
   @override
-  _SelectPresetButton createState() => _SelectPresetButton();
+  _SelectButton createState() => _SelectButton();
 }
 
-class _SelectPresetButton extends State<SelectPresetButton> {
+class _SelectButton extends State<SelectButton> {
   bool _highlight = false;
 
   void _handleTapDown(TapDownDetails details) {
@@ -48,7 +55,7 @@ class _SelectPresetButton extends State<SelectPresetButton> {
           child: Row(
             children: [
               Expanded(
-                  child: Text(widget.presetName,
+                  child: Text(widget.buttonName,
                       style: TextStyle(
                           fontSize: 19.0,
                           color: _highlight ? Colors.white70 : Colors.white))),

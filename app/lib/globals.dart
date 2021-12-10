@@ -11,7 +11,7 @@ var sg;
 var setState;
 var setParams;
 var pageController;
-var showPresetWindow;
+var showWindow;
 
 // TODO: FIX:
 var SoundGenerator;
@@ -59,6 +59,12 @@ final config = configs[config_current_os];
 final Map<String, dynamic> menu = config["menu"];
 
 final Map<String, dynamic> menu_rev = {
+  "folders": (menu["folders"] != null
+      ? menu["folders"].map((k, v) => MapEntry(v, k))
+      : {}),
+  "programs": (menu["programs"] != null
+      ? menu["programs"].map((k, v) => MapEntry(v, k))
+      : {}),
   "audios": (menu["audios"] != null
       ? menu["audios"].map((k, v) => MapEntry(v, k))
       : {}),
@@ -77,4 +83,28 @@ final Map<String, dynamic> menu_rev = {
   "targets": (menu["targets"] != null
       ? menu["targets"].map((k, v) => MapEntry(v, k))
       : {}),
+};
+
+final selected = {
+  "folder": menu_rev["folders"].keys.toList().indexOf(userSettings["folder"]),
+  "audio": menu_rev["audios"].keys.toList().indexOf(userSettings["audio"]),
+  "program":
+      menu_rev["programs"].keys.toList().indexOf(userSettings["program"]),
+  //"channel" : menu_rev["channels"].keys.toList().indexOf(channel),
+  "enviroment":
+      menu_rev["enviroments"].keys.toList().indexOf(userSettings["enviroment"]),
+  "modulation":
+      menu_rev["modulations"].keys.toList().indexOf(userSettings["modulation"]),
+  "multi": menu_rev["multis"].keys.toList().indexOf(userSettings["multi"]),
+  "target": menu_rev["targets"].keys.toList().indexOf(userSettings["target"]),
+};
+
+final isWindowShown = {
+  "folders": false,
+  "programs": false,
+  "audios": false,
+  "enviroments": false,
+  "modulations": false,
+  "multis": false,
+  "targets": false,
 };

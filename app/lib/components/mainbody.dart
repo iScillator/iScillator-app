@@ -3,22 +3,24 @@ import 'package:sound_generator/sound_generator.dart';
 
 import '/globals.dart' as globals;
 
+import '/elements/selectwindow.dart';
+
 import '/components/pages.dart';
 import '/components/frequencysection.dart';
 import '/components/playbutton.dart';
 
-/*
-Widget ifPresetWindow(item,items)
-{
-          return Container(child: if (_isPresetWindowShown[item])
-          PresetWindow(
-            item: item,
-            items: items,
-            selectItem: _select,
-            selectedItem: _selected,
-          ));
+//List<Widget> ifMenu(BuildContext context, item, items) {
+List ifWindow(BuildContext context, item, items) {
+  return [
+    if (globals.isWindowShown[items] == true)
+      SelectWindow(
+        item: item,
+        items: items,
+        //selectItem: _select,
+        //selectedItem: _selected,
+      )
+  ];
 }
-*/
 
 Widget mainBody(BuildContext context) {
   globals.pageController = PageController(initialPage: 0);
@@ -147,16 +149,4 @@ void _showPresetWindowTargets() {
     }
   */
 
-void _selectItem(int num, item) {
-  setState(() {
-    if (num == -1) {
-      _isPresetWindowShown[item] = false;
-    } else {
-      _selected[item] = num;
-      UserSettings[item] = menu[item].values.toList()[num]; //was audio=
-      _isPresetWindowShown[item] = false;
-      setParams();
-    }
-  });
-}
 */

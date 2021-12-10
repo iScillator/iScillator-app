@@ -1,27 +1,33 @@
 //¹²³⁵₂₃₅
+import '/config/defaults.dart';
+import '/config/programs.dart';
 
 const folders_lite = {
   "Chackras": {
-    "Flower of Life": 144,
-    "Flower of Life²": [144, 209, 302],
-    "Fundamental": 174,
-    "Muladhara": 285,
-    "Svadhisthana": 396,
-    "Manipura": 417,
-    "Anahata": 528,
-    "Anahata Binaural": [-528, -531],
-    "Anahata Binaural³": [-528, -531],
-    "Anahata Binaural⁵": [-528, -531],
-    "Vishudha": 639,
-    "Adjna": 741,
-    "Sahasrara": 852,
+    "programs": programs_chackras,
+    "defaults": defaults_programs_chackras,
   },
-  "Chackras2": "Чакры",
-  "Bils": "Билы",
-  //"Singing Bowls": "Поющие чаши",
-  "Rife audio frequencies": "Папки",
-  "Rife RF frequencies": "Папки",
+  "Bils Golden Angle": {
+    "programs": programs_chackras,
+    "defaults": defaults_bills_golden,
+  },
+  "Bils Square": {
+    "programs": programs_chackras,
+    "defaults": defaults_bills_square,
+  },
+  "Bils Binaural": {
+    "programs": programs_chackras,
+    "defaults": defaults_bills_binaural,
+  },
+
+  /*
+  "Singing Bowls": "Поющие чаши",
+  "Rife audio frequencies": "Аудиочастоты Райфа",
+  "Rife radio frequencies": "Радиочастоты Райфа",
   "Immunomodulator": "Имунномодулятор",
   "Prophylaxis": "Профилактика",
   "Treatment": {}
+  */
 };
+
+const folders_pro = folders_lite;

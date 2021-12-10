@@ -1,5 +1,18 @@
 //¹²³⁵₂₃₅
 
+const programs_chackras = {
+  "Flower of Life": 144,
+  "Fundamental": 174,
+  "Muladhara": 285,
+  "Svadhisthana": 396,
+  "Manipura": 417,
+  "Anahata": 528,
+  //"Anahata+Sahasrara": [528, 852],
+  "Vishudha": 639,
+  "Adjna": 741,
+  "Sahasrara": 852,
+};
+
 const programs_dev = {
   "Flower of Life": 144,
   "Flower of Life²": [144, 209, 302],

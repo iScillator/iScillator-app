@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '/elements/presetwindow.dart';
-import '/elements/selectpresetbutton.dart';
+import '/elements/selectbutton.dart';
 
 import '/globals.dart' as globals;
 
 List<Widget> ifMenu(BuildContext context, item, items) {
   return [
     //Text(item),
-    if (globals.menu[items] != null) Text(item)
-    /*SelectPresetButton(
+    if (globals.menu[items] != null)
+      SelectButton(
         item: item,
         items: items,
-        presetName: items.keys.toList()[globals.selected[item]],
-        tapMethod: globals.showPresetWindow,
-      )*/
-    ,
+        buttonName:
+            items /*globals.menu[items].keys.toList()[globals.selected[item]]*/,
+        tapMethod: globals.showWindow,
+      ),
     if (globals.menu[items] != null)
       Divider(
         indent: 60,
