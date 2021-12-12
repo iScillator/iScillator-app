@@ -44,6 +44,31 @@ class _MainScreen extends State<MainScreen> {
             globals.defaultSettings["audioDevice"];
   }
 
+  void getSelected() async {
+    globals.selected["audioDevices"] = globals.menu_rev["audioDevices"].keys
+        .toList()
+        .indexOf(globals.userSettings["audioDevices"]);
+    globals.selected["enviroment"] = globals.menu_rev["enviroments"].keys
+        .toList()
+        .indexOf(globals.userSettings["program"]);
+    globals.selected["modulation"] = globals.menu_rev["modulations"].keys
+        .toList()
+        .indexOf(globals.userSettings["modulation"]);
+    globals.selected["multi"] = globals.menu_rev["multis"].keys
+        .toList()
+        .indexOf(globals.userSettings["multi"]);
+    globals.selected["target"] = globals.menu_rev["targets"].keys
+        .toList()
+        .indexOf(globals.userSettings["target"]);
+    globals.selected["angle"] = globals.menu_rev["angles"].keys
+        .toList()
+        .indexOf(globals.userSettings["angle"]);
+    globals.selected["audioDevice"] = globals.menu_rev["audioDevices"].keys
+        .toList()
+        .indexOf(globals.userSettings["audioDevice"]);
+    //print(globals.selected);
+  }
+
   void saveUserSettings() async {
     if (globals.prefs == null) {
       globals.prefs = await SharedPreferences.getInstance();
@@ -65,6 +90,21 @@ class _MainScreen extends State<MainScreen> {
     globals.frequency = globals.userSettings["target"].toDouble();
     // TODO: FIX:
     globals.sg = SoundGenerator;
+
+    globals.userSettings["target"] =
+        globals.menu["target"].values.toList()[globals.selected["target"]];
+    globals.userSettings["enviroment"] = globals.menu["enviroment"].values
+        .toList()[globals.selected["enviroment"]];
+    globals.userSettings["modulation"] = globals.menu["modulation"].values
+        .toList()[globals.selected["modulation"]];
+    globals.userSettings["multi"] =
+        globals.menu["multi"].values.toList()[globals.selected["multi"]];
+    globals.userSettings["channel"] =
+        globals.menu["channel"].values.toList()[globals.selected["channel"]];
+    globals.userSettings["audio"] =
+        globals.menu["audio"].values.toList()[globals.selected["audio"]];
+    globals.userSettings["angle"] =
+        globals.menu["angle"].values.toList()[globals.selected["angle"]];
 
     if (Platform.isIOS) {
       SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
@@ -92,6 +132,9 @@ class _MainScreen extends State<MainScreen> {
     globals.setParams = setParams;
     globals.SoundGenerator1 = SoundGenerator;
 
+    getUserSettings();
+    getSelected();
+
     if (Platform.isIOS) {
       SoundGenerator.init(48000);
       SoundGenerator.setWaveType(
@@ -103,8 +146,6 @@ class _MainScreen extends State<MainScreen> {
     }
 
     SoundGenerator.setVolume(1);
-
-    getUserSettings();
   }
 
   @override

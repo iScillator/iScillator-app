@@ -35,7 +35,6 @@ final Map<String, dynamic> defaults = config["defaults"];
 final defaultSettings = defaults;
 
 final Map<String, dynamic> userSettings = {
-  "folder": defaultSettings["folder"],
   "program": defaultSettings["program"],
   "angle": defaultSettings["angle"],
   "enviroment": defaultSettings["enviroment"],
@@ -57,16 +56,17 @@ final config_current_os =
 final config = configs[config_current_os];
 
 final Map<String, dynamic> menu = config["menu"];
+final Map<String, dynamic> pages = config["pages"];
 
 final Map<String, dynamic> menu_rev = {
-  "folders": (menu["folders"] != null
-      ? menu["folders"].map((k, v) => MapEntry(v, k))
+  "angles": (menu["angles"] != null
+      ? menu["angles"].map((k, v) => MapEntry(v, k))
       : {}),
   "programs": (menu["programs"] != null
       ? menu["programs"].map((k, v) => MapEntry(v, k))
       : {}),
-  "audios": (menu["audios"] != null
-      ? menu["audios"].map((k, v) => MapEntry(v, k))
+  "audioDevices": (menu["audioDevices"] != null
+      ? menu["audioDevices"].map((k, v) => MapEntry(v, k))
       : {}),
   "channels": (menu["channels"] != null
       ? menu["channels"].map((k, v) => MapEntry(v, k))
@@ -86,11 +86,13 @@ final Map<String, dynamic> menu_rev = {
 };
 
 final selected = {
-  "folder": menu_rev["folders"].keys.toList().indexOf(userSettings["folder"]),
-  "audio": menu_rev["audios"].keys.toList().indexOf(userSettings["audio"]),
+  "angle": menu_rev["angles"].keys.toList().indexOf(userSettings["angle"]),
+  "audioDevice": menu_rev["audioDevices"]
+      .keys
+      .toList()
+      .indexOf(userSettings["audioDevice"]),
   "program":
       menu_rev["programs"].keys.toList().indexOf(userSettings["program"]),
-  //"channel" : menu_rev["channels"].keys.toList().indexOf(channel),
   "enviroment":
       menu_rev["enviroments"].keys.toList().indexOf(userSettings["enviroment"]),
   "modulation":

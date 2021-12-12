@@ -22,8 +22,6 @@ class SelectWindow extends StatelessWidget {
         globals.isWindowShown[item] = false;
       } else {
         globals.selected[item] = num;
-        globals.userSettings[item] =
-            globals.menu[item].values.toList()[num]; //was audio=
         globals.isWindowShown[item] = false;
         globals.setParams();
       }

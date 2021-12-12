@@ -31,27 +31,30 @@ Widget myBottomNavigationBar(BuildContext context) {
         label: "Home", //AppLocalizations.of(context)!.home
         backgroundColor: Colors.purple,
       ),*/
-
-      BottomNavigationBarItem(
-        icon: Icon(Icons.playlist_play),
-        label: AppLocalizations.of(context)!.programs,
-        backgroundColor: Colors.purple,
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.grain),
-        label: AppLocalizations.of(context)!.targets,
-        backgroundColor: Colors.purple,
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.graphic_eq),
-        label: AppLocalizations.of(context)!.modulation,
-        backgroundColor: Colors.purple,
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.settings_input_component_outlined),
-        label: AppLocalizations.of(context)!.devices,
-        backgroundColor: Colors.purple,
-      ),
+      if (globals.pages["programs"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.playlist_play),
+          label: AppLocalizations.of(context)!.programs,
+          backgroundColor: Colors.purple,
+        ),
+      if (globals.pages["targets"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.grain),
+          label: AppLocalizations.of(context)!.targets,
+          backgroundColor: Colors.purple,
+        ),
+      if (globals.pages["modulations"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.graphic_eq),
+          label: AppLocalizations.of(context)!.modulation,
+          backgroundColor: Colors.purple,
+        ),
+      if (globals.pages["devices"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings_input_component_outlined),
+          label: AppLocalizations.of(context)!.devices,
+          backgroundColor: Colors.purple,
+        ),
 
 /*
       BottomNavigationBarItem(
@@ -64,13 +67,21 @@ Widget myBottomNavigationBar(BuildContext context) {
         label: "iMask", //AppLocalizations.of(context)!.imask,
         backgroundColor: Colors.purple,
       ),
-      */
 
       BottomNavigationBarItem(
-        icon: Icon(Icons.settings),
-        label: AppLocalizations.of(context)!.settings,
+        icon: "ॐ",
+        label: "Mantras", //AppLocalizations.of(context)!.imask,
         backgroundColor: Colors.purple,
       ),
+
+
+      */
+      if (globals.pages["settings"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          label: AppLocalizations.of(context)!.settings,
+          backgroundColor: Colors.purple,
+        ),
     ],
     currentIndex: globals.selectedPage,
     selectedItemColor: Colors.amber[800],

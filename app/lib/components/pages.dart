@@ -5,14 +5,22 @@ import '/elements/selectbutton.dart';
 import '/globals.dart' as globals;
 
 List<Widget> ifMenu(BuildContext context, item, items) {
+  print(item);
+  print(items);
+  print(globals.selected);
+  print(globals.selected[item]);
+  print(globals.menu[items].keys.toList());
+
   return [
     //Text(item),
     if (globals.menu[items] != null)
       SelectButton(
         item: item,
         items: items,
-        buttonName:
-            items /*globals.menu[items].keys.toList()[globals.selected[item]]*/,
+        buttonName: (globals.selected[item] != -1
+                ? globals.menu[items].keys.toList()[globals.selected[item]]
+                : "-") ??
+            "-" /*items*/,
         tapMethod: globals.showWindow,
       ),
     if (globals.menu[items] != null)
@@ -32,8 +40,7 @@ Widget pagePrograms(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifMenu(context, "folders", "folders"),
-    ...ifMenu(context, "programs", "programs"),
+    //...ifMenu(context, "programs", "programs"),
   ]);
 }
 
@@ -56,7 +63,7 @@ Widget pageModulations(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifMenu(context, "multis", "multis"),
+    ...ifMenu(context, "multi", "multis"),
     ...ifMenu(context, "modulation", "modulations"),
   ]);
 }

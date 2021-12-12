@@ -1,5 +1,5 @@
-const audios = {
-  "Speakers": 0,
+const audioDevices = {
+  "Speakers/Headphones": 0,
   "Diffusor 1.7 + Speakers": 17,
   "Ray Tube 5.2": 52,
   "FY6900": 6900,

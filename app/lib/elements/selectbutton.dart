@@ -15,6 +15,15 @@ class SelectButton extends StatefulWidget {
   final Function tapMethod;
   final String buttonName;
 
+  /*
+  void showWindow() {
+    globals.setState(() {
+      globals.isWindowShown[this.items] = true;
+    });
+  }
+  this.tapMethod=showWindow;
+  */
+
   @override
   _SelectButton createState() => _SelectButton();
 }
@@ -41,7 +50,7 @@ class _SelectButton extends State<SelectButton> {
   }
 
   void _handleTap() {
-    widget.tapMethod();
+    widget.tapMethod(/*this.item*/);
   }
 
   @override
