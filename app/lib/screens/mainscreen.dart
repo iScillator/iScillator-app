@@ -104,9 +104,9 @@ class _MainScreen extends State<MainScreen> {
 
     globals.frequency = globals.userSettings["target"].toDouble();
 
-    print(Platform.isIOS);
+    print(globals.isIOS);
 
-    if (Platform.isIOS) {
+    if (globals.isIOS) {
       SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
     } else {
       SoundGenerator.setWaveType(waveTypes.MULTI);
@@ -150,7 +150,7 @@ class _MainScreen extends State<MainScreen> {
     getUserSettings();
     getSelected();
 
-    if (Platform.isIOS) {
+    if (globals.isIOS) {
       SoundGenerator.init(48000);
       SoundGenerator.setWaveType(
           waveTypes.SINUSOIDAL); //Для iOS, пока не реализован multi

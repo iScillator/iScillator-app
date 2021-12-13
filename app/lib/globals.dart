@@ -91,7 +91,7 @@ final selected = {
 
 final isWindowShown = {
   "program": false,
-  "angles": false,
+  "angle": false,
   "oscillator": false,
   "enviroment": false,
   "modulation": false,

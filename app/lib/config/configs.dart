@@ -49,12 +49,13 @@ const config_app_lite = {
   "title": "SoundHealer",
   "defaults": defaults_app_lite,
   "pages": {
-    "programs": ["program"],
+    "targets": ["target"],
     "settings": ["angle"],
   },
   "select": {
     "program": programs_app_lite,
     "target": targets_app_lite,
+    "angle": angles,
   },
 };
 

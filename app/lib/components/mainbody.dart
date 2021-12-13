@@ -43,11 +43,12 @@ Widget mainBody(BuildContext context) {
                   });
                 },
                 children: [
-                  pagePrograms(context),
-                  pageTargets(context),
-                  pageModulations(context),
-                  pageDevices(context),
-                  pageSettings(context),
+                  if (globals.pages["programs"] != null) pagePrograms(context),
+                  if (globals.pages["targets"] != null) pageTargets(context),
+                  if (globals.pages["modulations"] != null)
+                    pageModulations(context),
+                  if (globals.pages["devices"] != null) pageDevices(context),
+                  if (globals.pages["settings"] != null) pageSettings(context),
                 ]),
           )
         ]),
