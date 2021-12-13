@@ -34,8 +34,9 @@ bool isPlaying = false;
 double frequency = 0;
 var selectedPage = 0;
 
-final config_current_os =
-    (Platform.isIOS ? "ios/" : "android/") + config_current;
+final isIOS = (isIOS_change ? isIOS_current : Platform.isIOS);
+
+final config_current_os = (isIOS ? "ios/" : "android/") + config_current;
 
 //final config_current_os = "ios/com.soundhealer.pro";
 
