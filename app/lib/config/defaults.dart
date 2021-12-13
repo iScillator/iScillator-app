@@ -1,3 +1,16 @@
+const Map<String, dynamic> defaults_app_dev = {
+  "angle": 0,
+  "enviroment": 0,
+  "modulation": 0,
+  "multi": 1,
+  "target": 528,
+  "program": 0,
+  "oscillator": 0
+};
+
+const defaults_app_pro = defaults_app_dev;
+const defaults_app_lite = defaults_app_dev;
+
 const Map<String, dynamic> defaults_fix = {
   "angle": 0,
   "enviroment": 0,

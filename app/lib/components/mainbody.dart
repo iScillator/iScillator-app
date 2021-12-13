@@ -9,13 +9,14 @@ import '/components/pages.dart';
 import '/components/frequencysection.dart';
 import '/components/playbutton.dart';
 
-//List<Widget> ifMenu(BuildContext context, item, items) {
-List ifWindow(BuildContext context, item, items) {
+List ifWindow(BuildContext context, item) {
+  //print(ifWindow);
+  //print(globals.isWindowShown[item]);
   return [
-    if (globals.isWindowShown[items] == true)
+    if (globals.isWindowShown[item] == true)
       SelectWindow(
         item: item,
-        items: items,
+        //items: items,
         //selectItem: _select,
         //selectedItem: _selected,
       )
@@ -31,7 +32,7 @@ Widget mainBody(BuildContext context) {
           Padding(
               padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
               child: frequencySection(context)),
-          PlayButton(onPlayingChange: _play),
+          PlayButton(onPlayingChange: globals.play),
           Expanded(
             child: PageView(
                 scrollDirection: Axis.horizontal,
@@ -46,47 +47,24 @@ Widget mainBody(BuildContext context) {
                   pageTargets(context),
                   pageModulations(context),
                   pageDevices(context),
-                  Text("settings")
+                  pageSettings(context),
                 ]),
           )
-        ]), /*ifPresetWindow("audioDevice",menu["audioDevices"]),
-        ifPresetWindow("angle",menu["angles"]),
-        //channels depreciated
-        ifPresetWindow("enviroment",menu["enviroments"]),
-        ifPresetWindow("modulation",menu["modulations"]),
-        ifPresetWindow("multi",menu["multis"]),
-        ifPresetWindow("targets",menu["targets"]),*/
+        ]),
+        ...ifWindow(context, "program"),
+        ...ifWindow(context, "oscillator"),
+        ...ifWindow(context, "angle"),
+        ...ifWindow(context, "enviroment"),
+        ...ifWindow(context, "modulation"),
+        ...ifWindow(context, "multi"),
+        ...ifWindow(context, "targets"),
       ],
     ),
   );
 }
 
-void _play() {
-  globals.setState(() {
-    globals.isPlaying = !globals.isPlaying;
 
-    if (globals.isPlaying) {
-      globals.setParams();
-      globals.SoundGenerator.play();
 
-      /*
-        _timer = Timer.periodic(Duration(seconds: 2), (timer) {
-          setState(() {
-            _frequency = _presetFrequency + Random().nextInt(1000);
-            SoundGenerator.setFrequency(_frequency);
-          });
-        });
-        */
-    } else {
-      globals.setState(() {
-        //_timer?.cancel();
-        //_timer = null;
-        globals.SoundGenerator.stop();
-        globals.frequency = 0;
-      });
-    }
-  });
-}
 
 // Показ модального окошка выбора
 /*

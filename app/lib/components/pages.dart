@@ -4,26 +4,26 @@ import '/elements/selectbutton.dart';
 
 import '/globals.dart' as globals;
 
-List<Widget> ifMenu(BuildContext context, item, items) {
+List<Widget> ifSelect(BuildContext context, item) {
+/*
   print(item);
   print(items);
   print(globals.selected);
   print(globals.selected[item]);
-  print(globals.menu[items].keys.toList());
-
+  print(globals.select[items].keys.toList());
+*/
   return [
     //Text(item),
-    if (globals.menu[items] != null)
+    if (globals.select[item] != null)
       SelectButton(
         item: item,
-        items: items,
         buttonName: (globals.selected[item] != -1
-                ? globals.menu[items].keys.toList()[globals.selected[item]]
+                ? globals.select[item].keys.toList()[globals.selected[item]]
                 : "-") ??
             "-" /*items*/,
         tapMethod: globals.showWindow,
       ),
-    if (globals.menu[items] != null)
+    if (globals.select[item] != null)
       Divider(
         indent: 60,
         endIndent: 60,
@@ -40,7 +40,7 @@ Widget pagePrograms(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    //...ifMenu(context, "programs", "programs"),
+    //...ifSelect(context, "program"),
   ]);
 }
 
@@ -51,8 +51,8 @@ Widget pageTargets(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifMenu(context, "target", "targets"),
-    ...ifMenu(context, "enviroment", "enviroments"),
+    ...ifSelect(context, "target"),
+    ...ifSelect(context, "enviroment"),
   ]);
 }
 
@@ -63,8 +63,8 @@ Widget pageModulations(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifMenu(context, "multi", "multis"),
-    ...ifMenu(context, "modulation", "modulations"),
+    ...ifSelect(context, "multi"),
+    ...ifSelect(context, "modulation"),
   ]);
 }
 
@@ -75,7 +75,17 @@ Widget pageDevices(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifMenu(context, "audioDevice", "audioDevices"),
-    ...ifMenu(context, "angle", "angles"),
+    ...ifSelect(context, "oscillator"),
+  ]);
+}
+
+Widget pageSettings(BuildContext context) {
+  return Column(children: [
+    Divider(
+      indent: 60,
+      endIndent: 60,
+      color: Colors.white,
+    ),
+    ...ifSelect(context, "angle"),
   ]);
 }

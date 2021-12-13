@@ -6,13 +6,13 @@ class SelectWindow extends StatelessWidget {
   const SelectWindow({
     Key? key,
     required this.item,
-    required this.items,
+    //required this.items,
     //required this.selectItem,
     //required this.selectedItem
   }) : super(key: key);
 
   final item;
-  final items;
+  //final items;
   //final Function selectItem;
   //final int selectedItem;
 
@@ -23,6 +23,7 @@ class SelectWindow extends StatelessWidget {
       } else {
         globals.selected[item] = num;
         globals.isWindowShown[item] = false;
+        globals.selectParam(item);
         globals.setParams();
       }
     });
@@ -61,13 +62,13 @@ class SelectWindow extends StatelessWidget {
                           ))),
                   Expanded(
                       child: ListView.builder(
-                          itemCount: items.keys.toList().length,
+                          itemCount: globals.select[item].keys.toList().length,
                           itemBuilder: (context, index) {
                             return Column(children: [
                               ListTile(
                                 title: Align(
                                     child: Text(
-                                      items.keys.toList()[index],
+                                      globals.select[item].keys.toList()[index],
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 23.0),
                                     ),

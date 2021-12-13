@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
+import '/globals.dart' as globals;
 
 class SelectButton extends StatefulWidget {
   const SelectButton(
       {Key? key,
       required this.item,
-      required this.items,
+      //required this.items,
       required this.tapMethod,
       required this.buttonName})
       : super(key: key);
 
   final item;
-  final items;
+  //final items;
 
   final Function tapMethod;
   final String buttonName;
-
-  /*
-  void showWindow() {
-    globals.setState(() {
-      globals.isWindowShown[this.items] = true;
-    });
-  }
-  this.tapMethod=showWindow;
-  */
 
   @override
   _SelectButton createState() => _SelectButton();
@@ -50,7 +42,15 @@ class _SelectButton extends State<SelectButton> {
   }
 
   void _handleTap() {
-    widget.tapMethod(/*this.item*/);
+    //widget.tapMethod();
+    showWindow();
+  }
+
+  void showWindow() {
+    globals.setState(() {
+      globals.isWindowShown[widget.item] = true;
+      //print(globals.isWindowShown);
+    });
   }
 
   @override

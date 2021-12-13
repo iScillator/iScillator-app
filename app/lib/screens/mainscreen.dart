@@ -20,91 +20,91 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreen extends State<MainScreen> {
+  void getUserSetting(item) async {
+    globals.userSettings[item] =
+        globals.prefs?.getInt(item) ?? globals.defaultSettings[item];
+  }
+
   void getUserSettings() async {
     if (globals.prefs == null) {
       globals.prefs = await SharedPreferences.getInstance();
     }
-    globals.userSettings["folder"] =
-        globals.prefs?.getInt('folder') ?? globals.defaultSettings["folder"];
-    globals.userSettings["program"] =
-        globals.prefs?.getInt('program') ?? globals.defaultSettings["program"];
-    globals.userSettings["angle"] =
-        globals.prefs?.getInt('angle') ?? globals.defaultSettings["angle"];
-    globals.userSettings["enviroment"] =
-        globals.prefs?.getDouble('enviroment') ??
-            globals.defaultSettings["enviroment"];
-    globals.userSettings["modulation"] = globals.prefs?.getInt('modulation') ??
-        globals.defaultSettings["modulation"];
-    globals.userSettings["multi"] =
-        globals.prefs?.getInt('multi') ?? globals.defaultSettings["multi"];
-    globals.userSettings["target"] =
-        globals.prefs?.getDouble('target') ?? globals.defaultSettings["target"];
-    globals.userSettings["audioDevice"] =
-        globals.prefs?.getInt('audioDevice') ??
-            globals.defaultSettings["audioDevice"];
+    getUserSetting("program");
+    getUserSetting("angle");
+    getUserSetting("enviroment");
+    getUserSetting("modulation");
+    getUserSetting("multi");
+    getUserSetting("target");
+    getUserSetting("oscillator");
+  }
+
+  void getSelectedItem(item) async {
+    globals.selected[item] = globals.select_rev[item].keys
+        .toList()
+        .indexOf(globals.userSettings[item]);
   }
 
   void getSelected() async {
-    globals.selected["audioDevices"] = globals.menu_rev["audioDevices"].keys
-        .toList()
-        .indexOf(globals.userSettings["audioDevices"]);
-    globals.selected["enviroment"] = globals.menu_rev["enviroments"].keys
-        .toList()
-        .indexOf(globals.userSettings["program"]);
-    globals.selected["modulation"] = globals.menu_rev["modulations"].keys
-        .toList()
-        .indexOf(globals.userSettings["modulation"]);
-    globals.selected["multi"] = globals.menu_rev["multis"].keys
-        .toList()
-        .indexOf(globals.userSettings["multi"]);
-    globals.selected["target"] = globals.menu_rev["targets"].keys
-        .toList()
-        .indexOf(globals.userSettings["target"]);
-    globals.selected["angle"] = globals.menu_rev["angles"].keys
-        .toList()
-        .indexOf(globals.userSettings["angle"]);
-    globals.selected["audioDevice"] = globals.menu_rev["audioDevices"].keys
-        .toList()
-        .indexOf(globals.userSettings["audioDevice"]);
+    getSelectedItem("oscillator");
+    getSelectedItem("enviroment");
+    getSelectedItem("modulation");
+    getSelectedItem("multi");
+    getSelectedItem("target");
+    getSelectedItem("angle");
     //print(globals.selected);
+  }
+
+  void saveUserSettingInt(item) async {
+    await globals.prefs?.setInt(item, globals.userSettings[item]);
+  }
+
+  void saveUserSettingDouble(item) async {
+    await globals.prefs?.setDouble(item, globals.userSettings[item]);
   }
 
   void saveUserSettings() async {
     if (globals.prefs == null) {
       globals.prefs = await SharedPreferences.getInstance();
     }
-    await globals.prefs?.setInt('folder', globals.userSettings["folder"]);
-    await globals.prefs?.setInt('program', globals.userSettings["program"]);
-    await globals.prefs?.setInt('angle', globals.userSettings["angle"]);
-    await globals.prefs
-        ?.setDouble('enviroment', globals.userSettings["enviroment"]);
-    await globals.prefs
-        ?.setInt('modulation', globals.userSettings["modulation"]);
-    await globals.prefs?.setInt('multi', globals.userSettings["multi"]);
-    await globals.prefs?.setDouble('target', globals.userSettings["target"]);
-    await globals.prefs
-        ?.setInt('audioDevice', globals.userSettings["audioDevice"]);
+    saveUserSettingInt("angle");
+    saveUserSettingInt("modulation");
+    saveUserSettingInt("multi");
+    saveUserSettingInt("program");
+    saveUserSettingInt("oscillator");
+    saveUserSettingDouble("target");
+    saveUserSettingDouble("enviroment");
+  }
+
+/*
+  void setParam(item) {
+    if (globals.selected[item])
+      globals.userSettings[item] =
+          globals.select[item].values.toList()[globals.selected[item]];
+  }
+*/
+
+  void selectParam(item) {
+    //if (globals.selected[item])
+    globals.userSettings[item] =
+        globals.select[item].values.toList()[globals.selected[item]];
+
+    print(globals.userSettings);
   }
 
   void setParams() {
-    globals.frequency = globals.userSettings["target"].toDouble();
-    // TODO: FIX:
-    globals.sg = SoundGenerator;
+    /*
+    setParam("target");
+    setParam("enviroment");
+    setParam("modulation");
+    setParam("multi");
+    setParam("oscillator");
+    setParam("angle");
+    */
+    print(globals.userSettings);
 
-    globals.userSettings["target"] =
-        globals.menu["target"].values.toList()[globals.selected["target"]];
-    globals.userSettings["enviroment"] = globals.menu["enviroment"].values
-        .toList()[globals.selected["enviroment"]];
-    globals.userSettings["modulation"] = globals.menu["modulation"].values
-        .toList()[globals.selected["modulation"]];
-    globals.userSettings["multi"] =
-        globals.menu["multi"].values.toList()[globals.selected["multi"]];
-    globals.userSettings["channel"] =
-        globals.menu["channel"].values.toList()[globals.selected["channel"]];
-    globals.userSettings["audio"] =
-        globals.menu["audio"].values.toList()[globals.selected["audio"]];
-    globals.userSettings["angle"] =
-        globals.menu["angle"].values.toList()[globals.selected["angle"]];
+    globals.frequency = globals.userSettings["target"].toDouble();
+
+    print(Platform.isIOS);
 
     if (Platform.isIOS) {
       SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
@@ -115,11 +115,26 @@ class _MainScreen extends State<MainScreen> {
           globals.userSettings["enviroment"].toDouble(),
           globals.userSettings["modulation"].toDouble(),
           globals.userSettings["multi"].toDouble(),
-          globals.userSettings["channel"].toDouble(),
-          globals.userSettings["audio"].toDouble());
+          globals.userSettings["angle"].toDouble(),
+          globals.userSettings["oscillator"].toDouble());
+
+      print("123");
     }
 
     SoundGenerator.setFrequency(globals.frequency);
+  }
+
+  void play() {
+    globals.setState(() {
+      globals.isPlaying = !globals.isPlaying;
+      if (globals.isPlaying) {
+        globals.setParams();
+        SoundGenerator.play();
+      } else {
+        SoundGenerator.stop();
+        globals.frequency = 0;
+      }
+    });
   }
 
   @override
@@ -127,10 +142,10 @@ class _MainScreen extends State<MainScreen> {
     super.initState();
 
     // TODO: FIX:
-    globals.sg = SoundGenerator;
     globals.setState = setState;
     globals.setParams = setParams;
-    globals.SoundGenerator1 = SoundGenerator;
+    globals.selectParam = selectParam;
+    globals.play = play;
 
     getUserSettings();
     getSelected();
@@ -141,8 +156,9 @@ class _MainScreen extends State<MainScreen> {
           waveTypes.SINUSOIDAL); //Для iOS, пока не реализован multi
     } else {
       SoundGenerator.init(96000);
-      //sg.init(96000, 4, 2); //Позже добавить многоканальные
+      //SoundGenerator.init(96000, 4, 2); //Позже добавить многоканальные
       SoundGenerator.setWaveType(waveTypes.MULTI);
+      print("555");
     }
 
     SoundGenerator.setVolume(1);

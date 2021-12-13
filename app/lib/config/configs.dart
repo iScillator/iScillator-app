@@ -1,3 +1,5 @@
+import 'package:soundhealer/config/oscillators.dart';
+
 import '/config/audios.dart';
 import '/config/channels.dart';
 import '/config/enviroments.dart';
@@ -11,52 +13,52 @@ import '/config/defaults.dart';
 const Map<String, dynamic> configs = {
   "android/com.soundhealer": {
     "title": "SoundHealer",
-    "defaults": defaults_fix, //DEPRECEATED
-    "menu": {
-      "programs": programs_app_lite,
-      "targets": targets_app_lite,
+    "defaults": defaults_app_lite,
+    "select": {
+      "program": programs_app_lite,
+      "target": targets_app_lite,
     }
   },
   "ios/com.soundhealer": {
     "title": "SoundHealer",
-    "defaults": defaults_fix, //DEPRECEATED
-    "menu": {
-      "programs": programs_app_lite,
-      "targets": targets_app_lite,
+    "defaults": defaults_app_lite,
+    "select": {
+      "program": programs_app_lite,
+      "target": targets_app_lite,
     }
   },
   "android/com.soundhealer.pro": {
     "title": "SoundHealer PRO",
-    "defaults": defaults_fix, //DEPRECEATED
-    "menu": {
-      "programs": programs_app_pro,
-      "targets": targets_app_pro,
-      "enviroments": enviroments,
-      "modulations": modulations,
-      "multis": multis,
-      "audios": audioDevices,
-      "channels": channels
+    "defaults": defaults_app_pro,
+    "select": {
+      "program": programs_app_pro,
+      "target": targets_app_pro,
+      "enviroment": enviroments,
+      "modulation": modulations,
+      "multi": multis,
+      "audio": audioDevices,
+      "channel": channels
     }
   },
   "android/com.soundhealer.dev": {
     "title": "SoundHealer DEV",
-    "defaults": defaults_fix, //DEPRECEATED
+    "defaults": defaults_app_dev,
     "pages": {
-      "programs": ["programs"],
-      "targets": ["targets", "enviroments"],
-      "modulations": ["multis", "modulations"],
-      "devices": ["audioDevices"],
-      "settings": ["angles"],
+      "programs": ["program"],
+      "targets": ["target", "enviroment"],
+      "modulations": ["multi", "modulation"],
+      "devices": ["oscillator"],
+      "settings": ["angle"],
     },
     //TODO: rename to selects
-    "menu": {
-      "programs": programs_app_dev,
-      "targets": targets_app_dev,
-      "enviroments": enviroments,
-      "modulations": modulations,
-      "multis": multis,
-      "audioDevices": audioDevices,
-      "angles": angles,
+    "select": {
+      "program": programs_app_dev,
+      "target": targets_app_dev,
+      "enviroment": enviroments,
+      "modulation": modulations,
+      "multi": multis,
+      "oscillator": oscillators,
+      "angle": angles,
     },
   },
   "yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}

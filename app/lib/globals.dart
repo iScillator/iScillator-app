@@ -5,31 +5,17 @@ import 'dart:io' show Platform;
 
 import '/models/user_settings.dart';
 import '/config/configs.dart';
-import '/config/current.dart';
+import '/config/current/current.dart';
 
-var sg;
+var play;
 var setState;
 var setParams;
+var selectParam;
+
 var pageController;
 var showWindow;
 
-// TODO: FIX:
-var SoundGenerator;
-var SoundGenerator1;
-
 SharedPreferences? prefs;
-
-var _isPresetWindowShown = {
-  "audios": false,
-  "folders": false,
-  "program": false,
-  "angles": false,
-  "enviroments": false,
-  "modulations": false,
-  "multis": false,
-  "targets": false,
-  "audioDevices": false,
-};
 
 final Map<String, dynamic> defaults = config["defaults"];
 final defaultSettings = defaults;
@@ -55,58 +41,59 @@ final config_current_os =
 
 final config = configs[config_current_os];
 
-final Map<String, dynamic> menu = config["menu"];
+final Map<String, dynamic> select = config["select"];
 final Map<String, dynamic> pages = config["pages"];
 
-final Map<String, dynamic> menu_rev = {
-  "angles": (menu["angles"] != null
-      ? menu["angles"].map((k, v) => MapEntry(v, k))
+final Map<String, dynamic> select_rev = {
+  "angle": (select["angle"] != null
+      ? select["angle"].map((k, v) => MapEntry(v, k))
       : {}),
-  "programs": (menu["programs"] != null
-      ? menu["programs"].map((k, v) => MapEntry(v, k))
+  "program": (select["program"] != null
+      ? select["program"].map((k, v) => MapEntry(v, k))
       : {}),
-  "audioDevices": (menu["audioDevices"] != null
-      ? menu["audioDevices"].map((k, v) => MapEntry(v, k))
+  "oscillator": (select["oscillator"] != null
+      ? select["oscillator"].map((k, v) => MapEntry(v, k))
       : {}),
-  "channels": (menu["channels"] != null
-      ? menu["channels"].map((k, v) => MapEntry(v, k))
+  "enviroment": (select["enviroment"] != null
+      ? select["enviroment"].map((k, v) => MapEntry(v, k))
       : {}),
-  "enviroments": (menu["enviroments"] != null
-      ? menu["enviroments"].map((k, v) => MapEntry(v, k))
+  "modulation": (select["modulation"] != null
+      ? select["modulation"].map((k, v) => MapEntry(v, k))
       : {}),
-  "modulations": (menu["modulations"] != null
-      ? menu["modulations"].map((k, v) => MapEntry(v, k))
+  "multi": (select["multi"] != null
+      ? select["multi"].map((k, v) => MapEntry(v, k))
       : {}),
-  "multis": (menu["multis"] != null
-      ? menu["multis"].map((k, v) => MapEntry(v, k))
-      : {}),
-  "targets": (menu["targets"] != null
-      ? menu["targets"].map((k, v) => MapEntry(v, k))
+  "target": (select["target"] != null
+      ? select["target"].map((k, v) => MapEntry(v, k))
       : {}),
 };
 
 final selected = {
-  "angle": menu_rev["angles"].keys.toList().indexOf(userSettings["angle"]),
-  "audioDevice": menu_rev["audioDevices"]
+  "angle": select_rev["angle"].keys.toList().indexOf(userSettings["angle"]),
+  "oscillator": select_rev["oscillator"]
       .keys
       .toList()
-      .indexOf(userSettings["audioDevice"]),
+      .indexOf(userSettings["oscillator"]),
   "program":
-      menu_rev["programs"].keys.toList().indexOf(userSettings["program"]),
-  "enviroment":
-      menu_rev["enviroments"].keys.toList().indexOf(userSettings["enviroment"]),
-  "modulation":
-      menu_rev["modulations"].keys.toList().indexOf(userSettings["modulation"]),
-  "multi": menu_rev["multis"].keys.toList().indexOf(userSettings["multi"]),
-  "target": menu_rev["targets"].keys.toList().indexOf(userSettings["target"]),
+      select_rev["program"].keys.toList().indexOf(userSettings["program"]),
+  "enviroment": select_rev["enviroment"]
+      .keys
+      .toList()
+      .indexOf(userSettings["enviroment"]),
+  "modulation": select_rev["modulation"]
+      .keys
+      .toList()
+      .indexOf(userSettings["modulation"]),
+  "multi": select_rev["multi"].keys.toList().indexOf(userSettings["multi"]),
+  "target": select_rev["target"].keys.toList().indexOf(userSettings["target"]),
 };
 
 final isWindowShown = {
-  "folders": false,
-  "programs": false,
-  "audios": false,
-  "enviroments": false,
-  "modulations": false,
-  "multis": false,
-  "targets": false,
+  "program": false,
+  "angles": false,
+  "oscillator": false,
+  "enviroment": false,
+  "modulation": false,
+  "multi": false,
+  "target": false,
 };
