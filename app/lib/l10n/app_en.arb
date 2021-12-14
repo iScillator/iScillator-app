@@ -12,6 +12,6 @@
     "imask":"iMask",
     "settings": "Settings",
 
-    "@transtlations":{"Abc":"Abc"},
+    "@transtlations":{"Translation list":"Translation list"},
     "searchHint":"Search..."
 }
