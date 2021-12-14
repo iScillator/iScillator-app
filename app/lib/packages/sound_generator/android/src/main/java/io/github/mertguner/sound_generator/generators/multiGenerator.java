@@ -25,6 +25,8 @@ public class multiGenerator extends baseGenerator {
 
     private double multi_amp_diff=0;
 
+    private double multi;
+
     private int multi_steps=7;
 
 
@@ -41,9 +43,7 @@ public class multiGenerator extends baseGenerator {
 
     private double modulationHzGet(double target, double modulation)
     {
-        dumped=false;
         if(modulation==0) return 0;
-        if(modulation<0) {dumped=true;modulation=-modulation;}
         
         if (modulation==10241) modulation=1024;
         if (modulation==10242) modulation=1024;
@@ -61,11 +61,11 @@ public class multiGenerator extends baseGenerator {
     {
         if (amp_n!=1)
         {
-            if (multi_amp_diff==0) amp=amp/Math.sqrt(2);
+            if (multi_amp_diff==0) amp=amp*Math.pow(2.0,updown/2);// /Math.sqrt(2);
             if (multi_amp_diff==1) amp=amp;
-            if (multi_amp_diff==2) amp=amp/2;
-            if (multi_amp_diff==3) amp=amp/amp_n;
-            if (multi_amp_diff==4) amp=amp/Math.sqrt(amp_n);
+            if (multi_amp_diff==2) amp=amp*Math.pow(2.0,updown);// /2;
+            if (multi_amp_diff==3) amp=amp*Math.pow(amp_n,updown);// /amp_n;
+            if (multi_amp_diff==4) amp=amp*Math.pow(amp_n,updown/2);// /Math.sqrt(amp_n);
         }
 
         android.util.Log.d("SoundHealer", "?target="+target);
@@ -123,6 +123,177 @@ public class multiGenerator extends baseGenerator {
         android.util.Log.d("SoundHealer", "amp_sum="+amp_sum);
     }
 
+    private void bilHz(double target, double modulation, double multi)
+    {
+        this.multi_steps=2;
+        this.amp_sum=2;
+        this.multi_hz = new double[5];
+        this.multi_mod_hz = new double[5];
+        this.multi_amp = new double[5];
+
+        this.multi_steps=2;
+        this.amp_sum=2;
+
+        this.multi_hz[0]=target;
+        this.multi_hz[1]=target*1.732050807568877; // sqrt(3)
+        
+        this.multi_amp[0]=1;
+        this.multi_amp[1]=1;
+
+        this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+        this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+
+        if(multi==-2)
+        {
+            this.multi_steps=3;
+            this.amp_sum=3;
+            this.multi_hz[1]=target*1.451388888888889; // sqrt(2)
+            this.multi_hz[2]=target*2.097222222222222; // sqrt(2)
+            this.multi_amp[2]=1;
+            this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
+
+        }
+
+        if(multi==-5)
+        {
+            this.multi_steps=3;
+            this.amp_sum=3;
+            this.multi_hz[0]=116; // sqrt(2)
+            this.multi_hz[1]=233; // sqrt(2)
+            this.multi_hz[2]=349; // sqrt(2)
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_amp[2]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+            this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
+
+        }
+
+        if(multi==-723)
+        {
+            this.multi_steps=3;
+            this.amp_sum=3;
+            this.multi_hz[0]=target; 
+            this.multi_hz[1]=this.multi_hz[0]*2;
+            this.multi_hz[2]=this.multi_hz[0]*3;
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_amp[2]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+            this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
+
+        }
+
+        if(multi==-72)
+        {
+            this.multi_steps=2;
+            this.amp_sum=2;
+            this.multi_hz[0]=target; 
+            this.multi_hz[1]=this.multi_hz[0]*2; 
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+        }
+
+        if(multi==-73)
+        {
+            this.multi_steps=2;
+            this.amp_sum=2;
+            this.multi_hz[0]=target;
+            this.multi_hz[1]=this.multi_hz[0]*3;
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+        }
+
+        if(multi==-7123)
+        {
+            this.multi_steps=2;
+            this.amp_sum=2;
+            this.multi_hz[0]=target; 
+            this.multi_hz[1]=this.multi_hz[0]*1.58496250072; 
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+        }
+
+        if(multi==-774)
+        {
+            this.multi_steps=2;
+            this.amp_sum=2;
+            this.multi_hz[0]=target;
+            this.multi_hz[1]=this.multi_hz[0]*(7.0/4.0);
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+        }
+
+        if(multi==-712)
+        {
+            this.multi_steps=2;
+            this.amp_sum=2;
+            this.multi_hz[0]=target;
+            this.multi_hz[1]=this.multi_hz[0]/2;
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+        }
+
+        if(multi==-713)
+        {
+            this.multi_steps=2;
+            this.amp_sum=2;
+            this.multi_hz[0]=target;
+            this.multi_hz[1]=this.multi_hz[0]/3;
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+        }
+
+        if(multi==-7135)
+        {
+            this.multi_steps=3;
+            this.amp_sum=3;
+            this.multi_hz[0]=target;
+            this.multi_hz[1]=this.multi_hz[0]/3;
+            this.multi_hz[2]=this.multi_hz[0]/5;
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_amp[2]=2;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+            this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
+        }
+
+        if(multi==-723)
+        {
+            this.multi_steps=3;
+            this.amp_sum=3;
+            this.multi_hz[0]=target; // sqrt(2)
+            this.multi_hz[1]=target*2; // sqrt(2)
+            this.multi_hz[2]=target*3; // sqrt(2)
+            this.multi_amp[0]=1;
+            this.multi_amp[1]=1;
+            this.multi_amp[2]=1;
+            this.multi_mod_hz[0]=modulationHzGet(this.multi_hz[0],modulation);
+            this.multi_mod_hz[1]=modulationHzGet(this.multi_hz[1],modulation);
+            this.multi_mod_hz[2]=modulationHzGet(this.multi_hz[2],modulation);
+        }
+
+        //multiHzAdd(target, modulation, multi,1,true,1.0,1.0);
+        //multiHzAdd(target, modulation, multi,-1,true,1.0,1.0);
+        //android.util.Log.d("SoundHealer", "amp_sum="+amp_sum);
+    }
+
+
     private void setAngle(double channel)
     {
             angle2=0;
@@ -153,7 +324,8 @@ public class multiGenerator extends baseGenerator {
         android.util.Log.d("SoundHealer", "audio="+audio);
 
         this.audio=(int)audio;
-        
+        this.multi=multi;
+
         this.mod_frequency=modulation;
 
         if ((modulation==2)&&(enviroment!=0))
@@ -162,7 +334,10 @@ public class multiGenerator extends baseGenerator {
             target=enviroment;
         }
 
-        if (modulation<0) {this.mod_frequency=-modulation;}
+        this.dumped=false;
+        
+
+        if (modulation<0) {this.mod_frequency=-modulation; this.dumped=true;}
         
         
         this.multi_amp_diff=0; //sqrt(2)
@@ -174,7 +349,14 @@ public class multiGenerator extends baseGenerator {
 
 
         setAngle(channel);
-        multiHz(target, modulation, multi);
+
+        if (multi>=0)
+        {
+            multiHz(target, modulation, multi);
+        } else 
+        {
+            bilHz(target, modulation, multi);
+        }
     }
 
     public void setFrequency(float frequency) {
@@ -255,6 +437,13 @@ public class multiGenerator extends baseGenerator {
             if (multi_hz[step]==0) continue;
             t1=(multi_mod_hz[step]*x/sampleRate)*Math.PI*2;
             t2=(multi_hz[step]*x/sampleRate)*Math.PI*2;
+
+
+
+            if ((this.multi==-33)&&(channel==2)/*||angle=1*/) 
+            {
+                t2=((multi_hz[step]+3)*x/sampleRate)*Math.PI*2;
+            }
             
             if(channel==2)
             {
@@ -265,8 +454,8 @@ public class multiGenerator extends baseGenerator {
 
 
             mod_amplitude=Math.sin(t1);
-            if (audio==1333) {
-                mod_amplitude=1.0-Math.sin((t1 % (Math.PI/2)));                
+            if (this.dumped==true) {
+                mod_amplitude=1.0-Math.sin(((t1/4) % (Math.PI/2)));                
             }
 
             y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive

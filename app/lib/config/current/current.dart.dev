@@ -1,0 +1,12 @@
+//const config_current = "com.soundhealer.dev";
+//const config_current = "com.soundhealer.yl";
+const config_current = "com.soundhealer";
+//const config_current = "com.soundhealer.dev";
+
+//DEBUG
+const isIOS_change = true;
+const isIOS_current = true;
+
+//NORMAL
+//const isIOS_change = false;
+//const isIOS_current = false;

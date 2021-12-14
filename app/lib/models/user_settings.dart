@@ -1,26 +1,17 @@
-class UserSettings {
-  double? balance;
-  int? waveType;
+
 /*
+class UserSettings {
+  //int? folder;
+  int folder;
+  int program;
+  int angle; //was channel
+  double enviroment;
+  int modulation;
+  int multi;
+  double target;
+  int audioDevice; // was audio;
 
- Settings
-
- headphones, ...
-
-
- System settings
- Sample rate
- Bit rate
-
- Channels count
-
-
- wave types:
- multi2
- multi3
-
- Debug settings
-
-* */
-  UserSettings(this.balance, this.waveType);
+  UserSettings(this.folder, this.program, this.angle, this.enviroment,
+      this.modulation, this.multi, this.target, this.audioDevice);
 }
+*/

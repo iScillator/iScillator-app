@@ -1,0 +1,75 @@
+{
+    "oscillator": {
+        "osd": {
+            "title": "OSD цифровой осциллятор",
+            "fy6900": {
+                "title": "fy6900-60 OSD цифровой осциллятор",
+                "decription": "можно использовать и в радио и мембраной с помощью узи",
+                "descr_hz": 60000000,
+                "descr_bits": 14,
+                "channels": 2,
+                "sample_length_max":8192
+            }
+        },
+        "am": {
+            "title": "AM радиотрансмиттер",
+            "am_1m": {
+                "title": "AM трансмиттер (1Mhz)",
+                "descr_hz": 1000000
+            },
+            "am_3m": {
+                "title": "AM трансмиттер (3Mhz)",
+                "descr_hz": 3000000,
+                "carrier_type": "unmanaged_sin",
+                "modulation":"am"
+            },
+            "am_5m": {
+                "title": "AM трансмиттер (5Mhz)",
+                "descr_hz": 5000000
+            },
+            "am_3.3m": {
+                "title": "AM трансмиттер (3.3Mhz)",
+                "descr_hz": 3300000
+            },
+            "am_3.8m": {
+                "title": "AM трансмиттер (3.8Mhz)",
+                "descr_hz": 3800000
+            },
+            "am_4.68m": {
+                "title": "AM трансмиттер (4.68Mhz)",
+                "descr_hz": 4680000
+            }
+        },
+        "aroma": {
+            "title": "Аромадиффузор",
+            "aroma_sound": {
+                "title": "Аромадиффузор с воспроизведением",
+                "aroma_1.7m": {
+                    "title": "Аромадифузор с воспроизведением (fix 1.7 Mhz)",
+                    "fix_hz": 1700000
+                },
+                "aroma_young_aria": {
+                    "title": "Аромадифузор (Young Living - Aria)",
+                    "fix_hz": "1700000?"
+                }
+            },
+            "aroma_nosound": {
+                "title": "Аромадиффузор без воспроизведения",
+                "aroma_1.7m_nosound": {
+                    "title": "Аромадифузор без воспроизведения (fix 1.7 Mhz)",
+                    "fix_hz": "1700000"
+                },
+                "aroma_young_lantern": {
+                    "title": "Аромадифузор (Young Living - Lantern)",
+                    "fix_hz": "1700000?"
+                },
+                "aroma_young_usb": {
+                    "title": "Аромадифузор (Young Living - USB)",
+                    "fix_hz": "1700000?"
+                }
+            }
+        }
+    }
+}
+
+
