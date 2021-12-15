@@ -1,17 +1,18 @@
-const audios = {
-  "Speakers": 0,
+const audioDevices = {
+  "Internal"
+      "Speakers/Headphones": 0,
   "Diffusor 1.7 + Speakers": 17,
   "Ray Tube 5.2": 52,
   "FY6900": 6900,
-  "AM 1M": 1000000,
-  "AM 3M": 3000000,
-  "AM 5M": 5000000,
-  "AM 1M,1M": 1100000,
-  "AM 1M,3M": 1300000,
-  "AM 1M,5M": 1500000,
-  "AM 3M,3M": 3300000,
-  "AM 3M,5M": 3500000,
-  "AM 5M,5M": 5500000,
+  "AM 1MHz": 1000000,
+  "AM 3MHz": 3000000,
+  "AM 5MHz": 5000000,
+  "AM 1MHz,1MHz": 1100000,
+  "AM 1MHz,3MHz": 1300000,
+  "AM 1MHz,5MHz": 1500000,
+  "AM 3MHz,3MHz": 3300000,
+  "AM 3MHz,5MHz": 3500000,
+  "AM 5MHz,5MHz": 5500000,
   /*
    LATER AM+SOUND
 

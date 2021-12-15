@@ -40,7 +40,7 @@ class _SettingsScreen extends State<SettingsScreen> {
                         _saveSettings();
 
                         waveTypes? _waveType;
-                        _waveType=waveTypes.SINUSOIDAL;
+                        _waveType = waveTypes.SINUSOIDAL;
                         if (widget.userSettings?.waveType == 0)
                           _waveType = waveTypes.SINUSOIDAL;
                         if (widget.userSettings?.waveType == 1)
@@ -65,6 +65,20 @@ class _SettingsScreen extends State<SettingsScreen> {
                     padding: EdgeInsets.only(left: 30.0, right: 30.0),
                     child: Column(
                       children: [
+                        /*
+                        if (menu["audios"] != null)
+                          SelectPresetButton(
+                            presetName:
+                                menu["audios"].keys.toList()[_selectedAudio],
+                            tapMethod: _showPresetWindowAudios,
+                          ),
+                        if (menu["audios"] != null)
+                          Divider(
+                            indent: 60,
+                            endIndent: 60,
+                            color: Colors.white,
+                          ),
+                          */
                         Padding(
                             padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                             child: Text('Balance',

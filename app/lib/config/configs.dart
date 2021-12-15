@@ -1,89 +1,70 @@
-import 'audios.dart';
-import 'channels.dart';
-import 'enviroments.dart';
-import 'modulations.dart';
-import 'multis.dart';
-import 'programs.dart';
-import 'targets.dart';
-import 'defaults.dart';
+import 'package:soundhealer/config/oscillators.dart';
 
-import 'current.dart';
+import '/config/audios.dart';
+import '/config/channels.dart';
+import '/config/enviroments.dart';
+import '/config/modulations.dart';
+import '/config/multis.dart';
+import '/config/targets.dart';
+import '/config/programs.dart';
+import '/config/angles.dart';
+import '/config/defaults.dart';
 
-import 'dart:io' show Platform;
-
-const Map<String, dynamic> configs = {
-  "android/com.soundhealer": {
-    "title": "SoundHealer",
-    "defaults": defaults_lite,
-    "menu": {
-      "programs": programs_lite,
-      "targets": targets_lite,
-    }
+const config_app_dev = {
+  "title": "SoundHealer DEV",
+  "defaults": defaults_app_dev,
+  "pages": {
+    "programs": ["program"],
+    "targets": ["target", "enviroment"],
+    "modulations": ["multi", "modulation"],
+    "devices": ["oscillator"],
+    "settings": ["angle"],
   },
-  "ios/com.soundhealer": {
-    "title": "SoundHealer",
-    "defaults": defaults_lite,
-    "menu": {
-      "programs": programs_lite,
-      "targets": targets_lite,
-    }
+  "select": {
+    "program": programs_app_dev,
+    "target": targets_app_dev,
+    "enviroment": enviroments,
+    "modulation": modulations,
+    "multi": multis,
+    "oscillator": oscillators,
+    "angle": angles,
   },
-  "android/com.soundhealer.pro": {
-    "title": "SoundHealer PRO",
-    "defaults": defaults_pro,
-    "menu": {
-      "programs": programs_pro,
-      "targets": targets_pro,
-      "enviroments": enviroments,
-      "modulations": modulations,
-      "multis": multis,
-      "audios": audios,
-      "channels": channels
-    }
-  },
-  "android/dev.soundhealer.com": {
-    "title": "SoundHealer DEV",
-    "defaults": defaults_dev,
-    "menu": {
-      "programs": programs_dev,
-      "targets": targets_dev,
-      "enviroments": enviroments,
-      "modulations": modulations,
-      "multis": multis,
-      "audios": audios,
-      "channels": channels
-    },
-  },
-  "yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}
 };
 
-final config_current_os =
-    (Platform.isIOS ? "ios/" : "android/") + config_current;
+const config_app_pro = {
+  "title": "SoundHealer PRO",
+  "defaults": defaults_app_pro,
+  "select": {
+    "program": programs_app_pro,
+    "target": targets_app_pro,
+    "enviroment": enviroments,
+    "modulation": modulations,
+    "multi": multis,
+    "audio": audioDevices,
+    "channel": channels
+  }
+};
 
-//final config_current_os = "ios/com.soundhealer.pro";
+const config_app_lite = {
+  "title": "SoundHealer",
+  "defaults": defaults_app_lite,
+  "pages": {
+    "targets": ["target"],
+    "settings": ["angle"],
+  },
+  "select": {
+    "program": programs_app_lite,
+    "target": targets_app_lite,
+    "angle": angles,
+  },
+};
 
-final config = configs[config_current_os];
-
-final Map<String, dynamic> menu = config["menu"];
-final Map<String, dynamic> defaults = config["defaults"];
-
-final Map<String, dynamic> menu_rev = {
-  "audios": (menu["audios"] != null
-      ? menu["audios"].map((k, v) => MapEntry(v, k))
-      : {}),
-  "channels": (menu["channels"] != null
-      ? menu["channels"].map((k, v) => MapEntry(v, k))
-      : {}),
-  "enviroments": (menu["enviroments"] != null
-      ? menu["enviroments"].map((k, v) => MapEntry(v, k))
-      : {}),
-  "modulations": (menu["modulations"] != null
-      ? menu["modulations"].map((k, v) => MapEntry(v, k))
-      : {}),
-  "multis": (menu["multis"] != null
-      ? menu["multis"].map((k, v) => MapEntry(v, k))
-      : {}),
-  "targets": (menu["targets"] != null
-      ? menu["targets"].map((k, v) => MapEntry(v, k))
-      : {}),
+const Map<String, dynamic> configs = {
+  "android/com.soundhealer": config_app_lite,
+  "ios/com.soundhealer": config_app_lite,
+  "android/com.soundhealer.pro": config_app_pro,
+  "ios/com.soundhealer.pro": config_app_pro,
+  "android/com.soundhealer.dev": config_app_dev,
+  "ios/com.soundhealer.dev": config_app_dev,
+  "yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}
 };

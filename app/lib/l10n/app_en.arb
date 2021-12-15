@@ -1,0 +1,17 @@
+{
+    "@@locale": "en",
+    "frequency": "Frequency",
+
+    "home":"Home",
+    "programs":"Programs",
+    "targets":"Targets",
+    "modulation":"Modulation",
+    "devices":"Devices",
+
+    "d3d":"3D",
+    "imask":"iMask",
+    "settings": "Settings",
+
+    "@transtlations":{"Translation list":"Translation list"},
+    "searchHint":"Search..."
+}

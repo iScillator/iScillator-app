@@ -1,0 +1,48 @@
+{
+    "helloWorld": "Привет мир!",
+    "frequency": "Частота",
+
+    "home":"Главная",
+    "programs":"Программы",
+    "targets":"Цели",
+    "modulation":"Модуляция",
+    "devices":"Устройства",
+
+    "d3d":"3D",
+    "imask":"iMask",
+    "settings": "Настройки",
+    "searchHint":"Поиск...",
+
+    "@transtlations":{
+        "Folders":"Папки",
+        "Chackras":"Чакры",
+        "Bils":"Билы",
+        "Singing Bowls":"Поющие чаши",
+        "Rife audio frequencies": "Аудиочастоты Райфа",
+        "Rife radio frequencies": "Радиочастоты Райфа",
+        "Immunomodulator":"Имунномодулятор",
+        "Prophylaxis":"Профилактика",
+
+
+        "Targets": "Цели",
+        "Fundamental": "Фундаментальная",
+        "Muladhara": "Муладхара",
+        "Svadhisthana": "Свадхистана",
+        "Manipura": "Манипура",
+        "Anahata": "Анахата",
+        "Vishudha": "Вишудха",
+        "Adjna": "Аджна",
+        "Sahasrara": "Сахасрара",
+        "Sahasradala": "Сахасрадала",
+        
+        "Influenza": "Грипп",
+        "Pneumonia": "Пневмония",
+        "Psoriasis": "Псориаз",
+
+        "Essential oil": "Эфирное масло",
+        "Rose (essential oil)": "Rose (эфирное масло)",
+        "Peppermint (essential oil)": "Peppermint (эфирное масло)",
+        "White Angelica (essential oil)": "White Angelica (эфирное масло)",
+        "Thieves (essential oil)": "Thieves (эфирное масло)"
+    }
+}
