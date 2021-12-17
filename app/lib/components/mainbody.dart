@@ -33,7 +33,7 @@ Widget mainBody(BuildContext context) {
               padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
               child: frequencySection(context)),
           Padding(
-              padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
+              padding: EdgeInsets.only(bottom: 20.0),
               child: PlayButton(onPlayingChange: globals.play)),
           Expanded(
             child: PageView(

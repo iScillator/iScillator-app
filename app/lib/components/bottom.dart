@@ -16,6 +16,12 @@ import '/globals.dart' as globals;
 void _onItemTapped(int index) {
   globals.setState(() {
     globals.selectedPage = index;
+
+    //TODO:ADD ALL PAGES FALSE in loop
+    globals.isWindowShown["target"] = false;
+    globals.isWindowShown["angle"] = false;
+
+    print(globals.isWindowShown);
   });
   globals.pageController.jumpToPage(index);
 }
