@@ -60,7 +60,7 @@ Widget mainBody(BuildContext context) {
         ...ifWindow(context, "enviroment"),
         ...ifWindow(context, "modulation"),
         ...ifWindow(context, "multi"),
-        ...ifWindow(context, "targets"),
+        ...ifWindow(context, "target"),
       ],
     ),
   );

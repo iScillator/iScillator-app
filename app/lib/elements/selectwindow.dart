@@ -73,8 +73,8 @@ class SelectWindow extends StatelessWidget {
                                           color: Colors.white, fontSize: 23.0),
                                     ),
                                     alignment: globals.selected[item] == index
-                                        ? Alignment(-1.8, 0)
-                                        : Alignment(-0.3, 0)),
+                                        ? Alignment(-0.3, 0)
+                                        : Alignment(0, 0)),
                                 onTap: () {
                                   selectItem(index);
                                 },
