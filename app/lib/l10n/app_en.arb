@@ -12,6 +12,7 @@
     "imask":"iMask",
     "settings": "Settings",
 
+    "transtlations":"translations",
     "@transtlations":{"Translation list":"Translation list"},
     "searchHint":"Search..."
 }

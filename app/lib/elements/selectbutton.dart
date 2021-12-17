@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import '/globals.dart' as globals;
+import '/modules/l108.dart';
 
 class SelectButton extends StatefulWidget {
   const SelectButton(
       {Key? key,
       required this.item,
       //required this.items,
-      required this.tapMethod,
+      //required this.tapMethod,
       required this.buttonName})
       : super(key: key);
 
   final item;
   //final items;
 
-  final Function tapMethod;
+  //final Function tapMethod;
   final String buttonName;
 
   @override
@@ -64,7 +65,7 @@ class _SelectButton extends State<SelectButton> {
           child: Row(
             children: [
               Expanded(
-                  child: Text(widget.buttonName,
+                  child: Text(l108(context, widget.buttonName),
                       style: TextStyle(
                           fontSize: 19.0,
                           color: _highlight ? Colors.white70 : Colors.white))),

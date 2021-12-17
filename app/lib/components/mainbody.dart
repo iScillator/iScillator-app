@@ -32,7 +32,9 @@ Widget mainBody(BuildContext context) {
           Padding(
               padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
               child: frequencySection(context)),
-          PlayButton(onPlayingChange: globals.play),
+          Padding(
+              padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
+              child: PlayButton(onPlayingChange: globals.play)),
           Expanded(
             child: PageView(
                 scrollDirection: Axis.horizontal,

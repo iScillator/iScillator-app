@@ -1,10 +1,13 @@
 // Модуль язкового перевода
 
+// https://localazy.com/docs/cli/flutter-format
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 String l108(context, text) {
-  var tr = AppLocalizations.of(context)!.transtlations;
-  if (tr[text] != null) return tr[text];
+  //var tr = AppLocalizations.of(context)!.transtlations;
+  //var tr = AppLocalizations.of(context)!.transtlations;
+  //if (tr[text] != null) return tr[text];
   return text;
 }

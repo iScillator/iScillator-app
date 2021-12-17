@@ -16,10 +16,11 @@ AppBar myAppBar(context) {
     title: Text(globals.config["title"]),
     actions: [
       // Navigate to the Search Screen
-      IconButton(
-          onPressed: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => SearchPage())),
-          icon: Icon(Icons.search))
+      if (globals.config["search"] == true)
+        IconButton(
+            onPressed: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => SearchPage())),
+            icon: Icon(Icons.search))
     ],
   );
 }

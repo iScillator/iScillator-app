@@ -13,6 +13,7 @@
     "settings": "Настройки",
     "searchHint":"Поиск...",
 
+    "transtlations":"переводы",
     "@transtlations":{
         "Folders":"Папки",
         "Chackras":"Чакры",

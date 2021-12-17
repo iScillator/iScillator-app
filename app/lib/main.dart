@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-// ignore_for_file: import_of_legacy_library_into_null_safe
-
-=======
->>>>>>> 03fc1192a2861b356c3712d4116fefeeb52b3c37
 import 'dart:async';
 import 'dart:math';
 import 'dart:developer';
@@ -10,6 +5,8 @@ import 'dart:developer';
 // https://docs.flutter.dev/development/accessibility-and-localization/internationalization
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '/globals.dart' as globals;
 
 import 'package:flutter/material.dart';
 
@@ -22,6 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    globals.t = AppLocalizations.of(context);
     return MaterialApp(
       home: MainScreen(),
       debugShowCheckedModeBanner:

@@ -14,6 +14,7 @@ var selectParam;
 
 var pageController;
 var showWindow;
+var t;
 
 SharedPreferences? prefs;
 

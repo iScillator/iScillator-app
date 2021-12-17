@@ -21,7 +21,7 @@ List<Widget> ifSelect(BuildContext context, item) {
                 ? globals.select[item].keys.toList()[globals.selected[item]]
                 : "-") ??
             "-" /*items*/,
-        tapMethod: globals.showWindow,
+        //tapMethod: globals.showWindow,
       ),
     if (globals.select[item] != null)
       Divider(
@@ -80,7 +80,9 @@ Widget pageDevices(BuildContext context) {
 }
 
 Widget pageSettings(BuildContext context) {
-  return Column(children: [
+  return /*SingleChildScrollView(
+      child:*/
+      Column(children: [
     Divider(
       indent: 60,
       endIndent: 60,
