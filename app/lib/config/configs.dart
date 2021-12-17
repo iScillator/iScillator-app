@@ -29,7 +29,7 @@ const config_app_dev = {
     "oscillator": oscillators,
     "angle": angles,
   },
-  "search":true,
+  "search": true,
 };
 
 const config_app_pro = {
@@ -43,8 +43,8 @@ const config_app_pro = {
     "multi": multis,
     "audio": audioDevices,
     "channel": channels
-  }
-  "search":false,
+  },
+  "search": false,
 };
 
 const config_app_lite = {
@@ -59,7 +59,7 @@ const config_app_lite = {
     "target": targets_app_lite,
     "angle": angles,
   },
-  "search":false,
+  "search": false,
 };
 
 const Map<String, dynamic> configs = {
