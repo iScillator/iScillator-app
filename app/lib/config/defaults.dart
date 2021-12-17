@@ -2,7 +2,7 @@ const Map<String, dynamic> defaults_app_dev = {
   "angle": 0,
   "enviroment": 0,
   "modulation": 0,
-  "multi": 1,
+  "multi": 0,
   "target": 528,
   "program": 0,
   "oscillator": 0
@@ -15,7 +15,7 @@ const Map<String, dynamic> defaults_fix = {
   "angle": 0,
   "enviroment": 0,
   "modulation": 0,
-  "multi": 1,
+  "multi": 0,
 };
 
 const defaults_essentials = defaults_fix;
@@ -46,7 +46,7 @@ const Map<String, dynamic> defaults_rife_audio = {
   "angle": 120,
   "enviroment": 0,
   "modulation": 0,
-  "multi": 1,
+  "multi": 0,
 };
 
 const Map<String, dynamic> defaults_rife_radio_to_sound = {
@@ -61,5 +61,5 @@ const Map<String, dynamic> defaults_rife_radio = {
   "angle": 0,
   "enviroment": 0,
   "modulation": 0,
-  "multi": 1,
+  "multi": 0,
 };

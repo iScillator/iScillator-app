@@ -85,6 +85,7 @@ public class multiGenerator extends baseGenerator {
                 multi_steps++;
             }
             
+            if (multi==0) return;
             if (multi==1) return;
         }
 

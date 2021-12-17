@@ -35,6 +35,13 @@ const config_app_dev = {
 const config_app_pro = {
   "title": "SoundHealer PRO",
   "defaults": defaults_app_pro,
+  "pages": {
+    //"programs": ["program"],
+    "targets": ["target", "enviroment"],
+    "modulations": ["multi", "modulation"],
+    //"devices": ["oscillator"],
+    "settings": ["angle"],
+  },
   "select": {
     "program": programs_app_pro,
     "target": targets_app_pro,
@@ -42,7 +49,8 @@ const config_app_pro = {
     "modulation": modulations,
     "multi": multis,
     "audio": audioDevices,
-    "channel": channels
+    "channel": channels,
+    "angle": angles
   },
   "search": false,
 };

@@ -25,50 +25,44 @@ List ifWindow(BuildContext context, item) {
 
 Widget mainBody(BuildContext context) {
   globals.pageController = PageController(initialPage: 0);
-  return /*SafeArea(
-    child: */
-      Stack(
-    children: [
-      SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(children: [
-            Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
-                child: frequencySection(context)),
-            Padding(
-                padding: EdgeInsets.only(bottom: 20.0),
-                child: PlayButton(onPlayingChange: globals.play)),
-            SizedBox(
-                height: 300.0,
-                child: PageView(
-                    scrollDirection: Axis.horizontal,
-                    controller: globals.pageController,
-                    onPageChanged: (int page) {
-                      globals.setState(() {
-                        globals.selectedPage = page;
-                      });
-                    },
-                    children: [
-                      if (globals.pages["programs"] != null)
-                        pagePrograms(context),
-                      if (globals.pages["targets"] != null)
-                        pageTargets(context),
-                      if (globals.pages["modulations"] != null)
-                        pageModulations(context),
-                      if (globals.pages["devices"] != null)
-                        pageDevices(context),
-                      if (globals.pages["settings"] != null)
-                        pageSettings(context),
-                    ])),
-          ])),
-      ...ifWindow(context, "program"),
-      ...ifWindow(context, "oscillator"),
-      ...ifWindow(context, "angle"),
-      ...ifWindow(context, "enviroment"),
-      ...ifWindow(context, "modulation"),
-      ...ifWindow(context, "multi"),
-      ...ifWindow(context, "target"),
-    ],
+  return SafeArea(
+    child: Stack(
+      children: [
+        Column(children: [
+          Padding(
+              padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
+              child: frequencySection(context)),
+          Padding(
+              padding: EdgeInsets.only(bottom: 20.0),
+              child: PlayButton(onPlayingChange: globals.play)),
+          Expanded(
+            child: PageView(
+                scrollDirection: Axis.horizontal,
+                controller: globals.pageController,
+                onPageChanged: (int page) {
+                  globals.setState(() {
+                    globals.selectedPage = page;
+                  });
+                },
+                children: [
+                  if (globals.pages["programs"] != null) pagePrograms(context),
+                  if (globals.pages["targets"] != null) pageTargets(context),
+                  if (globals.pages["modulations"] != null)
+                    pageModulations(context),
+                  if (globals.pages["devices"] != null) pageDevices(context),
+                  if (globals.pages["settings"] != null) pageSettings(context),
+                ]),
+          )
+        ]),
+        ...ifWindow(context, "program"),
+        ...ifWindow(context, "oscillator"),
+        ...ifWindow(context, "angle"),
+        ...ifWindow(context, "enviroment"),
+        ...ifWindow(context, "modulation"),
+        ...ifWindow(context, "multi"),
+        ...ifWindow(context, "target"),
+      ],
+    ),
   );
 }
 
