@@ -1,1 +1,1 @@
-current.dart.dev
+current.dart.lite

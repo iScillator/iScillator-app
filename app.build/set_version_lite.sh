@@ -1,7 +1,7 @@
 VERSION="lite"
 cd ..
 cd app
-../build/set_version.sh $VERSION
+../app.build/set_version.sh $VERSION
 
 cd ..
-cd build
+cd app.build
