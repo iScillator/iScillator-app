@@ -4,7 +4,7 @@ cd ..
 cd app
 
 #flutter pub get
-flutter run ios
+#flutter run ios
 flutter run
 
 cd ios
