@@ -7,5 +7,5 @@ cd app
 #flutter run ios
 flutter run
 
-cd ios
-pod install
+#cd ios
+#pod install

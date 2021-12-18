@@ -33,8 +33,8 @@ SPEC CHECKSUMS:
   AudioKit: 57cc61d708f085763a031e5c3f87adae21dc4b59
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   shared_preferences: 5033afbb22d372e15aff8ff766df9021b845f273
-  sound_generator: 6e86ec2b5e14a1e0b7ca5ae4a58472e1e80afe7a
+  sound_generator: f6c728ddbb8fd8166271b7708b0400c6c1bbafd4
 
-PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
+PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
 
 COCOAPODS: 1.11.2
