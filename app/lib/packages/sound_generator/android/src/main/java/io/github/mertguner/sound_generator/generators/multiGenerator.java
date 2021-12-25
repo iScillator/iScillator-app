@@ -415,14 +415,14 @@ public class multiGenerator extends baseGenerator {
 
     public int getValuePosInt(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
         double y=getValuePosDouble(xp, sampleRate, position, bufferSamplesSize, channel);
-        return (int)(y*Int.MAX_VALUE);
+        return (int)(y*Integer.MAX_VALUE);
     }
 
     public float getValuePosFloat(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
         //!!! Возможно просто стоит перейти на 32 Bit
         //!!! Важно. Float возможно не самое лучшее решение, т.к. у основной гармоники наибольшая точность, у остальных пострадает. Пока не ясно...
         double y=getValuePosDouble(xp, sampleRate, position, bufferSamplesSize, channel);
-        return (float)(y*Short.MAX_VALUE);
+        return (float)y;
     }
 
     public double getValuePosDouble(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {

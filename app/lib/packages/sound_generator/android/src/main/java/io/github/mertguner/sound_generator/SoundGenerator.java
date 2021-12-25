@@ -6,6 +6,8 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.os.Build;
 
+import java.nio.ByteBuffer;
+
 import io.github.mertguner.sound_generator.generators.sawtoothGenerator;
 import io.github.mertguner.sound_generator.generators.signalDataGenerator;
 import io.github.mertguner.sound_generator.generators.sinusoidalGenerator;
@@ -187,7 +189,11 @@ public class SoundGenerator {
                 audioTrack.setPlaybackHeadPosition(0);
                 audioTrack.play();
                 while (isPlaying) {
-                    audioTrack.write(generator.getData(position), 0, minSamplesSize);
+                    ByteBuffer bb = ByteBuffer.wrap(generator.getDataFloat(position));
+                    //byte[]raw=read(generator.getDataInt(position));
+                    audioTrack.write(bb, 0, minSamplesSize);
+                    //audioTrack.write(generator.getDataFloat(position), 0, minSamplesSize);
+                    //audioTrack.write(generator.getData(position), 0, minSamplesSize);
                     position++;
                 }
             }

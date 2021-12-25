@@ -242,7 +242,8 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     isPlaying = false;
 
-    SoundGenerator.init(sampleRate, 1, 2);
+    SoundGenerator.init(sampleRate);
+    //SoundGenerator.init(sampleRate, 1, 2);
 
     SoundGenerator.onIsPlayingChanged.listen((value) {
       setState(() {

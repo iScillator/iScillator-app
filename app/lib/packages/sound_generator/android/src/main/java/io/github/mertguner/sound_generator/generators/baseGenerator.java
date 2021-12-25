@@ -16,6 +16,13 @@ public abstract class baseGenerator {
     public short getValuePos(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
         return 0;
     }
+    public int getValuePosInt(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
+        return 0;
+    }
+    public float getValuePosFloat(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
+        return 0;
+    }
+
     public abstract short getValue(double phase, double period);
 
 }
