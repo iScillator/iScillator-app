@@ -415,7 +415,7 @@ public class multiGenerator extends baseGenerator {
 
     public int getValuePosInt(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
         double y=getValuePosDouble(xp, sampleRate, position, bufferSamplesSize, channel);
-        return (int)(y*Short.MAX_VALUE);
+        return (int)(y*Int.MAX_VALUE);
     }
 
     public float getValuePosFloat(int xp, int sampleRate, int position, int bufferSamplesSize, int channel) {
