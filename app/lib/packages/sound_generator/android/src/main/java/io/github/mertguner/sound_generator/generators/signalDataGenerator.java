@@ -17,8 +17,12 @@ public class signalDataGenerator {
     private float frequency = 50;
     private baseGenerator generator = new sinusoidalGenerator();
 
-    private short[] backgroundBuffer;
-    private short[] buffer;
+    //private short[] backgroundBuffer;
+    //private short[] buffer;
+    private int[] backgroundBuffer;
+    private int[] buffer;
+
+
     private List<Integer> oneCycleBuffer = new ArrayList<>();
     private int bufferSamplesSize;
     private float ph = 0;
@@ -70,15 +74,22 @@ public class signalDataGenerator {
 
     public signalDataGenerator(int bufferSamplesSize, int sampleRate, int channelMask, int encoding) {
         this.bufferSamplesSize = bufferSamplesSize;
-        backgroundBuffer = new short[bufferSamplesSize];
-        buffer = new short[bufferSamplesSize];
+        backgroundBuffer = new int[bufferSamplesSize];
+        buffer = new int[bufferSamplesSize];
+        //backgroundBuffer = new short[bufferSamplesSize];
+        //buffer = new short[bufferSamplesSize];
+
         setSampleRate(sampleRate);
         updateData(0);
         createOneCycleData();
     }
 
     private void updateData(int position) {
-        short y;
+        //short y;
+        short s;
+        int y;
+        double d;
+
 
         creatingNewData = true;
         if (this.multi) 
@@ -86,15 +97,18 @@ public class signalDataGenerator {
             //generator.getBuffer(backgroundBuffer,sampleRate,position,bufferSamplesSize);         
             
             for (int i = 0; i < bufferSamplesSize/2; i++) {
-                backgroundBuffer[i*2] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize/2,1);
-                backgroundBuffer[i*2+1] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize/2,2);
+                backgroundBuffer[i*2] = generator.getValuePosInt( i, sampleRate, position, bufferSamplesSize/2,1);
+                backgroundBuffer[i*2+1] = generator.getValuePosInt( i, sampleRate, position, bufferSamplesSize/2,2);
             }
 
         } else {
             for (int i = 0; i < bufferSamplesSize/2; i++) {
                 oldFrequency += ((frequency - oldFrequency) * smoothStep);
-                backgroundBuffer[i*2] = generator.getValue(ph, _2Pi);
-                backgroundBuffer[i*2+1] = generator.getValue(ph, _2Pi);
+                s=generator.getValue(ph, _2Pi);
+                d=1.0*s/Short.MAX_VALUE;
+                y=(int)(d*int.MAX_VALUE)
+                backgroundBuffer[i*2] = y;
+                backgroundBuffer[i*2+1] = y;
                 ph += (oldFrequency * phCoefficient);
 
                 //performance of this block is higher than ph %= _2Pi;
