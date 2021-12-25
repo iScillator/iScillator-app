@@ -11,7 +11,7 @@ fix=no modulation
 const multis = {
   "Fix x": 0, //TODO: change Fix to 0
   "Bil x,x√3": -3,
-  "Bil x,x√3 Binaural": -33,
+  /*"Bil x,x√3 Binaural": -33,*/
   "Bil x,x√2,2x": -2,
 
   /*

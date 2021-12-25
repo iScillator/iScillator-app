@@ -5,7 +5,7 @@ public class multiGenerator extends baseGenerator {
     private double[] tone_mod_hz;
 
     
-
+    private double angle=0;
     private double angle2=0;
     private double tone_pow=3;
     private int tone_steps=7;
@@ -295,33 +295,34 @@ public class multiGenerator extends baseGenerator {
     }
 
 
-    private void setAngle(double channel)
+    private void setAngle(double angle)
     {
+            this.angle=angle;
             angle2=0;
-            if (channel==60) {
+            if (angle==60) {
                 angle2=(Math.PI*2/6);
             }            
-            if (channel==90) {
+            if (angle==90) {
                 angle2=(Math.PI*2/4);
             }
-            if (channel==120) {
+            if (angle==120) {
                 angle2=(Math.PI*2/3);
             }
-            if (channel==180) {
+            if (angle==180) {
                 angle2=(Math.PI*2/2);
             }
-            if (channel==137) {
+            if (angle==137) {
                 angle2=2.39996322972865332; // TODO : 2*137.5/360 //Math.PI*(3-sqrt(5)
             }
             
     }
 
-    public void setParams(double target, double enviroment, double modulation, double multi, double channel, double audio) {
+    public void setParams(double target, double enviroment, double modulation, double multi, double angle, double audio) {
         android.util.Log.d("SoundHealer", "target="+target);
         android.util.Log.d("SoundHealer", "enviroment="+enviroment);
         android.util.Log.d("SoundHealer", "modulation="+modulation);
         android.util.Log.d("SoundHealer", "multi="+multi);
-        android.util.Log.d("SoundHealer", "channel="+channel);
+        android.util.Log.d("SoundHealer", "angle="+angle);
         android.util.Log.d("SoundHealer", "audio="+audio);
 
         this.audio=(int)audio;
@@ -349,7 +350,7 @@ public class multiGenerator extends baseGenerator {
 
 
 
-        setAngle(channel);
+        setAngle(angle);
 
         if (multi>=0)
         {
@@ -441,11 +442,16 @@ public class multiGenerator extends baseGenerator {
 
 
 
-            if ((this.multi==-33)&&(channel==2)/*||angle=1*/) 
+            if (/*(this.multi==-33)&&*/(channel==2)&&(angle==1)) 
             {
                 t2=((multi_hz[step]+3)*x/sampleRate)*Math.PI*2;
             }
-            
+            if (/*(this.multi==-33)&&*/(channel==2)&&(angle==2)) 
+            {
+                t1=((multi_mod_hz[step]+3)*x/sampleRate)*Math.PI*2;
+            }
+
+
             if(channel==2)
             {
                 t1=t1+angle2;

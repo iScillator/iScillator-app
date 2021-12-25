@@ -18,6 +18,8 @@ A new Flutter plugin.
   s.dependency 'Flutter'
   # TODO: We actually require >=4.11.1 and <5
   s.dependency 'AudioKit', '~> 4.11.1'
+  # pod 'YourCustomPod', :path => 'relative/path/...'
+
   s.static_framework = true
   s.platform = :ios, '10.0'
 
