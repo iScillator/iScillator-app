@@ -88,7 +88,7 @@ Widget myBottomNavigationBar(BuildContext context) {
           label: AppLocalizations.of(context)!.d3d,
           backgroundColor: Colors.purple,
         ),
-      if (globals.pages["imaks"] != null)
+      if (globals.pages["imask"] != null)
         BottomNavigationBarItem(
           icon: Icon(Icons.masks),
           label: AppLocalizations.of(context)!.imask,
