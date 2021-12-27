@@ -49,14 +49,25 @@ Widget mainBody(BuildContext context) {
                       });
                     },
                     children: [
+                      if (globals.pages["home"] != null)
+                        pageText(context, "Home"),
                       if (globals.pages["programs"] != null)
                         pagePrograms(context),
+                      if (globals.pages["mantras"] != null)
+                        pageText(context, "Mantras"),
+                      if (globals.pages["af"] != null)
+                        pageText(context, "Audio Frequencies"),
+                      if (globals.pages["rf"] != null)
+                        pageText(context, "Radio Frequencies"),
                       if (globals.pages["targets"] != null)
                         pageTargets(context),
                       if (globals.pages["modulations"] != null)
                         pageModulations(context),
                       if (globals.pages["devices"] != null)
                         pageDevices(context),
+                      if (globals.pages["d3d"] != null) pageText(context, "3D"),
+                      if (globals.pages["imask"] != null)
+                        pageText(context, "iMask"),
                       if (globals.pages["settings"] != null)
                         pageSettings(context),
                     ])),

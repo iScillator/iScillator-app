@@ -22,8 +22,7 @@ class MyApp extends StatelessWidget {
     globals.t = AppLocalizations.of(context);
     return MaterialApp(
       home: MainScreen(),
-      debugShowCheckedModeBanner:
-          false, //Чтобы не было бейджика debug при разработке
+      debugShowCheckedModeBanner: false, //Чтобы не было бейджика debug при разработке
       /* Вручную прописанную локализацию заменяют 2 строчки ниже
         localizationsDelegates: [
           AppLocalizations.delegate,

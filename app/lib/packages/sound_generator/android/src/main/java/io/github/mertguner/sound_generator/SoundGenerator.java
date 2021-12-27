@@ -30,6 +30,8 @@ public class SoundGenerator {
     private WaveTypes waveType = WaveTypes.SINUSOIDAL;
     private float rightVolume = 1, leftVolume = 1;
 
+    
+
     public void setAutoUpdateOneCycleSample(boolean autoUpdateOneCycleSample) {
         if (generator != null)
             generator.setAutoUpdateOneCycleSample(autoUpdateOneCycleSample);
@@ -107,12 +109,14 @@ public class SoundGenerator {
     public boolean init(int sampleRate ) {
         //return init2(sampleRate,4,2);
         //return init2(sampleRate,AudioFormat.CHANNEL_OUT_MONO,2);
-        //return init2(sampleRate,AudioFormat.CHANNEL_OUT_STEREO,2);
-        return init2(sampleRate,AudioFormat.CHANNEL_OUT_STEREO,22);
+        return init2(sampleRate,AudioFormat.CHANNEL_OUT_STEREO,2);
+        //return init2(sampleRate,AudioFormat.CHANNEL_OUT_STEREO,4);
+        //return init2(sampleRate,AudioFormat.CHANNEL_OUT_STEREO, 22);
     }
+
     public boolean init2(int sampleRate, int channelMask, int encoding) {
         try {
-
+            
         /*
 
         # sample rate
@@ -189,11 +193,12 @@ public class SoundGenerator {
                 audioTrack.setPlaybackHeadPosition(0);
                 audioTrack.play();
                 while (isPlaying) {
-                    ByteBuffer bb = ByteBuffer.wrap(generator.getDataFloat(position));
+                    //ByteBuffer bb = ByteBuffer.wrap(generator.getDataFloat(position));
                     //byte[]raw=read(generator.getDataInt(position));
-                    audioTrack.write(bb, 0, minSamplesSize);
+                    //audioTrack.write(bb, 0, minSamplesSize);
+                    //audioTrack.write(generator.getDataByte(position), 0, minSamplesSize);
                     //audioTrack.write(generator.getDataFloat(position), 0, minSamplesSize);
-                    //audioTrack.write(generator.getData(position), 0, minSamplesSize);
+                    audioTrack.write(generator.getData(position), 0, minSamplesSize);
                     position++;
                 }
             }

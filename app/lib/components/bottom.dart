@@ -1,6 +1,9 @@
 // https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
 
+// icons HERE:
 // https://api.flutter.dev/flutter/material/Icons-class.html
+// https://mui.com/components/material-icons/
+// https://icons8.com/icons/set/mantra
 
 //https://api.flutter.dev/flutter/cupertino/CupertinoTabBar-class.html
 
@@ -31,16 +34,34 @@ void _onItemTapped(int index) {
 Widget myBottomNavigationBar(BuildContext context) {
   return BottomNavigationBar(
     items: <BottomNavigationBarItem>[
-/*
-      BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        label: "Home", //AppLocalizations.of(context)!.home
-        backgroundColor: Colors.purple,
-      ),*/
+      if (globals.pages["home"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: AppLocalizations.of(context)!.home,
+          backgroundColor: Colors.purple,
+        ),
       if (globals.pages["programs"] != null)
         BottomNavigationBarItem(
           icon: Icon(Icons.playlist_play),
           label: AppLocalizations.of(context)!.programs,
+          backgroundColor: Colors.purple,
+        ),
+      if (globals.pages["mantras"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.self_improvement),
+          label: AppLocalizations.of(context)!.mantras,
+          backgroundColor: Colors.purple,
+        ),
+      if (globals.pages["af"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.volume_up),
+          label: AppLocalizations.of(context)!.af,
+          backgroundColor: Colors.purple,
+        ),
+      if (globals.pages["rf"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings_input_antenna),
+          label: AppLocalizations.of(context)!.rf,
           backgroundColor: Colors.purple,
         ),
       if (globals.pages["targets"] != null)
@@ -61,27 +82,18 @@ Widget myBottomNavigationBar(BuildContext context) {
           label: AppLocalizations.of(context)!.devices,
           backgroundColor: Colors.purple,
         ),
-
-/*
-      BottomNavigationBarItem(
-        icon: Icon(Icons.threed_rotation),
-        label: "3D", //AppLocalizations.of(context)!.d3d,
-        backgroundColor: Colors.purple,
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.masks),
-        label: "iMask", //AppLocalizations.of(context)!.imask,
-        backgroundColor: Colors.purple,
-      ),
-
-      BottomNavigationBarItem(
-        icon: "ॐ",
-        label: "Mantras", //AppLocalizations.of(context)!.imask,
-        backgroundColor: Colors.purple,
-      ),
-
-
-      */
+      if (globals.pages["d3d"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.threed_rotation),
+          label: AppLocalizations.of(context)!.d3d,
+          backgroundColor: Colors.purple,
+        ),
+      if (globals.pages["imaks"] != null)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.masks),
+          label: AppLocalizations.of(context)!.imask,
+          backgroundColor: Colors.purple,
+        ),
       if (globals.pages["settings"] != null)
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),

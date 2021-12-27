@@ -21,8 +21,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreen extends State<MainScreen> {
   void getUserSetting(item) async {
-    globals.userSettings[item] =
-        globals.prefs?.getInt(item) ?? globals.defaultSettings[item];
+    globals.userSettings[item] = globals.prefs?.getInt(item) ?? globals.defaultSettings[item];
   }
 
   void getUserSettings() async {
@@ -39,9 +38,7 @@ class _MainScreen extends State<MainScreen> {
   }
 
   void getSelectedItem(item) async {
-    globals.selected[item] = globals.select_rev[item].keys
-        .toList()
-        .indexOf(globals.userSettings[item]);
+    globals.selected[item] = globals.select_rev[item].keys.toList().indexOf(globals.userSettings[item]);
   }
 
   void getSelected() async {
@@ -85,8 +82,7 @@ class _MainScreen extends State<MainScreen> {
 
   void selectParam(item) {
     //if (globals.selected[item])
-    globals.userSettings[item] =
-        globals.select[item].values.toList()[globals.selected[item]];
+    globals.userSettings[item] = globals.select[item].values.toList()[globals.selected[item]];
 
     print(globals.userSettings);
   }
@@ -152,10 +148,10 @@ class _MainScreen extends State<MainScreen> {
 
     if (globals.isIOS) {
       SoundGenerator.init(48000);
-      SoundGenerator.setWaveType(
-          waveTypes.SINUSOIDAL); //Для iOS, пока не реализован multi
+      SoundGenerator.setWaveType(waveTypes.SINUSOIDAL); //Для iOS, пока не реализован multi
     } else {
-      SoundGenerator.init(96000);
+      SoundGenerator.init(48000);
+      //SoundGenerator.init(96000);
       //SoundGenerator.init(96000, 4, 2); //Позже добавить многоканальные
       SoundGenerator.setWaveType(waveTypes.MULTI);
       print("555");
@@ -172,13 +168,10 @@ class _MainScreen extends State<MainScreen> {
         body: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                  Color.fromRGBO(12, 232, 92, 1.0),
-                  Color.fromRGBO(7, 117, 229, 1.0),
-                ])),
+                gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [
+              Color.fromRGBO(12, 232, 92, 1.0),
+              Color.fromRGBO(7, 117, 229, 1.0),
+            ])),
             child: mainBody(context)));
   }
 }

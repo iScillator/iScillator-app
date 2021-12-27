@@ -14,10 +14,16 @@ const config_app_dev = {
   "title": "SoundHealer DEV",
   "defaults": defaults_app_dev,
   "pages": {
+    "home": [],
     "programs": ["program"],
+    "mantras": [],
+    "af": [],
+    "rf": [],
     "targets": ["target", "enviroment"],
     "modulations": ["multi", "modulation"],
     "devices": ["oscillator"],
+    "d3d": [],
+    "imask": [],
     "settings": ["angle"],
   },
   "select": {

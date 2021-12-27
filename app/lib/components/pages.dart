@@ -91,3 +91,16 @@ Widget pageSettings(BuildContext context) {
     ...ifSelect(context, "angle"),
   ]);
 }
+
+Widget pageText(BuildContext context, text) {
+  return /*SingleChildScrollView(
+      child:*/
+      Column(children: [
+    Divider(
+      indent: 60,
+      endIndent: 60,
+      color: Colors.white,
+    ),
+    Text(text),
+  ]);
+}

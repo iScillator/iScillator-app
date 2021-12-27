@@ -8,8 +8,12 @@
     "modulation":"Modulation",
     "devices":"Devices",
 
+    "af":"Audio",
+    "rf":"Radio",
+
     "d3d":"3D",
     "imask":"iMask",
+    "mantras":"Mantras",
     "settings": "Settings",
 
     "transtlations":"translations",

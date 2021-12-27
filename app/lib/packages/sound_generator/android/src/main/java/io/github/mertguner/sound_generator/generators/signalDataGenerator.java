@@ -17,14 +17,13 @@ public class signalDataGenerator {
     private float frequency = 50;
     private baseGenerator generator = new sinusoidalGenerator();
 
-    //private short[] backgroundBuffer;
-    //private short[] buffer;
-
+    private short[] backgroundBuffer;
     //private int[] backgroundBuffer;
-    //private int[] buffer;
+    //private float[] backgroundBuffer;
 
-    private float[] backgroundBuffer;
-    private float[] buffer;
+    private short[] buffer;
+    //private int[] buffer;
+    //private byte[] buffer;
 
 
     private List<Integer> oneCycleBuffer = new ArrayList<>();
@@ -78,14 +77,14 @@ public class signalDataGenerator {
 
     public signalDataGenerator(int bufferSamplesSize, int sampleRate, int channelMask, int encoding) {
         this.bufferSamplesSize = bufferSamplesSize;        
-        //backgroundBuffer = new short[bufferSamplesSize];
-        //buffer = new short[bufferSamplesSize];
-
+        backgroundBuffer = new short[bufferSamplesSize];
         //backgroundBuffer = new int[bufferSamplesSize];
-        //buffer = new int[bufferSamplesSize];
+        //backgroundBuffer = new float[bufferSamplesSize];
 
-        backgroundBuffer = new float[bufferSamplesSize];
-        buffer = new float[bufferSamplesSize];
+        buffer = new short[bufferSamplesSize];
+        //buffer = new int[bufferSamplesSize];
+        //buffer = new byte[bufferSamplesSize*4];
+        //buffer = new byte[bufferSamplesSize*2];
 
 
         setSampleRate(sampleRate);
@@ -106,8 +105,12 @@ public class signalDataGenerator {
             //generator.getBuffer(backgroundBuffer,sampleRate,position,bufferSamplesSize);         
             
             for (int i = 0; i < bufferSamplesSize/2; i++) {
-                backgroundBuffer[i*2] = generator.getValuePosFloat( i, sampleRate, position, bufferSamplesSize/2,1);
-                backgroundBuffer[i*2+1] = generator.getValuePosFloat( i, sampleRate, position, bufferSamplesSize/2,2);
+                //backgroundBuffer[i*2] = generator.getValuePosInt( i, sampleRate, position, bufferSamplesSize/2,1);
+                //backgroundBuffer[i*2+1] = generator.getValuePosInt( i, sampleRate, position, bufferSamplesSize/2,2);
+                //backgroundBuffer[i*2] = generator.getValuePosInt( i, sampleRate, position, bufferSamplesSize/2,1);
+                //backgroundBuffer[i*2+1] = generator.getValuePosInt( i, sampleRate, position, bufferSamplesSize/2,2);
+                backgroundBuffer[i*2] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize/2,1);
+                backgroundBuffer[i*2+1] = generator.getValuePos( i, sampleRate, position, bufferSamplesSize/2,2);
             }
 
         } else {
@@ -116,8 +119,13 @@ public class signalDataGenerator {
                 s=generator.getValue(ph, _2Pi);
                 d=1.0*s/Short.MAX_VALUE;
                 y=(int)(d*Integer.MAX_VALUE);
-                backgroundBuffer[i*2] = (float)d;
-                backgroundBuffer[i*2+1] = (float)d;
+                backgroundBuffer[i*2] = s;
+                backgroundBuffer[i*2+1] = s;
+
+                //backgroundBuffer[i*2] = (float)d;
+                //backgroundBuffer[i*2+1] = (float)d;
+                //backgroundBuffer[i*2] = y;
+                //backgroundBuffer[i*2+1] = y;
                 ph += (oldFrequency * phCoefficient);
 
                 //performance of this block is higher than ph %= _2Pi;
@@ -131,7 +139,7 @@ public class signalDataGenerator {
         creatingNewData = false;
     }
 
-/*
+
     public short[] getData(int position1) {
         final int position2=position1;
         if (!creatingNewData) {
@@ -146,10 +154,10 @@ public class signalDataGenerator {
             android.util.Log.d("SoundHealer", "creatingNewData, bad, send old buffer");
         }
         return this.buffer;
-    }*/
+    }
 
 /*
-    public int[] getDataInt(int position1) {
+    public byte[] getDataByte(int position1) {
         final int position2=position1;
         if (!creatingNewData) {
             System.arraycopy(backgroundBuffer, 0, buffer, 0, bufferSamplesSize);
@@ -164,7 +172,7 @@ public class signalDataGenerator {
         }
         return this.buffer;
     }
-*/
+
 
     public float[] getDataFloat(int position1) {
         final int position2=position1;
@@ -181,6 +189,7 @@ public class signalDataGenerator {
         }
         return this.buffer;
     }
+*/
 
     public void createOneCycleData() {
         createOneCycleData(false);
