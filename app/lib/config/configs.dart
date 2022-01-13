@@ -20,7 +20,7 @@ const config_app_vl = {
   "select": {
     "program": programs_app_dev,
     "target": targets_app_vl,
-    "modulation": modulations,
+    "modulation": modulations_vl,
   },
   "search": true,
 };
