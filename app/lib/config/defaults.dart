@@ -1,7 +1,17 @@
 const Map<String, dynamic> defaults_app_dev = {
   "angle": 0,
   "enviroment": 0,
-  "modulation": 0,
+  "modulation": 10025,
+  "multi": 0,
+  "target": 10000,
+  "program": 0,
+  "oscillator": 0
+};
+
+const Map<String, dynamic> defaults_app_vl = {
+  "angle": 0,
+  "enviroment": 0,
+  "modulation": 10025,
   "multi": 0,
   "target": 528,
   "program": 0,

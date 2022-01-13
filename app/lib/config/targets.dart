@@ -1,3 +1,11 @@
+const targets_app_vl = {
+  "10 kHz": 10000,
+  "Cancer_general_1": [10000, 5000, 3176, 2720, 2489, 2189, 2184, 2128, 2084, 2050, 2008, 880, 854, 800, 784, 728, 666, 524, 464, 333, 304],
+  "Coronavirus SARS": [9918, 9740, 4959, 2479.5, 2435, 760.9, 155],
+  "Herpes": [322, 476, 589, 664, 785, 822, 2950],
+  "Colit and Diarea": [10000, 5000, 1550, 727, 465, 440]
+};
+
 const targets_dev = {
   "[116]": 116,
   "Flower of Life [144,209,302]": [144, 209, 302],
@@ -54,17 +62,8 @@ const targets_rife_audio = {
 };
 
 const targets_app_lite = {...targets_chackras};
-const targets_app_pro = {
-  ...targets_chackras,
-  ...targets_rife_audio,
-  ...targets_rife_radio
-};
-const targets_app_dev = {
-  ...targets_dev,
-  ...targets_chackras,
-  ...targets_rife_audio,
-  ...targets_rife_radio
-};
+const targets_app_pro = {...targets_chackras, ...targets_rife_audio, ...targets_rife_radio};
+const targets_app_dev = {...targets_dev, ...targets_chackras, ...targets_rife_audio, ...targets_rife_radio};
 
 
 /*

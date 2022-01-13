@@ -10,6 +10,21 @@ import '/config/programs.dart';
 import '/config/angles.dart';
 import '/config/defaults.dart';
 
+const config_app_vl = {
+  "title": "SoundHealer Vladimir Edition",
+  "defaults": defaults_app_vl,
+  "pages": {
+    "targets": ["target"],
+    "modulations": ["modulation"],
+  },
+  "select": {
+    "program": programs_app_dev,
+    "target": targets_app_vl,
+    "modulation": modulations,
+  },
+  "search": true,
+};
+
 const config_app_dev = {
   "title": "SoundHealer DEV",
   "defaults": defaults_app_dev,
@@ -83,5 +98,6 @@ const Map<String, dynamic> configs = {
   "ios/com.soundhealer.pro": config_app_pro,
   "android/com.soundhealer.dev": config_app_dev,
   "ios/com.soundhealer.dev": config_app_dev,
-  "yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}
+  "android/com.soundhealer.vl": config_app_vl,
+  //"yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}
 };
