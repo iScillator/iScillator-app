@@ -26,6 +26,8 @@ public class multiGenerator extends baseGenerator {
     private double multi_amp_diff=0;
 
     private double multi;
+    private double modulation;
+    private double meandr;
 
     private int multi_steps=7;
 
@@ -327,6 +329,19 @@ public class multiGenerator extends baseGenerator {
 
         this.audio=(int)audio;
         this.multi=multi;
+        
+        this.modulation=modulation;
+
+        
+        if ((modulation>10000)&&(modulation<10099)) {
+            this.meandr=modulation-10000;
+            this.modulation=10000;
+
+            //TEMPORARY
+            this.modulation=0;
+        }
+
+        
 
         this.mod_frequency=modulation;
 
@@ -465,7 +480,21 @@ public class multiGenerator extends baseGenerator {
                 mod_amplitude=1.0-Math.sin(((t1/4) % (Math.PI/2)));                
             }
 
-            y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive
+            if(this.modulation!=0)
+            { 
+                y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive
+            } else {
+                y_step=Math.sin(t2); //no modulation
+            }
+
+
+            /*
+            if(this.modulation==10000) 
+            {
+                //y_step=multi_mod_hz[step]*x/sampleRate
+                //this.meandr;
+            }*/
+
 
             y_step=y_step*multi_amp[step];//(Math.pow(tone_pow,(tone_steps-1-step)));
 
