@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:sound_generator/sound_generator.dart';
 import 'package:sound_generator/waveTypes.dart';
+import 'package:volume_control/volume_control.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io' show Platform;
@@ -157,7 +158,10 @@ class _MainScreen extends State<MainScreen> {
       print("555");
     }
 
+    VolumeControl.setVolume(0.4);
     SoundGenerator.setVolume(1);
+
+
   }
 
   @override

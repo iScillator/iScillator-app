@@ -5,6 +5,14 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+//import 'package:package_info_plus/package_info_plus.dart';
+//PackageInfo packageInfo = await PackageInfo.fromPlatform();
+//String appName = packageInfo.appName;
+//String packageName = packageInfo.packageName;
+//String version = packageInfo.version;
+//String buildNumber = packageInfo.buildNumber;
+//globals.config["apptitle"]=globals.config["title"]+" (build 2)"
+
 import 'package:flutter/material.dart';
 
 import '/globals.dart' as globals;
@@ -13,7 +21,7 @@ import '/globals.dart' as globals;
 
 AppBar myAppBar(context) {
   return AppBar(
-    title: Text(globals.config["title"]),
+    title: Text(globals.config["title"]+" (3)"),
     actions: [
       // Navigate to the Search Screen
       if (globals.config["search"] == true)
