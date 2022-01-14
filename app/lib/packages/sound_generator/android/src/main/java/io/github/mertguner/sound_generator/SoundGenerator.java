@@ -106,6 +106,7 @@ public class SoundGenerator {
             generator.setGenerator(new multiGenerator(),true);
     }
 
+
     public boolean init(int sampleRate ) {
         //return init2(sampleRate,4,2);
         //return init2(sampleRate,AudioFormat.CHANNEL_OUT_MONO,2);
@@ -117,6 +118,7 @@ public class SoundGenerator {
     public boolean init2(int sampleRate, int channelMask, int encoding) {
         try {
             
+
         /*
 
         # sample rate
@@ -167,7 +169,7 @@ public class SoundGenerator {
                     encoding, //was AudioFormat.ENCODING_PCM_16BIT,
                     minSamplesSize,
                     AudioTrack.MODE_STREAM);
-
+            
             return true;
         }catch (Exception ex)
         {

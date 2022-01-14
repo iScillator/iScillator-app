@@ -31,3 +31,7 @@ flutter run
 //    self.onOneCycleDataHandler = BetterEventChannel(name: "io.github.mertguner.sound_generator/onOneCycleDataHandler", messenger: messenger as! FlutterBinaryMessenger)
 
 // ignore_for_file: import_of_legacy_library_into_null_safe
+
+
+# android compilation
+app/android/key.properties

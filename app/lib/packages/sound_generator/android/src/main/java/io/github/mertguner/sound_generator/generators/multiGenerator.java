@@ -337,8 +337,10 @@ public class multiGenerator extends baseGenerator {
             this.meandr=modulation-10000;
             this.modulation=10000;
 
+            android.util.Log.d("SoundHealer", "this.modulation="+this.modulation);
+            android.util.Log.d("SoundHealer", "this.meandr="+this.meandr);
             //TEMPORARY
-            this.modulation=0;
+            //this.modulation=0;
         }
 
         
@@ -480,11 +482,16 @@ public class multiGenerator extends baseGenerator {
                 mod_amplitude=1.0-Math.sin(((t1/4) % (Math.PI/2)));                
             }
 
-            if(this.modulation!=0)
+            if(this.modulation==10000)
+            {
+                t2= (multi_hz[step]*x/sampleRate) %1 ;
+                if (t2*100<=this.meandr) y_step=1; else y_step=0;
+            }
+            else if(this.modulation==0)
             { 
-                y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive
-            } else {
                 y_step=Math.sin(t2); //no modulation
+            } else {
+                y_step=Math.sin(t2)*((mod_amplitude+1)/2); //AM modulation, volume positive
             }
 
 
