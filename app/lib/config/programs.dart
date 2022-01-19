@@ -3,6 +3,13 @@ import '/config/targets.dart';
 
 //¹²³⁵₂₃₅
 
+const programs_app_vl = {
+  "Cancer_general_1":"{'autonext':'15','target':[10000, 5000, 3176, 2720, 2489, 2189, 2184, 2128, 2084, 2050, 2008, 880, 854, 800, 784, 728, 666, 524, 464, 333, 304]}",
+  "Coronavirus SARS":"{'autonext':'15','target':[9918, 9740, 4959, 2479.5, 2435, 760.9, 155]}",
+  "Herpes": "{'autonext':'15','target':[322, 476, 589, 664, 785, 822, 2950]}",
+  "Colit and Diarea":"{'autonext':'15','target':[10000, 5000, 1550, 727, 465, 440]}"
+};
+
 const programs_main = {
   "Chackras": {
     ...targets_chackras,

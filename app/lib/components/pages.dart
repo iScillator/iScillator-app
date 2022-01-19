@@ -40,7 +40,7 @@ Widget pagePrograms(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    //...ifSelect(context, "program"),
+    ...ifSelect(context, "program"),
   ]);
 }
 

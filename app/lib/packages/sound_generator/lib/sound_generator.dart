@@ -88,6 +88,12 @@ class SoundGenerator {
     return sampleRate;
   }
 
+  /// Get Frequency
+  static Future<double> get getFrequency async {
+    final double frequency = await _channel.invokeMethod('getFrequency');
+    return frequency;
+  }
+
   /// Set AutoUpdateOneCycleSample
   static void setAutoUpdateOneCycleSample(bool autoUpdateOneCycleSample) async {
     await _channel.invokeMethod(
@@ -97,9 +103,10 @@ class SoundGenerator {
   }
 
   /// Set Params
-  static void setParams(double target, double enviroment, double modulation,
+  static void setParams(String program, double target, double enviroment, double modulation,
       double multi, double channel, double audio) async {
     await _channel.invokeMethod("setParams", <String, dynamic>{
+      "program": program,
       "target": target,
       "enviroment": enviroment,
       "modulation": modulation,

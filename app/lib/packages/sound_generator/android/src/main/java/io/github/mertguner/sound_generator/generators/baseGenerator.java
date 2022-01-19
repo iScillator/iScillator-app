@@ -5,7 +5,11 @@ public abstract class baseGenerator {
     {
         return;
     }
-    public void setParams(double target, double enviroment, double modulation, double multi, double channel, double audio)
+    public double getFrequency()
+    {
+        return 0;
+    }
+    public void setParams(String program, double target, double enviroment, double modulation, double multi, double channel, double audio)
     {
         return;
     }

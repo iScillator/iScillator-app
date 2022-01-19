@@ -53,9 +53,9 @@ public class SoundGenerator {
             generator.createOneCycleData(true);
     }
 
-    public void setParams(double target, double enviroment, double modulation, double multi, double channel, double audio) {
+    public void setParams(String program,double target, double enviroment, double modulation, double multi, double channel, double audio) {
         if (generator != null)
-            generator.setParams(target, enviroment, modulation, multi, channel, audio);
+            generator.setParams(program, target, enviroment, modulation, multi, channel, audio);
     }
 
     public void setFrequency(float v) {
@@ -63,7 +63,7 @@ public class SoundGenerator {
             generator.setFrequency(v);
     }
 
-    public float getFrequency() {
+    public double getFrequency() {
         if (generator != null)
             return generator.getFrequency();
         return 0;

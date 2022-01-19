@@ -55,13 +55,14 @@ public class signalDataGenerator {
         createOneCycleData();
     }
 
-    public float getFrequency() {
+    public double getFrequency() {
+        if (this.multi==true) return this.generator.getFrequency();
         return frequency;
     }
     
-    public void setParams(double target, double enviroment, double modulation, double multi, double channel, double audio) {
+    public void setParams(String program, double target, double enviroment, double modulation, double multi, double channel, double audio) {
     
-        generator.setParams(target, enviroment, modulation, multi, channel, audio);
+        generator.setParams(program, target, enviroment, modulation, multi, channel, audio);
     }
 
     public void setFrequency(float frequency) {

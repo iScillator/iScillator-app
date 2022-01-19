@@ -1,6 +1,14 @@
 package io.github.mertguner.sound_generator.generators;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class multiGenerator extends baseGenerator {
+    private double target;
+    private double[] targets;
+    private int targets_count=0;
+
     private double[] tone_hz;
     private double[] tone_mod_hz;
 
@@ -36,6 +44,8 @@ public class multiGenerator extends baseGenerator {
     private double mod_frequency = 50.0/1024.0;
 
     private int audio=0;
+
+    private int autonext=0;
 
     public multiGenerator()
     {
@@ -319,7 +329,13 @@ public class multiGenerator extends baseGenerator {
             
     }
 
-    public void setParams(double target, double enviroment, double modulation, double multi, double angle, double audio) {
+
+    public double getFrequency() {
+        return this.target;
+    }
+
+    public void setParams(String program, double target, double enviroment, double modulation, double multi, double angle, double audio) {
+        android.util.Log.d("SoundHealer", "program="+program);
         android.util.Log.d("SoundHealer", "target="+target);
         android.util.Log.d("SoundHealer", "enviroment="+enviroment);
         android.util.Log.d("SoundHealer", "modulation="+modulation);
@@ -327,6 +343,30 @@ public class multiGenerator extends baseGenerator {
         android.util.Log.d("SoundHealer", "angle="+angle);
         android.util.Log.d("SoundHealer", "audio="+audio);
 
+        if (program!="") {
+            try {
+                JSONObject program_j = new JSONObject(program);
+                JSONArray target_a = program_j.getJSONArray("target");
+                targets_count=target_a.length();
+                targets = new double[target_a.length()];
+
+                for(int i=0;i < target_a.length();i++) {
+                    targets[i] = target_a.getDouble(i);
+                }
+
+                autonext=program_j.getInt("autonext");
+                //android.util.Log.d("SoundHealer", "target_d="+target_d);
+                android.util.Log.d("SoundHealer", "targets_count="+targets_count);
+                android.util.Log.d("SoundHealer", "autonext="+autonext);
+            } catch(Exception e)  {
+                android.util.Log.d("SoundHealer/e", e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            targets_count=0;
+        }
+
+        this.target=target;
         this.audio=(int)audio;
         this.multi=multi;
         
@@ -369,6 +409,8 @@ public class multiGenerator extends baseGenerator {
 
         setAngle(angle);
 
+        
+
         if (multi>=0)
         {
             multiHz(target, modulation, multi);
@@ -376,6 +418,9 @@ public class multiGenerator extends baseGenerator {
         {
             bilHz(target, modulation, multi);
         }
+
+
+
     }
 
     public void setFrequency(float frequency) {
@@ -449,6 +494,14 @@ public class multiGenerator extends baseGenerator {
 
         x=(position*bufferSamplesSize)+xp;
 
+        if (targets_count>0)
+        {
+            int num=((x/sampleRate)/autonext)%targets_count;
+            multi_hz[0]=targets[num];
+            //android.util.Log.d("SoundHealer", "replaced hz"+multi_hz[0]);
+            this.target=targets[num];
+            
+        }
 
         y=0;
 

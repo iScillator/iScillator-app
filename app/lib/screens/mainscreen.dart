@@ -6,6 +6,7 @@ import 'package:volume_control/volume_control.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io' show Platform;
+import 'dart:async';
 
 import '/globals.dart' as globals;
 
@@ -21,6 +22,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreen extends State<MainScreen> {
+  Timer? _timer;
+
   void getUserSetting(item) async {
     globals.userSettings[item] = globals.prefs?.getInt(item) ?? globals.defaultSettings[item];
   }
@@ -108,6 +111,7 @@ class _MainScreen extends State<MainScreen> {
     } else {
       SoundGenerator.setWaveType(waveTypes.MULTI);
       SoundGenerator.setParams(
+          globals.userSettings["program"],
           globals.userSettings["target"].toDouble(),
           globals.userSettings["enviroment"].toDouble(),
           globals.userSettings["modulation"].toDouble(),
@@ -115,7 +119,7 @@ class _MainScreen extends State<MainScreen> {
           globals.userSettings["angle"].toDouble(),
           globals.userSettings["oscillator"].toDouble());
 
-      print("123");
+      //print("123");
     }
 
     SoundGenerator.setFrequency(globals.frequency);
@@ -132,6 +136,27 @@ class _MainScreen extends State<MainScreen> {
         globals.frequency = 0;
       }
     });
+
+
+    
+
+
+      if (globals.isPlaying) {
+        _timer = Timer.periodic(Duration(seconds: 1), (timer) async{
+         double fr=await SoundGenerator.getFrequency;
+          globals.setState(() {
+            globals.frequency =  fr;
+          });
+        });
+      } else {
+        globals.setState(() {
+          _timer?.cancel();
+          _timer = null;
+          globals.frequency = 0;
+        });
+      }
+
+
   }
 
   @override
@@ -158,9 +183,16 @@ class _MainScreen extends State<MainScreen> {
       print("555");
     }
 
-    VolumeControl.setVolume(0.4);
+    VolumeControl.setVolume(1);
     SoundGenerator.setVolume(1);
 
+    /*
+    SoundGenerator.onFrequencyChanged.listen((value) {
+      globals.setState(() {
+        globals.frequency  = value;
+      });
+    });
+    */
 
   }
 

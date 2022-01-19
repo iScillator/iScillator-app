@@ -72,13 +72,14 @@ public class SoundGeneratorPlugin implements FlutterPlugin, MethodCallHandler {
       double frequency = call.argument("frequency");
       soundGenerator.setFrequency((float)frequency);
     }else if (call.method.equals("setParams")) {
+      String program = call.argument("program");
       double target = call.argument("target");
       double enviroment = call.argument("enviroment");
       double modulation = call.argument("modulation");
       double multi = call.argument("multi");
       double channel = call.argument("channel");
       double audio = call.argument("audio");
-      soundGenerator.setParams((double)target,(double)enviroment,(double)modulation,(double)multi,(double)channel,(double)audio);
+      soundGenerator.setParams((String)program,(double)target,(double)enviroment,(double)modulation,(double)multi,(double)channel,(double)audio);
     }else if (call.method.equals("setWaveform")) {
       String waveType = call.argument("waveType");
       soundGenerator.setWaveform(WaveTypes.valueOf(waveType));
@@ -90,6 +91,8 @@ public class SoundGeneratorPlugin implements FlutterPlugin, MethodCallHandler {
       soundGenerator.setVolume((float)volume);
     }else if (call.method.equals("getSampleRate")) {
       result.success(soundGenerator.getSampleRate());
+    }else if (call.method.equals("getFrequency")) {
+      result.success(soundGenerator.getFrequency());
     }else if (call.method.equals("refreshOneCycleData")) {
       soundGenerator.refreshOneCycleData();
     }else {
