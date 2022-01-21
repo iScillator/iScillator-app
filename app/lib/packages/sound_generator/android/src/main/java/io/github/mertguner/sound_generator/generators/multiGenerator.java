@@ -383,6 +383,15 @@ public class multiGenerator extends baseGenerator {
             //this.modulation=0;
         }
 
+        if ((modulation>20000)&&(modulation<20099)) {
+            this.meandr=modulation-20000;
+            this.modulation=20000;
+
+            android.util.Log.d("SoundHealer", "this.modulation="+this.modulation);
+            android.util.Log.d("SoundHealer", "this.meandr="+this.meandr);
+            //TEMPORARY
+            //this.modulation=0;
+        }
         
 
         this.mod_frequency=modulation;
@@ -539,6 +548,11 @@ public class multiGenerator extends baseGenerator {
             {
                 t2= (multi_hz[step]*x/sampleRate) %1 ;
                 if (t2*100<=this.meandr) y_step=1; else y_step=0;
+            }
+            else if(this.modulation==20000)
+            {
+                t2= (multi_hz[step]*x/sampleRate) %1 ;
+                if (t2*100<=this.meandr) y_step=1; else y_step=-1;
             }
             else if(this.modulation==0)
             { 
