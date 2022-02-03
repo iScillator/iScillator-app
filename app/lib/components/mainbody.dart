@@ -32,6 +32,8 @@ Widget mainBody(BuildContext context) {
       SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(children: [
+            if(globals.config["visible"]["description"]) Container(alignment: Alignment.centerRight,child:Text(globals.config["description"],textAlign: TextAlign.end)),
+            if(globals.config["visible"]["build"]) Container(alignment: Alignment.centerRight,child:Text(globals.config["build"],textAlign: TextAlign.end)),
             Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
                 child: frequencySection(context)),

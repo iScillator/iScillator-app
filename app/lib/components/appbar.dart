@@ -97,7 +97,7 @@ Widget SearchText(context) {
 
 Widget myTitle()
 {
-  return Text(globals.config["title"]+" (3)");
+  return Text(globals.config["title"]);
 }
 
 
