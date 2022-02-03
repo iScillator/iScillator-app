@@ -11,7 +11,7 @@ import '/config/angles.dart';
 import '/config/defaults.dart';
 
 const config_app_vl = {
-  "title": "SoundHealer Vladimir Edition (8)",
+  "title": "SoundHealer Vladimir Edition (9)",
   "defaults": defaults_app_vl,
   "pages": {
     "programs": ["program"],
@@ -23,7 +23,7 @@ const config_app_vl = {
     "target": targets_app_vl,
     "modulation": modulations_vl,
   },
-  "search": false,
+  "search": true,
 };
 
 const config_app_dev = {

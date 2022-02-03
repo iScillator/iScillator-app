@@ -19,50 +19,102 @@ import '/globals.dart' as globals;
 //PreferredSizeWidget
 //StatelessWidget
 
-AppBar myAppBar(context) {
-  return AppBar(
-    title: Text(globals.config["title"]+" (3)"),
-    actions: [
-      // Navigate to the Search Screen
-      if (globals.config["search"] == true)
-        IconButton(
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => SearchPage())),
-            icon: Icon(Icons.search))
-    ],
-  );
+onSearchTextChanged(String text) async {
+    globals.setState(() {
+      globals.SearchText = text;
+
+      var fp = [];
+
+  globals.select["program"].keys.toList().forEach((pr) {
+    if (pr.toLowerCase()
+        .contains(globals.SearchText.toLowerCase()))
+      fp.add(pr);
+  });
+
+
+
+      globals.filteredItems=fp; //globals.select["program"].keys.toList();
+      print(fp);
+    });
+
 }
 
-// Search Page
-class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+Widget SearchText(context) {
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          // The search area here
-          title: Container(
+    //controller.text.isNotEmpty
+
+
+ return Container(
         width: double.infinity,
         height: 40,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(5)),
         child: Center(
           child: TextField(
+            controller: _controller,
+            onChanged: onSearchTextChanged,
             decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search),
                 suffixIcon: IconButton(
                   icon: Icon(Icons.clear),
-                  onPressed: () {
-                    /* Clear the search field */
-                  },
+                  onPressed: _controller.clear /*{
+                    print(this.);                    
+                  }*/,
                 ),
                 hintText:
                     AppLocalizations.of(context)!.searchHint /*'Search...'*/,
                 border: InputBorder.none),
           ),
         ),
-      )),
+      );
+
+      //child: Text("MyText", style: TextStyle(fontSize: 20))
+}
+
+Widget myTitle()
+{
+  return Text(globals.config["title"]+" (3)");
+}
+
+
+
+
+AppBar myAppBar(context) {
+  return AppBar(
+    title: Column(children: [
+      if (globals.isSearchShown != true) myTitle(),
+      if (globals.isSearchShown == true) SearchText(context)
+    ]),
+    actions: [
+      // Navigate to the Search Screen
+      if (globals.config["search"] == true)
+        IconButton(
+            onPressed: () {globals.setState(() {globals.isSearchShown = !globals.isSearchShown;});},
+            icon: Icon(Icons.search))
+    ],
+  );
+}
+/*Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => SearchPage()))*/
+
+var _controller = TextEditingController();
+
+/*
+// Search Page
+class SearchPage extends StatelessWidget {
+  const SearchPage({Key? key}) : super(key: key);
+
+
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          // The search area here
+          title: 
     );
   }
 }
+*/

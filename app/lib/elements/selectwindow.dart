@@ -12,6 +12,7 @@ class SelectWindow extends StatelessWidget {
   }) : super(key: key);
 
   final item;
+  
   //final items;
   //final Function selectItem;
   //final int selectedItem;
@@ -29,8 +30,12 @@ class SelectWindow extends StatelessWidget {
     });
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
+    
+
     return Container(
         alignment: Alignment.center,
         padding: EdgeInsets.only(top: 30, bottom: 30),
@@ -62,13 +67,13 @@ class SelectWindow extends StatelessWidget {
                           ))),
                   Expanded(
                       child: ListView.builder(
-                          itemCount: globals.select[item].keys.toList().length,
+                          itemCount: globals.filteredItems.length,
                           itemBuilder: (context, index) {
                             return Column(children: [
                               ListTile(
                                 title: Align(
                                     child: Text(
-                                      globals.select[item].keys.toList()[index],
+                                      globals.filteredItems[index],
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 23.0),
                                     ),
