@@ -19,25 +19,50 @@ import '/globals.dart' as globals;
 //PreferredSizeWidget
 //StatelessWidget
 
+filterItems(String Text,String Item) async {
+    var fp = [];
+    var src=globals.select[Item];
+    src= (src == null ? []:src.keys.toList());
+
+    src.forEach((pr) {
+      if (pr.toLowerCase()
+          .contains(globals.SearchText.toLowerCase()))
+        fp.add(pr);
+    });
+
+    globals.filteredItems[Item]=fp; //globals.select["program"].keys.toList();
+    //print(fp);
+}
+
 onSearchTextChanged(String text) async {
     globals.setState(() {
       globals.SearchText = text;
-
-      var fp = [];
-
-  globals.select["program"].keys.toList().forEach((pr) {
-    if (pr.toLowerCase()
-        .contains(globals.SearchText.toLowerCase()))
-      fp.add(pr);
-  });
-
-
-
-      globals.filteredItems=fp; //globals.select["program"].keys.toList();
-      print(fp);
+      filterItems(text,"angle");
+      filterItems(text,"oscillator");
+      filterItems(text,"program");
+      filterItems(text,"enviroment");
+      filterItems(text,"modulation");
+      filterItems(text,"multi");
+      filterItems(text,"target");
     });
 
 }
+
+onClear() {  
+  _controller.clear();
+   globals.setState(() {
+      var text="";
+      globals.SearchText = "";
+      filterItems(text,"angle");
+      filterItems(text,"oscillator");
+      filterItems(text,"program");
+      filterItems(text,"enviroment");
+      filterItems(text,"modulation");
+      filterItems(text,"multi");
+      filterItems(text,"target");
+   });
+}
+
 
 Widget SearchText(context) {
 
@@ -57,9 +82,8 @@ Widget SearchText(context) {
                 prefixIcon: Icon(Icons.search),
                 suffixIcon: IconButton(
                   icon: Icon(Icons.clear),
-                  onPressed: _controller.clear /*{
-                    print(this.);                    
-                  }*/,
+                  onPressed: onClear,
+                  //onPressed: _controller.clear;
                 ),
                 hintText:
                     AppLocalizations.of(context)!.searchHint /*'Search...'*/,
@@ -85,13 +109,14 @@ AppBar myAppBar(context) {
       if (globals.isSearchShown != true) myTitle(),
       if (globals.isSearchShown == true) SearchText(context)
     ]),
+    /*
     actions: [
       // Navigate to the Search Screen
       if (globals.config["search"] == true)
         IconButton(
             onPressed: () {globals.setState(() {globals.isSearchShown = !globals.isSearchShown;});},
             icon: Icon(Icons.search))
-    ],
+    ],*/
   );
 }
 /*Navigator.of(context)

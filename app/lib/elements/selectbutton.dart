@@ -51,6 +51,10 @@ class _SelectButton extends State<SelectButton> {
     print(widget.item);
     globals.setState(() {
       globals.isWindowShown[widget.item] = true;
+
+      globals.isSearchShown =true;
+      print("222");
+
       //print(globals.isWindowShown);
     });
   }

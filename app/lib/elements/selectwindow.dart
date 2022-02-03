@@ -19,8 +19,12 @@ class SelectWindow extends StatelessWidget {
 
   void selectItem(int num) {
     globals.setState(() {
+      globals.isSearchShown =false;
+      print("111");
+      
       if (num == -1) {
         globals.isWindowShown[item] = false;
+
       } else {
         globals.selected[item] = num;
         globals.isWindowShown[item] = false;
@@ -67,13 +71,13 @@ class SelectWindow extends StatelessWidget {
                           ))),
                   Expanded(
                       child: ListView.builder(
-                          itemCount: globals.filteredItems.length,
+                          itemCount: globals.filteredItems[item].length,
                           itemBuilder: (context, index) {
                             return Column(children: [
                               ListTile(
                                 title: Align(
                                     child: Text(
-                                      globals.filteredItems[index],
+                                      globals.filteredItems[item][index],
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 23.0),
                                     ),

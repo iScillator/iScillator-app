@@ -102,5 +102,13 @@ final isWindowShown = {
 
 var isSearchShown=false;
 var SearchText="";
-//var filteredItems;
-var filteredItems=select["program"].keys.toList();
+
+var filteredItems={
+  "angle":(select["angle"] != null ? select["angle"].keys.toList():[]),
+  "oscillator":(select["oscillator"] != null ? select["oscillator"].keys.toList():[]),
+  "program":(select["program"] != null ? select["program"].keys.toList():[]),
+  "enviroment":(select["enviroment"] != null ? select["enviroment"].keys.toList():[]),
+  "modulation":(select["modulation"] != null ? select["modulation"].keys.toList():[]),
+  "multi":(select["multi"] != null ? select["multi"].keys.toList():[]),
+  "target":(select["target"] != null ? select["target"].keys.toList():[])
+};
