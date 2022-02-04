@@ -26,7 +26,7 @@ class SelectWindow extends StatelessWidget {
         globals.isWindowShown[item] = false;
 
       } else {
-        globals.selected[item] = globals.filteredItems[item][num];
+        globals.selected[item] = globals.filteredItems[item].keys.toList()[num];
         globals.isWindowShown[item] = false;
 
         globals.setParams();
