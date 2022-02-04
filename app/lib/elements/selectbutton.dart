@@ -53,7 +53,7 @@ class _SelectButton extends State<SelectButton> {
       globals.isWindowShown[widget.item] = true;
 
       globals.isSearchShown =true;
-      print("222");
+      //print("222");
 
       //print(globals.isWindowShown);
     });
@@ -70,10 +70,22 @@ class _SelectButton extends State<SelectButton> {
           child: Row(
             children: [
               Expanded(
-                  child: Text(l108(context, widget.buttonName),
+                  child:
+              Column(children: [
+               Text(widget.buttonName,
                       style: TextStyle(
-                          fontSize: 19.0,
-                          color: _highlight ? Colors.white70 : Colors.white))),
+                          fontSize: 17.0/*19 */,
+                          color: _highlight ? Colors.white70 : Colors.white)),
+               if(globals.l108t(widget.buttonName)!="") Text(globals.l108t(widget.buttonName),
+                      style: TextStyle(
+                          fontSize: 12.0,
+                          color: _highlight ? Colors.white54 : Colors.white70))
+                          
+                          ]
+                          
+                          )
+                          
+                          ),
               Icon(
                 Icons.arrow_forward_ios_rounded,
                 color: _highlight ? Colors.white70 : Colors.white,

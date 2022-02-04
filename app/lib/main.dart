@@ -19,7 +19,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    globals.t = AppLocalizations.of(context);
+    globals.mainContext=context;
+    globals.AppLocalizations = AppLocalizations.of(context);
+    
+
     return MaterialApp(
       home: MainScreen(),
       debugShowCheckedModeBanner: false, //Чтобы не было бейджика debug при разработке

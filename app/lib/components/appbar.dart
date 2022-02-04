@@ -21,12 +21,13 @@ import '/globals.dart' as globals;
 
 filterItems(String Text,String Item) async {
     var fp = [];
+    var pr2;
     var src=globals.select[Item];
     src= (src == null ? []:src.keys.toList());
 
     src.forEach((pr) {
-      if (pr.toLowerCase()
-          .contains(globals.SearchText.toLowerCase()))
+      pr2=globals.l108t(pr);
+      if ((pr.toLowerCase().contains(globals.SearchText.toLowerCase()))||(pr2.toLowerCase().contains(globals.SearchText.toLowerCase())))
         fp.add(pr);
     });
 

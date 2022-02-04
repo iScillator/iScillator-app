@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '/globals.dart' as globals;
+import '/modules/l108.dart';
 
 class SelectWindow extends StatelessWidget {
   const SelectWindow({
@@ -20,21 +20,21 @@ class SelectWindow extends StatelessWidget {
   void selectItem(int num) {
     globals.setState(() {
       globals.isSearchShown =false;
-      print("111");
-      
+      //print("111");
+
       if (num == -1) {
         globals.isWindowShown[item] = false;
 
       } else {
-        globals.selected[item] = num;
+        globals.selected[item] = globals.filteredItems[item][num];
         globals.isWindowShown[item] = false;
-        globals.selectParam(item);
+
         globals.setParams();
       }
     });
   }
 
-  
+
 
   @override
   Widget build(BuildContext context) {
@@ -76,14 +76,24 @@ class SelectWindow extends StatelessWidget {
                             return Column(children: [
                               ListTile(
                                 title: Align(
-                                    child: Text(
-                                      globals.filteredItems[item][index],
+                                    child: 
+                                    Column(children: [
+                                    Text(
+                                      globals.filteredItems[item].keys.toList()[index],
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 23.0),
+                                          color: Colors.white, fontSize: 17.0),
                                     ),
-                                    alignment: globals.selected[item] == index
+                                    if(globals.l108t(globals.filteredItems[item][index])!="") Text(
+                                      globals.l108t(globals.filteredItems[item][index]),
+                                      style: TextStyle(
+                                          color: Colors.white70, fontSize: 12.0),
+                                    )
+                                    ])
+                                    ,
+                                    alignment: globals.selected[item] == globals.filteredItems[item][index]
                                         ? Alignment(-0.3, 0)
                                         : Alignment(0, 0)),
+                                        
                                 onTap: () {
                                   selectItem(index);
                                 },

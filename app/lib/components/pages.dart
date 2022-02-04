@@ -17,12 +17,16 @@ List<Widget> ifSelect(BuildContext context, item) {
     if (globals.select[item] != null)
       SelectButton(
         item: item,
-        buttonName: (globals.selected[item] != -1
-                ? globals.select[item].keys.toList()[globals.selected[item]]
-                : "-") ??
-            "-" /*items*/,
+        buttonName: globals.selected[item]??""
+        /*
+        (globals.selected[item] != ""
+                ? globals.selected[item]
+                : "-") */
+             /*items*/,
         //tapMethod: globals.showWindow,
       ),
+      //globals.userSettings
+      //globals.select_rev["program"]
     if (globals.select[item] != null)
       Divider(
         indent: 60,

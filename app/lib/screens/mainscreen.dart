@@ -25,7 +25,7 @@ class _MainScreen extends State<MainScreen> {
   Timer? _timer;
 
   void getUserSetting(item) async {
-    globals.userSettings[item] = globals.prefs?.getInt(item) ?? globals.defaultSettings[item];
+    globals.selected[item] = globals.prefs?.getString(item) ?? globals.defaultSettings[item];
   }
 
   void getUserSettings() async {
@@ -41,83 +41,54 @@ class _MainScreen extends State<MainScreen> {
     getUserSetting("oscillator");
   }
 
-  void getSelectedItem(item) async {
-    globals.selected[item] = globals.select_rev[item].keys.toList().indexOf(globals.userSettings[item]);
-  }
-
-  void getSelected() async {
-    getSelectedItem("oscillator");
-    getSelectedItem("enviroment");
-    getSelectedItem("modulation");
-    getSelectedItem("multi");
-    getSelectedItem("target");
-    getSelectedItem("angle");
-    //print(globals.selected);
-  }
 
   void saveUserSettingInt(item) async {
-    await globals.prefs?.setInt(item, globals.userSettings[item]);
+    await globals.prefs?.setInt(item, globals.selected[item]);
   }
 
   void saveUserSettingDouble(item) async {
-    await globals.prefs?.setDouble(item, globals.userSettings[item]);
+    await globals.prefs?.setDouble(item, globals.selected[item]);
+  }
+
+  void saveUserSettingString(item) async {
+    await globals.prefs?.setString(item, globals.selected[item]);
   }
 
   void saveUserSettings() async {
     if (globals.prefs == null) {
       globals.prefs = await SharedPreferences.getInstance();
     }
-    saveUserSettingInt("angle");
-    saveUserSettingInt("modulation");
-    saveUserSettingInt("multi");
-    saveUserSettingInt("program");
-    saveUserSettingInt("oscillator");
-    saveUserSettingDouble("target");
-    saveUserSettingDouble("enviroment");
+    saveUserSettingString("angle");
+    saveUserSettingString("modulation");
+    saveUserSettingString("multi");
+    saveUserSettingString("program");
+    saveUserSettingString("oscillator");
+    saveUserSettingString("target");
+    saveUserSettingString("enviroment");
   }
 
-/*
-  void setParam(item) {
-    if (globals.selected[item])
-      globals.userSettings[item] =
-          globals.select[item].values.toList()[globals.selected[item]];
-  }
-*/
 
-  void selectParam(item) {
-    //if (globals.selected[item])
-    globals.userSettings[item] = globals.select[item].values.toList()[globals.selected[item]];
 
-    print(globals.userSettings);
-  }
 
   void setParams() {
-    /*
-    setParam("target");
-    setParam("enviroment");
-    setParam("modulation");
-    setParam("multi");
-    setParam("oscillator");
-    setParam("angle");
-    */
-    print(globals.userSettings);
+    print(globals.selected);
 
-    globals.frequency = globals.userSettings["target"].toDouble();
+    globals.frequency = globals.select["target"][globals.selected["target"]].toDouble();
 
-    print(globals.isIOS);
+    //print(globals.isIOS);
 
     if (globals.isIOS) {
       SoundGenerator.setWaveType(waveTypes.SINUSOIDAL);
     } else {
       SoundGenerator.setWaveType(waveTypes.MULTI);
       SoundGenerator.setParams(
-          globals.userSettings["program"],
-          globals.userSettings["target"].toDouble(),
-          globals.userSettings["enviroment"].toDouble(),
-          globals.userSettings["modulation"].toDouble(),
-          globals.userSettings["multi"].toDouble(),
-          globals.userSettings["angle"].toDouble(),
-          globals.userSettings["oscillator"].toDouble());
+          globals.select["program"][globals.selected["program"]],
+          globals.select["target"][globals.selected["target"]].toDouble(),
+          globals.select["enviroment"][globals.selected["enviroment"]].toDouble(),
+          globals.select["modulation"][globals.selected["modulation"]].toDouble(),
+          globals.select["multi"][globals.selected["multi"]].toDouble(),
+          globals.select["angle"][globals.selected["angle"]].toDouble(),
+          globals.select["oscillator"][globals.selected["oscillator"]].toDouble());
 
       //print("123");
     }
@@ -166,11 +137,10 @@ class _MainScreen extends State<MainScreen> {
     // TODO: FIX:
     globals.setState = setState;
     globals.setParams = setParams;
-    globals.selectParam = selectParam;
+  
     globals.play = play;
 
     getUserSettings();
-    getSelected();
 
     if (globals.isIOS) {
       SoundGenerator.init(48000);

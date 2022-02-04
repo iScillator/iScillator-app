@@ -6,22 +6,30 @@ import 'dart:io' show Platform;
 import '/models/user_settings.dart';
 import '/config/configs.dart';
 import '/config/current/current.dart';
+import '/modules/l108.dart' as l108;
 
 var play;
 var setState;
 var setParams;
-var selectParam;
 
 var pageController;
 var showWindow;
-var t;
+
+//var t;
+
+const l108o=l108.l108o;
+const l108t=l108.l108t;
+
+var mainContext;
+var AppLocalizations;
+
 
 SharedPreferences? prefs;
 
 final Map<String, dynamic> defaults = config["defaults"];
 final defaultSettings = defaults;
 
-final Map<String, dynamic> userSettings = {
+final Map<String, dynamic> selected = {
   "program": defaultSettings["program"],
   "angle": defaultSettings["angle"],
   "enviroment": defaultSettings["enviroment"],
@@ -70,26 +78,6 @@ final Map<String, dynamic> select_rev = {
       : {}),
 };
 
-final selected = {
-  "angle": select_rev["angle"].keys.toList().indexOf(userSettings["angle"]),
-  "oscillator": select_rev["oscillator"]
-      .keys
-      .toList()
-      .indexOf(userSettings["oscillator"]),
-  "program":
-      select_rev["program"].keys.toList().indexOf(userSettings["program"]),
-  "enviroment": select_rev["enviroment"]
-      .keys
-      .toList()
-      .indexOf(userSettings["enviroment"]),
-  "modulation": select_rev["modulation"]
-      .keys
-      .toList()
-      .indexOf(userSettings["modulation"]),
-  "multi": select_rev["multi"].keys.toList().indexOf(userSettings["multi"]),
-  "target": select_rev["target"].keys.toList().indexOf(userSettings["target"]),
-};
-
 final isWindowShown = {
   "program": false,
   "angle": false,
@@ -104,11 +92,13 @@ var isSearchShown=false;
 var SearchText="";
 
 var filteredItems={
-  "angle":(select["angle"] != null ? select["angle"].keys.toList():[]),
-  "oscillator":(select["oscillator"] != null ? select["oscillator"].keys.toList():[]),
-  "program":(select["program"] != null ? select["program"].keys.toList():[]),
-  "enviroment":(select["enviroment"] != null ? select["enviroment"].keys.toList():[]),
-  "modulation":(select["modulation"] != null ? select["modulation"].keys.toList():[]),
-  "multi":(select["multi"] != null ? select["multi"].keys.toList():[]),
-  "target":(select["target"] != null ? select["target"].keys.toList():[])
+  //"angle":(select["angle"] != null ? select["angle"].keys.toList():[]),
+  "angle":(select["angle"]?? []),
+  "oscillator":(select["oscillator"] ?? []),
+  "program":(select["program"] ?? []),
+  "enviroment":(select["enviroment"] ?? []),
+  "modulation":(select["modulation"] ?? []),
+  "multi":(select["multi"] ?? []),
+  "target":(select["target"] ?? [])
 };
+
