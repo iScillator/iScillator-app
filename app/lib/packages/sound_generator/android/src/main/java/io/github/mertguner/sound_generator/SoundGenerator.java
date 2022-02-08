@@ -118,6 +118,7 @@ public class SoundGenerator {
     public boolean init2(int sampleRate, int channelMask, int encoding) {
         try {
             
+        android.util.Log.d("SoundHealer", "init2 sampleRate="+sampleRate+",channelMask="+channelMask+",encoding="+encoding);
 
         /*
 

@@ -347,11 +347,12 @@ public class multiGenerator extends baseGenerator {
             try {
                 JSONObject program_j = new JSONObject(program);
                 JSONArray target_a = program_j.getJSONArray("target");
-                targets_count=target_a.length();
+                targets_count=0;
                 targets = new double[target_a.length()];
 
                 for(int i=0;i < target_a.length();i++) {
-                    targets[i] = target_a.getDouble(i);
+                    targets[targets_count] = target_a.getDouble(i);
+                    targets_count++;
                 }
 
                 autonext=program_j.getInt("autonext");

@@ -71,6 +71,10 @@ class _SelectButton extends State<SelectButton> {
             children: [
               Expanded(
                   child:
+                  Align(
+                                    child: 
+                                    Column(children: [
+
               Column(children: [
                Text(widget.buttonName,
                       style: TextStyle(
@@ -84,7 +88,10 @@ class _SelectButton extends State<SelectButton> {
                           ]
                           
                           )
-                          
+                                    ]),
+                                    alignment:Alignment(0, 0)
+                                    )
+
                           ),
               Icon(
                 Icons.arrow_forward_ios_rounded,
