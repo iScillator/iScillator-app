@@ -83,14 +83,14 @@ class SelectWindow extends StatelessWidget {
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 17.0),
                                     ),
-                                    if(globals.l108t(globals.filteredItems[item][index])!="") Text(
-                                      globals.l108t(globals.filteredItems[item][index]),
+                                    if(globals.l108t(globals.filteredItems[item].keys.toList()[index])!="") Text(
+                                      globals.l108t(globals.filteredItems[item].keys.toList()[index]),
                                       style: TextStyle(
                                           color: Colors.white70, fontSize: 12.0),
                                     )
                                     ])
                                     ,
-                                    alignment: globals.selected[item] == globals.filteredItems[item][index]
+                                    alignment: globals.selected[item] == globals.filteredItems[item].keys.toList()[index]
                                         ? Alignment(-0.3, 0)
                                         : Alignment(0, 0)),
                                         

@@ -19,6 +19,7 @@ const config_app_vl = {
     "target": targets_app_vl,
     "modulation": modulations_app_vl,
     "enviroment": enviroments_app,
+    "audio": audios_app,
     "multi": multis_app,
     "oscillator": oscillators_app,
     "angle": angles_app,    

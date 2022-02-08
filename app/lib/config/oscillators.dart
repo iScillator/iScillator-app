@@ -20,7 +20,7 @@ const oscillators = {
   "AM radiotransmitters": oscillators_am,
   "Ray Tube": {"Ray Tube 5.2": 52},
   "Aroma diffuser": emmiter_peso_aroma,
-
+  "La+Ri":1212
 };
 /*
 
@@ -36,7 +36,7 @@ const oscillators = {
   "AM 3MHz,3MHz": 3300000,
   "AM 3MHz,5MHz": 3500000,
   "AM 5MHz,5MHz": 5500000,
-  "La+Ri":1212
+  
 */
 
 

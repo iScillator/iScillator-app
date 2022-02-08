@@ -20,12 +20,13 @@ const Map<String, dynamic> defaults_vl = {
 */
 
   "angle": "Stereo 0°",
-  "enviroment": "None",
+  "enviroment": "",
   "modulation": "Sinus",
   "multi": "Fix x",
-  "target": "10 kHz",
+  "target": "",
   "program": "Coronavirus SARS",
-  "oscillator": "Internal"
+  "audio": "Internal",
+  "oscillator": "La+Ri"
 
 };
 

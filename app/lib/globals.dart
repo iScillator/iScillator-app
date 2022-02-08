@@ -35,7 +35,8 @@ final Map<String, dynamic> selected = {
   "modulation": defaultSettings["modulation"],
   "multi": defaultSettings["multi"],
   "target": defaultSettings["target"],
-  "audioDevice": defaultSettings["audioDevice"]
+  "audio": defaultSettings["audio"],
+  "oscillator": defaultSettings["oscillator"]
 };
 
 bool isPlaying = false;

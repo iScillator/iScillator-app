@@ -25,7 +25,14 @@ class _MainScreen extends State<MainScreen> {
   Timer? _timer;
 
   void getUserSetting(item) async {
-    globals.selected[item] = globals.prefs?.getString(item) ?? globals.defaultSettings[item];
+    var prefs_key=globals.prefs?.getString(item);
+    var default_key=globals.defaultSettings[item];
+
+    if (prefs_key != null) if(globals.select[item][prefs_key]==null) prefs_key=null;
+    if (default_key != null) if(globals.select[item][default_key]==null) default_key=null;
+
+    globals.selected[item] = prefs_key ?? default_key;
+    globals.selected[item] ??= globals.select[item].keys.toList()[0];
   }
 
   void getUserSettings() async {
@@ -39,6 +46,7 @@ class _MainScreen extends State<MainScreen> {
     getUserSetting("multi");
     getUserSetting("target");
     getUserSetting("oscillator");
+    getUserSetting("audio");
   }
 
 
@@ -71,7 +79,9 @@ class _MainScreen extends State<MainScreen> {
 
 
   void setParams() {
+    print("setParams() names=");
     print(globals.selected);
+    print(globals.select["program"][globals.selected["program"]]);
 
     globals.frequency = globals.select["target"][globals.selected["target"]].toDouble();
 
@@ -90,7 +100,7 @@ class _MainScreen extends State<MainScreen> {
           globals.select["angle"][globals.selected["angle"]].toDouble(),
           globals.select["oscillator"][globals.selected["oscillator"]].toDouble());
 
-      //print("123");
+      print("123");
     }
 
     SoundGenerator.setFrequency(globals.frequency);
