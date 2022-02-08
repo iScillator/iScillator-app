@@ -20,4 +20,28 @@ const oscillators = {
   "AM radiotransmitters": oscillators_am,
   "Ray Tube": {"Ray Tube 5.2": 52},
   "Aroma diffuser": emmiter_peso_aroma,
+
 };
+/*
+
+  "Diffusor 1.7 + Speakers": 17,
+  "Ray Tube 5.2": 52,
+  "FY6900": 6900,
+  "AM 1MHz": 1000000,
+  "AM 3MHz": 3000000,
+  "AM 5MHz": 5000000,
+  "AM 1MHz,1MHz": 1100000,
+  "AM 1MHz,3MHz": 1300000,
+  "AM 1MHz,5MHz": 1500000,
+  "AM 3MHz,3MHz": 3300000,
+  "AM 3MHz,5MHz": 3500000,
+  "AM 5MHz,5MHz": 5500000,
+  "La+Ri":1212
+*/
+
+
+    /*
+   LATER AM+SOUND
+
+   LATER Controlled difusor
+  */

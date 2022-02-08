@@ -70,27 +70,7 @@ const programs_essentials = {
   }
 };
 
-// Для первичной публикации в продакшне(сторах), без пугающих названий!
-const programs_prod = {
-  ...programs_main,
-};
 
-const programs_app_lite = {
-  ...programs_main,
-};
-
-
-const programs_app_pro = {
-  ...programs_main,
-  ...programs_rife,
-  ...programs_essentials
-};
-
-const programs_app_dev = {
-  ...programs_main,
-  ...programs_rife,
-  ...programs_essentials
-};
 
 const programs_full =
 {

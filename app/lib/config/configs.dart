@@ -1,14 +1,7 @@
-import 'package:soundhealer/config/oscillators.dart';
+//import 'package:soundhealer/config/oscillators.dart';
 
-import '/config/audios.dart';
-import '/config/channels.dart';
-import '/config/enviroments.dart';
-import '/config/modulations.dart';
-import '/config/multis.dart';
-import '/config/targets.dart';
-import '/config/programs.dart';
-import '/config/angles.dart';
-import '/config/defaults.dart';
+
+import '/config/app.dart';
 
 const config_app_vl = {
   "title": "SoundHealer",
@@ -24,12 +17,21 @@ const config_app_vl = {
   "select": {
     "program": programs_app_vl,
     "target": targets_app_vl,
-    "modulation": modulations_vl,
+    "modulation": modulations_app_vl,
+    "enviroment": enviroments_app,
+    "multi": multis_app,
+    "oscillator": oscillators_app,
+    "angle": angles_app,    
   },
   "visible":{
     "search": true,
     "description": true,
-    "build": true
+    "build": true,
+    "select": {
+      "program": true,
+      "target": true,
+      "modulation": true,
+    },
   }
 };
 
@@ -52,11 +54,11 @@ const config_app_dev = {
   "select": {
     "program": programs_app_dev,
     "target": targets_app_dev,
-    "enviroment": enviroments,
-    "modulation": modulations,
-    "multi": multis,
-    "oscillator": oscillators,
-    "angle": angles,
+    "enviroment": enviroments_app,
+    "modulation": modulations_app,
+    "multi": multis_app,
+    "oscillator": oscillators_app,
+    "angle": angles_app,
   },
   "search": true,
 };
@@ -74,12 +76,12 @@ const config_app_pro = {
   "select": {
     "program": programs_app_pro,
     "target": targets_app_pro,
-    "enviroment": enviroments,
-    "modulation": modulations,
-    "multi": multis,
-    "audio": audioDevices,
-    "channel": channels,
-    "angle": angles
+    "enviroment": enviroments_app,
+    "modulation": modulations_app,
+    "multi": multis_app,
+    "audio": audios_app,
+    "channel": channels_app,
+    "angle": angles_app
   },
   "search": false,
 };
@@ -94,7 +96,7 @@ const config_app_lite = {
   "select": {
     "program": programs_app_lite,
     "target": targets_app_lite,
-    "angle": angles,
+    "angle": angles_app,
   },
   "search": false,
 };

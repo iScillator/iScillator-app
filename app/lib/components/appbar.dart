@@ -20,15 +20,15 @@ import '/globals.dart' as globals;
 //StatelessWidget
 
 filterItems(String Text,String Item) async {
-    var fp = [];
+    var fp = {};
     var pr2;
-    var src=globals.select[Item];
-    src= (src == null ? []:src.keys.toList());
+    var src1=globals.select[Item];
+    var src= (src1 == null ? []:src1.keys.toList());
 
     src.forEach((pr) {
       pr2=globals.l108t(pr);
       if ((pr.toLowerCase().contains(globals.SearchText.toLowerCase()))||(pr2.toLowerCase().contains(globals.SearchText.toLowerCase())))
-        fp.add(pr);
+        fp[pr]=src1[pr];
     });
 
     globals.filteredItems[Item]=fp; //globals.select["program"].keys.toList();

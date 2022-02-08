@@ -1,4 +1,4 @@
-const targets_app_vl = {
+const targets_vl = {
   "10 kHz": 10000,
   "Cancer_general_1":
       10000, // [10000, 5000, 3176, 2720, 2489, 2189, 2184, 2128, 2084, 2050, 2008, 880, 854, 800, 784, 728, 666, 524, 464, 333, 304],
@@ -61,10 +61,6 @@ const targets_rife_audio = {
   "Rife audio #2": 4268,
   "TODO:ADD MORE": 7777,
 };
-
-const targets_app_lite = {...targets_chackras};
-const targets_app_pro = {...targets_chackras, ...targets_rife_audio, ...targets_rife_radio};
-const targets_app_dev = {...targets_dev, ...targets_chackras, ...targets_rife_audio, ...targets_rife_radio};
 
 
 /*

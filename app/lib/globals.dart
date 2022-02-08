@@ -3,7 +3,6 @@ library my_prj.globals;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io' show Platform;
 
-import '/models/user_settings.dart';
 import '/config/configs.dart';
 import '/config/current/current.dart';
 import '/modules/l108.dart' as l108;
@@ -93,12 +92,12 @@ var SearchText="";
 
 var filteredItems={
   //"angle":(select["angle"] != null ? select["angle"].keys.toList():[]),
-  "angle":(select["angle"]?? []),
-  "oscillator":(select["oscillator"] ?? []),
-  "program":(select["program"] ?? []),
-  "enviroment":(select["enviroment"] ?? []),
-  "modulation":(select["modulation"] ?? []),
-  "multi":(select["multi"] ?? []),
-  "target":(select["target"] ?? [])
+  "angle":(select["angle"]?? {}),
+  "oscillator":(select["oscillator"] ?? {}),
+  "program":(select["program"] ?? {}),
+  "enviroment":(select["enviroment"] ?? {}),
+  "modulation":(select["modulation"] ?? {}),
+  "multi":(select["multi"] ?? {}),
+  "target":(select["target"] ?? {})
 };
 

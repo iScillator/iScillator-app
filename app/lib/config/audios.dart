@@ -1,23 +1,11 @@
-const audioDevices = {
-  "Internal"
-      "Speakers/Headphones": 0,
-  "Diffusor 1.7 + Speakers": 17,
-  "Ray Tube 5.2": 52,
-  "FY6900": 6900,
-  "AM 1MHz": 1000000,
-  "AM 3MHz": 3000000,
-  "AM 5MHz": 5000000,
-  "AM 1MHz,1MHz": 1100000,
-  "AM 1MHz,3MHz": 1300000,
-  "AM 1MHz,5MHz": 1500000,
-  "AM 3MHz,3MHz": 3300000,
-  "AM 3MHz,5MHz": 3500000,
-  "AM 5MHz,5MHz": 5500000,
-  /*
-   LATER AM+SOUND
-
-   LATER Controlled difusor
-  */
+const audios = {
+  "Internal":0,
+  "Loudspeakers":1,
+  "Headphones": 2,
+  "External USB":9,
+  "Meizu HiFi (External USB)":91,
+  "Bluetooth":4,
+  "Bluetooth 4.2 HW-425":42425,
 };
 
 /*

@@ -1,4 +1,4 @@
-const Map<String, dynamic> defaults_app_dev = {
+const Map<String, dynamic> defaults_dev = {
   "angle": 0,
   "enviroment": 0,
   "modulation": 10025,
@@ -8,7 +8,7 @@ const Map<String, dynamic> defaults_app_dev = {
   "oscillator": 0
 };
 
-const Map<String, dynamic> defaults_app_vl = {
+const Map<String, dynamic> defaults_vl = {
 /*
   "angle": 0,
   "enviroment": 0,
@@ -29,8 +29,7 @@ const Map<String, dynamic> defaults_app_vl = {
 
 };
 
-const defaults_app_pro = defaults_app_dev;
-const defaults_app_lite = defaults_app_dev;
+
 
 const Map<String, dynamic> defaults_fix = {
   "angle": 0,
