@@ -6,7 +6,7 @@ import '/config/app.dart';
 const config_app_vl = {
   "title": "SoundHealer",
   "description": "Vladimir Edition",
-  "build": "(build 1000)",
+  "build": "(build 1002)",
   
   "defaults": defaults_app_vl,
   "forces": forces_app_vl,
@@ -14,7 +14,7 @@ const config_app_vl = {
   "pages": {
     "programs": ["program"],
     //"targets": ["target"],
-    "modulations": ["modulation"],
+    //"modulations": ["modulation"],
   },
   "select": {
     "program": programs_app_vl,

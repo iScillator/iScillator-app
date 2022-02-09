@@ -32,6 +32,7 @@ void _onItemTapped(int index) {
 // TODO: Add IfItem
 
 Widget myBottomNavigationBar(BuildContext context) {
+  if (globals.pages.length>=2)
   return BottomNavigationBar(
     items: <BottomNavigationBarItem>[
       if (globals.pages["home"] != null)
@@ -105,4 +106,6 @@ Widget myBottomNavigationBar(BuildContext context) {
     selectedItemColor: Colors.amber[800],
     onTap: _onItemTapped,
   );
+
+  return SizedBox.shrink();
 }

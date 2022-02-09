@@ -10,11 +10,11 @@ Widget frequencySection(BuildContext context) {
     alignment: Alignment.center,
     clipBehavior: Clip.none,
     children: [
-      Text('${(globals.frequency.toInt() == 0) ? AppLocalizations.of(context)!.noFrequency : globals.frequency.toString()+" Hz" }',
-          style: TextStyle(color: Colors.white70, fontSize: 60.0)),
+      Text('${(globals.frequency.toInt() == 0) ? AppLocalizations.of(context)!.noFrequency : globals.frequency.toInt().toString()+" Hz" }',
+          style: TextStyle(color: Colors.white60, fontSize: 60.0)),
       Positioned(
         child: Text(AppLocalizations.of(context)!.frequency, // 'Frequency',
-            style: TextStyle(color: Colors.white70, fontSize: 20.0)),
+            style: TextStyle(color: Colors.white54, fontSize: 20.0)),
         top: 65.0,
       )
     ],
