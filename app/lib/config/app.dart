@@ -60,3 +60,5 @@ const channels_app=channels;
 const enviroments_app=enviroments;
 
 const forces_app_vl=forces_vl;
+const forces_app_lite=forces;
+const forces_app_pro={};

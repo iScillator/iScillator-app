@@ -70,6 +70,19 @@ const programs_essentials = {
   }
 };
 
+const programs_chackras = {
+  "Flower of Life": "{target:[144]}",
+  "Fundamental": "{target:[174]}",
+  "Muladhara": "{target:[285]}",
+  "Svadhisthana": "{target:[396]}",
+  "Manipura": "{target:[417]}",
+  "Anahata": "{target:[528]}",
+  "Vishudha": "{target:[639]}",
+  "Adjna": "{target:[741]}",
+  "Sahasrara": "{target:[852]}",
+  "Sahasradala": "{target:[963]}",
+  "Anahata+Sahasrara": "{target:[528, 852]}"
+};
 
 
 const programs_full =

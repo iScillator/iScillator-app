@@ -33,6 +33,14 @@ const Map<String, dynamic> forces_vl = {
   "oscillator": 0
 };
 
+const Map<String, dynamic> forces = {
+  "target": 10000,
+  "angle": 0,
+  "enviroment": 0,
+  "modulation": 0,
+  "multi": 0,
+  "oscillator": 0
+};
 
 const Map<String, dynamic> defaults_fix = {
   "angle": 0,

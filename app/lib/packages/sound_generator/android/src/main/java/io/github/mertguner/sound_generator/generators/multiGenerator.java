@@ -511,9 +511,11 @@ public class multiGenerator extends baseGenerator {
         {
             int num=((x/sampleRate)/autonext)%targets_count;
             multi_hz[0]=targets[num];
+            multi_amp[0]=1;
+            multi_steps=1;
             //android.util.Log.d("SoundHealer", "replaced hz"+multi_hz[0]);
             this.target=targets[num];
-            
+            amp_sum=1;
         }
 
         y=0;
@@ -582,6 +584,8 @@ public class multiGenerator extends baseGenerator {
         //correct sum
         y=y/amp_sum; //(1.0+0.5+0.25+0.125+0.0625+0.03125+0.015625);
         
+        //android.util.Log.d("SoundHealer", "y="+y);
+
         return y;
     }
 }

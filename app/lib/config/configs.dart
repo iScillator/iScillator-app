@@ -7,14 +7,10 @@ const config_app_vl = {
   "title": "SoundHealer",
   "description": "Vladimir Edition",
   "build": "(build 1002)",
-  
   "defaults": defaults_app_vl,
   "forces": forces_app_vl,
-
   "pages": {
     "programs": ["program"],
-    //"targets": ["target"],
-    //"modulations": ["modulation"],
   },
   "select": {
     "program": programs_app_vl,
@@ -30,11 +26,6 @@ const config_app_vl = {
     "search": true,
     "description": true,
     "build": true,
-    "select": {
-      "program": true,
-      "target": true,
-      "modulation": true,
-    },
   }
 };
 
@@ -67,10 +58,13 @@ const config_app_dev = {
 };
 
 const config_app_pro = {
-  "title": "SoundHealer PRO",
+  "title": "SoundHeale PRO",
+  "description": "PRO",
+  "build": "build 1002",
   "defaults": defaults_app_pro,
+  "forces": forces_app_pro,
   "pages": {
-    //"programs": ["program"],
+    "programs": ["program"],
     "targets": ["target", "enviroment"],
     "modulations": ["multi", "modulation"],
     //"devices": ["oscillator"],
@@ -84,24 +78,41 @@ const config_app_pro = {
     "multi": multis_app,
     "audio": audios_app,
     "channel": channels_app,
-    "angle": angles_app
+    "angle": angles_app  
   },
-  "search": false,
+  "visible":{
+    "search": true,
+    "description": false,
+    "build": false,
+  }
+
 };
 
 const config_app_lite = {
   "title": "SoundHealer",
+  "description": "Lite",
+  "build": "build 1002",
   "defaults": defaults_app_lite,
+  "forces": forces_app_lite,
   "pages": {
-    "targets": ["target"],
-    "settings": ["angle"],
+    "programs": ["program"],
   },
   "select": {
     "program": programs_app_lite,
     "target": targets_app_lite,
-    "angle": angles_app,
+    "modulation": modulations_app,
+    "enviroment": enviroments_app,
+    "audio": audios_app,
+    "multi": multis_app,
+    "oscillator": oscillators_app,
+    "angle": angles_app,    
   },
-  "search": false,
+  "visible":{
+    "search": true,
+    "description": false,
+    "build": false,
+  }
+
 };
 
 const Map<String, dynamic> configs = {
