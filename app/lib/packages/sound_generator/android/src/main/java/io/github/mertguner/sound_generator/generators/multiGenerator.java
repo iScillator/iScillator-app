@@ -351,6 +351,9 @@ public class multiGenerator extends baseGenerator {
                 targets = new double[target_a.length()];
 
                 for(int i=0;i < target_a.length();i++) {
+                    if(target_a.getDouble(i)<70) continue;
+                    if(target_a.getDouble(i)>20000) continue;
+
                     targets[targets_count] = target_a.getDouble(i);
                     targets_count++;
                 }

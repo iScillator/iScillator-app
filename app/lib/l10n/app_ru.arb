@@ -1,6 +1,7 @@
 {
     "helloWorld": "Привет мир!",
     "frequency": "Частота",
+    "noFrequency": "-",
 
     "home":"Главная",
     "programs":"Программы",

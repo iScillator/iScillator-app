@@ -10,15 +10,6 @@ const Map<String, dynamic> defaults_dev = {
 
 const Map<String, dynamic> defaults_vl = {
 /*
-  "angle": 0,
-  "enviroment": 0,
-  "modulation": 10025,
-  "multi": 0,
-  "target": 10000,
-  "program": "{'autonext':'60','target':[10000, 5000, 3176, 2720, 2489, 2189, 2184, 2128, 2084, 2050, 2008, 880, 854, 800, 784, 728, 666, 524, 464, 333, 304]}",
-  "oscillator": 0
-*/
-
   "angle": "Stereo 0°",
   "enviroment": "",
   "modulation": "Sinus",
@@ -27,9 +18,20 @@ const Map<String, dynamic> defaults_vl = {
   "program": "Coronavirus SARS",
   "audio": "Internal",
   "oscillator": "La+Ri"
+*/
 
+  "program": "Coronavirus SARS",
 };
 
+
+const Map<String, dynamic> forces_vl = {
+  "target": 0,
+  "angle": 0,
+  "enviroment": 0,
+  "modulation": 0,
+  "multi": 0,
+  "oscillator": 0
+};
 
 
 const Map<String, dynamic> defaults_fix = {

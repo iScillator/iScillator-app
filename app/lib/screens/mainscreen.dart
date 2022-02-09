@@ -83,7 +83,7 @@ class _MainScreen extends State<MainScreen> {
     print(globals.selected);
     print(globals.select["program"][globals.selected["program"]]);
 
-    globals.frequency = globals.select["target"][globals.selected["target"]].toDouble();
+    globals.frequency = (globals.config["forces"]["target"] ?? globals.select["target"][globals.selected["target"]]).toDouble();
 
     //print(globals.isIOS);
 
@@ -92,13 +92,13 @@ class _MainScreen extends State<MainScreen> {
     } else {
       SoundGenerator.setWaveType(waveTypes.MULTI);
       SoundGenerator.setParams(
-          globals.select["program"][globals.selected["program"]],
-          globals.select["target"][globals.selected["target"]].toDouble(),
-          globals.select["enviroment"][globals.selected["enviroment"]].toDouble(),
-          globals.select["modulation"][globals.selected["modulation"]].toDouble(),
-          globals.select["multi"][globals.selected["multi"]].toDouble(),
-          globals.select["angle"][globals.selected["angle"]].toDouble(),
-          globals.select["oscillator"][globals.selected["oscillator"]].toDouble());
+          globals.config["forces"]["program"] ?? globals.select["program"][globals.selected["program"]],
+          (globals.config["forces"]["target"] ?? globals.select["target"][globals.selected["target"]]).toDouble(),
+          (globals.config["forces"]["enviroment"] ?? globals.select["enviroment"][globals.selected["enviroment"]]).toDouble(),
+          (globals.config["forces"]["modulation"] ?? globals.select["modulation"][globals.selected["modulation"]]).toDouble(),
+          (globals.config["forces"]["multi"] ?? globals.select["multi"][globals.selected["multi"]]).toDouble(),
+          (globals.config["forces"]["angle"] ?? globals.select["angle"][globals.selected["angle"]]).toDouble(),
+          (globals.config["forces"]["oscillator"] ?? globals.select["oscillator"][globals.selected["oscillator"]]).toDouble());
 
       print("123");
     }

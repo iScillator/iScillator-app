@@ -9,6 +9,8 @@ const config_app_vl = {
   "build": "(build 1000)",
   
   "defaults": defaults_app_vl,
+  "forces": forces_app_vl,
+
   "pages": {
     "programs": ["program"],
     //"targets": ["target"],

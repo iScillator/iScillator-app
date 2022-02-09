@@ -1,6 +1,7 @@
 {
     "@@locale": "en",
     "frequency": "Frequency",
+    "noFrequency": "-",
 
     "home":"Home",
     "programs":"Programs",
