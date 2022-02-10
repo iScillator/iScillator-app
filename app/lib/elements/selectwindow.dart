@@ -97,7 +97,7 @@ class SelectWindow extends StatelessWidget {
                                 onTap: () {
                                   selectItem(index);
                                 },
-                                leading: globals.selected[item] == index
+                                leading: globals.selected[item] == globals.filteredItems[item].keys.toList()[index]
                                     ? Icon(
                                         Icons.check,
                                         color: Colors.white,

@@ -20,6 +20,7 @@ import '/globals.dart' as globals;
 //StatelessWidget
 import 'dart:convert';
 
+import '/config/version.dart';
 
 filterItems(String Text,String Item) async {
     var fp = {};
@@ -129,7 +130,17 @@ Widget SearchText(context) {
 
 Widget myTitle()
 {
-  return Text(globals.config["title"]);
+  return 
+  Row (children:[  
+        Text(globals.config["title"]),
+                Expanded(child:
+        Column(children: [
+
+            if(globals.config["visible"]["description"]) Container(alignment: Alignment.centerRight,child:Text(globals.config["description"],textAlign: TextAlign.end,style: TextStyle(color: Colors.white70, fontSize: 10.0))),
+            if(globals.config["visible"]["build"]) Container(alignment: Alignment.centerRight,child:Text(buildName+"+"+buildNumber.toString(),textAlign: TextAlign.end,style: TextStyle(color: Colors.white60, fontSize: 10.0))),
+        ]))
+  ]);
+
 }
 
 
