@@ -1,13 +1,17 @@
-
-ALT
-XTRA
-CAFL
-VEGA
-BIO
-Rife
-KHZ
-HC
-ODD
-CUST
-PROV
-
+const categories={
+"Rife Frequencies":"Rife",
+"Chakras":"CHAKRA",
+"Chakras 2":"CHAKRA2",
+"Planets":"PLANET",
+"Minerals":"MINERAL",
+"Essential Oils":"EOIL",
+"Various Sources":"XTRA",
+"Consolidated Annotated Frequency List":"CAFL",
+"Vega":"VEGA",
+"Bio":"BIO",
+"Higher Frequencies (kHz)":"KHZ",
+"Hulda Clark":"HC",
+"ODD":"ODD",
+"Custom":"CUST",
+"Consistent Results":"PROV",
+}

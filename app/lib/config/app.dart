@@ -8,6 +8,8 @@ import '/config/multis.dart';
 import '/config/targets.dart';
 import '/config/programs.dart';
 import '/config/angles.dart';
+import '/config/categories.dart';
+import '/config/folders.dart';
 import '/config/defaults.dart';
 
 const defaults_app_vl = defaults_vl;
@@ -58,6 +60,8 @@ const angles_app=angles;
 const audios_app=audios;
 const channels_app=channels;
 const enviroments_app=enviroments;
+const categories_app=categories;
+const folders_app=folders;
 
 const forces_app_vl=forces_vl;
 const forces_app_lite=forces;
