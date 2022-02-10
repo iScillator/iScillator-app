@@ -50,7 +50,7 @@ class _SelectButton extends State<SelectButton> {
   void showWindow() {
     print(widget.item);
     globals.setState(() {
-      //globals.filterItemsAll("");
+      globals.filterItemsAll();
 
       globals.isWindowShown[widget.item] = true;
 

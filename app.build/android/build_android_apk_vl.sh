@@ -16,7 +16,7 @@ echo "const buildNumber=$BUILDNUMBER;">> lib/config/version.dart
 
 echo "flutter build apk --split-per-abi --build-name=$BUILDNAME --build-number=$BUILDNUMBER"
 flutter build apk --split-per-abi --build-name=$BUILDNAME --build-number=$BUILDNUMBER
-mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk ../app.build/release/app-armeabi-v7a-release.$VERSION.apk
+mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk ../app.build/release/app-armeabi-v7a-release.$VERSION.$BUILDNAME.$BUILDNUMBER.apk
 
 VERSION="dev"
 

@@ -1,7 +1,9 @@
+read -t 3  COMMENT
+
 git add .
 #git pull --all
 git pull  origin HEAD
 
-git commit -a -m "+"
+git commit -a -m "+ $COMMENT"
 #git push --all
 git push -u origin HEAD

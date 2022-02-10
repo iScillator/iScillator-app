@@ -62,8 +62,10 @@ filterItems(String Text,String Item) async {
     //print(fp);
 }
 
-filterItemsAll(String text)
+filterItemsAll()
 {
+    var text=globals.SearchText;
+
       filterItems(text,"folder");
       filterItems(text,"category");
       filterItems(text,"angle");
@@ -76,13 +78,13 @@ filterItemsAll(String text)
 }
 
 
-//globals.filterItemsAll=filterItemsAll;
+
 
 
 onSearchTextChanged(String text) async {
     globals.setState(() {
       globals.SearchText = text;
-      filterItemsAll(text);
+      filterItemsAll();
     });
 
 }
@@ -90,15 +92,15 @@ onSearchTextChanged(String text) async {
 onClear() {  
   _controller.clear();
    globals.setState(() {
-      var text="";
+      //var text="";
       globals.SearchText = "";
-      filterItemsAll(text);
+      filterItemsAll();
    });
 }
 
 
 Widget SearchText(context) {
-
+    
     //controller.text.isNotEmpty
 
 
@@ -130,6 +132,9 @@ Widget SearchText(context) {
 
 Widget myTitle()
 {
+    globals.filterItemsAll=filterItemsAll;
+
+
   return 
   Row (children:[  
         Text(globals.config["title"]),
