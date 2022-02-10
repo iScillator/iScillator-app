@@ -39,6 +39,8 @@ class _MainScreen extends State<MainScreen> {
     if (globals.prefs == null) {
       globals.prefs = await SharedPreferences.getInstance();
     }
+    getUserSetting("category");
+    getUserSetting("folder");
     getUserSetting("program");
     getUserSetting("angle");
     getUserSetting("enviroment");

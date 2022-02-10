@@ -18,6 +18,8 @@ import 'package:flutter/material.dart';
 import '/globals.dart' as globals;
 //PreferredSizeWidget
 //StatelessWidget
+import 'dart:convert';
+
 
 filterItems(String Text,String Item) async {
     var fp = {};
@@ -28,16 +30,41 @@ filterItems(String Text,String Item) async {
     src.forEach((pr) {
       pr2=globals.l108t(pr);
       if ((pr.toLowerCase().contains(globals.SearchText.toLowerCase()))||(pr2.toLowerCase().contains(globals.SearchText.toLowerCase())))
-        fp[pr]=src1[pr];
+        if(Item=="program")
+        {
+          var s=globals.select[Item][pr];
+          var s2=s.replaceAll("'","\"");
+          var val;
+          var f="";
+          var c="";
+
+          try {
+            val=json.decode(s2);
+            f=val["folder"];
+            c=val["category"];
+          } catch (e){
+            print(e);
+            print("catch"+pr);
+
+          }
+          var fs=globals.select["folder"][globals.selected["folder"]];
+          var cs=globals.select["category"][globals.selected["category"]];
+            if (f.contains(fs))
+              if (c.contains(cs))
+                fp[pr]=src1[pr];
+        } else {
+          fp[pr]=src1[pr];
+        }
     });
 
     globals.filteredItems[Item]=fp; //globals.select["program"].keys.toList();
     //print(fp);
 }
 
-onSearchTextChanged(String text) async {
-    globals.setState(() {
-      globals.SearchText = text;
+filterItemsAll(String text)
+{
+      filterItems(text,"folder");
+      filterItems(text,"category");
       filterItems(text,"angle");
       filterItems(text,"oscillator");
       filterItems(text,"program");
@@ -45,6 +72,16 @@ onSearchTextChanged(String text) async {
       filterItems(text,"modulation");
       filterItems(text,"multi");
       filterItems(text,"target");
+}
+
+
+//globals.filterItemsAll=filterItemsAll;
+
+
+onSearchTextChanged(String text) async {
+    globals.setState(() {
+      globals.SearchText = text;
+      filterItemsAll(text);
     });
 
 }
@@ -54,13 +91,7 @@ onClear() {
    globals.setState(() {
       var text="";
       globals.SearchText = "";
-      filterItems(text,"angle");
-      filterItems(text,"oscillator");
-      filterItems(text,"program");
-      filterItems(text,"enviroment");
-      filterItems(text,"modulation");
-      filterItems(text,"multi");
-      filterItems(text,"target");
+      filterItemsAll(text);
    });
 }
 

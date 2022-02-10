@@ -29,6 +29,8 @@ final Map<String, dynamic> defaults = config["defaults"];
 final defaultSettings = defaults;
 
 final Map<String, dynamic> selected = {
+  "folder": defaultSettings["folder"],
+  "category": defaultSettings["category"],
   "program": defaultSettings["program"],
   "angle": defaultSettings["angle"],
   "enviroment": defaultSettings["enviroment"],
@@ -54,6 +56,7 @@ final config = configs[config_current_os];
 final Map<String, dynamic> select = config["select"];
 final Map<String, dynamic> pages = config["pages"];
 
+/*
 final Map<String, dynamic> select_rev = {
   "angle": (select["angle"] != null
       ? select["angle"].map((k, v) => MapEntry(v, k))
@@ -76,9 +79,11 @@ final Map<String, dynamic> select_rev = {
   "target": (select["target"] != null
       ? select["target"].map((k, v) => MapEntry(v, k))
       : {}),
-};
+};*/
 
 final isWindowShown = {
+  "folder": false,
+  "category": false,
   "program": false,
   "angle": false,
   "oscillator": false,
@@ -93,6 +98,8 @@ var SearchText="";
 
 var filteredItems={
   //"angle":(select["angle"] != null ? select["angle"].keys.toList():[]),
+  "folder":(select["folder"]?? {}),
+  "category":(select["category"]?? {}),
   "angle":(select["angle"]?? {}),
   "oscillator":(select["oscillator"] ?? {}),
   "program":(select["program"] ?? {}),
@@ -102,3 +109,4 @@ var filteredItems={
   "target":(select["target"] ?? {})
 };
 
+//var filterItemsAll;

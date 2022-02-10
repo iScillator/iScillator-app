@@ -1,4 +1,5 @@
-const categories={
+const folders={
+"All":"",
 "Rife Frequencies":"Rife",
 "Chakras":"CHAKRA",
 "Chakras 2":"CHAKRA2",
@@ -14,4 +15,4 @@ const categories={
 "ODD":"ODD",
 "Custom":"CUST",
 "Consistent Results":"PROV",
-}
+};

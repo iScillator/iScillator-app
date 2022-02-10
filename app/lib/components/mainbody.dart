@@ -9,6 +9,8 @@ import '/components/pages.dart';
 import '/components/frequencysection.dart';
 import '/components/playbutton.dart';
 
+import '/config/version.dart';
+
 List ifWindow(BuildContext context, item) {
   //print(ifWindow);
   //print(globals.isWindowShown[item]);
@@ -33,7 +35,7 @@ Widget mainBody(BuildContext context) {
           scrollDirection: Axis.vertical,
           child: Column(children: [
             if(globals.config["visible"]["description"]) Container(alignment: Alignment.centerRight,child:Text(globals.config["description"],textAlign: TextAlign.end)),
-            if(globals.config["visible"]["build"]) Container(alignment: Alignment.centerRight,child:Text(globals.config["build"],textAlign: TextAlign.end)),
+            if(globals.config["visible"]["build"]) Container(alignment: Alignment.centerRight,child:Text(buildName+"+"+buildNumber.toString(),textAlign: TextAlign.end)),
             Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
                 child: frequencySection(context)),
@@ -74,6 +76,8 @@ Widget mainBody(BuildContext context) {
                         pageSettings(context),
                     ])),
           ])),
+      ...ifWindow(context, "folder"),
+      ...ifWindow(context, "category"),
       ...ifWindow(context, "program"),
       ...ifWindow(context, "oscillator"),
       ...ifWindow(context, "angle"),

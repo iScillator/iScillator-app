@@ -6,14 +6,15 @@ import '/config/app.dart';
 const config_app_vl = {
   "title": "SoundHealer",
   "description": "Vladimir Edition",
-  "build": "(build 1002)",
   "defaults": defaults_app_vl,
   "forces": forces_app_vl,
   "pages": {
-    "programs": ["program"],
+    "programs": ["categories","folders","program"],
   },
   "select": {
     "program": programs_app_vl,
+    "folder": folders_app,
+    "category": categories_app,
     "target": targets_app_vl,
     "modulation": modulations_app_vl,
     "enviroment": enviroments_app,
@@ -31,7 +32,9 @@ const config_app_vl = {
 
 const config_app_dev = {
   "title": "SoundHealer DEV",
+  "description": "Development Edition",
   "defaults": defaults_app_dev,
+  "forces": forces_app_dev,
   "pages": {
     "home": [],
     "programs": ["program"],
@@ -54,13 +57,16 @@ const config_app_dev = {
     "oscillator": oscillators_app,
     "angle": angles_app,
   },
-  "search": true,
+  "visible":{
+    "search": true,
+    "description": true,
+    "build": true,
+  }
 };
 
 const config_app_pro = {
   "title": "SoundHeale PRO",
-  "description": "PRO",
-  "build": "build 1002",
+  "description": "PRO Edition",
   "defaults": defaults_app_pro,
   "forces": forces_app_pro,
   "pages": {
@@ -71,6 +77,8 @@ const config_app_pro = {
     "settings": ["angle"],
   },
   "select": {
+    "folder": folders_app,
+    "category": categories_app,
     "program": programs_app_pro,
     "target": targets_app_pro,
     "enviroment": enviroments_app,
@@ -78,7 +86,8 @@ const config_app_pro = {
     "multi": multis_app,
     "audio": audios_app,
     "channel": channels_app,
-    "angle": angles_app  
+    "angle": angles_app,
+    "oscillator": oscillators_app,
   },
   "visible":{
     "search": true,
@@ -90,8 +99,7 @@ const config_app_pro = {
 
 const config_app_lite = {
   "title": "SoundHealer",
-  "description": "Lite",
-  "build": "build 1002",
+  "description": "Lite Edition",
   "defaults": defaults_app_lite,
   "forces": forces_app_lite,
   "pages": {

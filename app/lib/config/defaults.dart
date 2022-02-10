@@ -1,11 +1,9 @@
 const Map<String, dynamic> defaults_dev = {
-  "angle": 0,
-  "enviroment": 0,
-  "modulation": 10025,
-  "multi": 0,
-  "target": 10000,
-  "program": 0,
-  "oscillator": 0
+
+};
+
+const Map<String, dynamic> forces_dev = {
+
 };
 
 const Map<String, dynamic> defaults_vl = {
@@ -18,8 +16,9 @@ const Map<String, dynamic> defaults_vl = {
   "program": "Coronavirus SARS",
   "audio": "Internal",
   "oscillator": "La+Ri"
-*/
-
+ */
+  "folder":"All",
+  "category":"All",
   "program": "Coronavirus SARS",
 };
 

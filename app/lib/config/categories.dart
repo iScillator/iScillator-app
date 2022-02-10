@@ -1,5 +1,5 @@
 const categories={
-
+"All":"",
 "Adrenals":"Adrenals",
 "Allergies":"Allergies",
 "Anus":"Anus",

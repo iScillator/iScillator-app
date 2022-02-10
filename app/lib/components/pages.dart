@@ -4,7 +4,7 @@ import '/elements/selectbutton.dart';
 
 import '/globals.dart' as globals;
 
-List<Widget> ifSelect(BuildContext context, item) {
+List<Widget> ifSelect(BuildContext context, item, item0) {
 /*
   print(item);
   print(items);
@@ -17,7 +17,7 @@ List<Widget> ifSelect(BuildContext context, item) {
     if (globals.select[item] != null)
       SelectButton(
         item: item,
-        buttonName: globals.selected[item]??""
+        buttonName: globals.selected[item]??item0
         /*
         (globals.selected[item] != ""
                 ? globals.selected[item]
@@ -44,7 +44,9 @@ Widget pagePrograms(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifSelect(context, "program"),
+    ...ifSelect(context, "folder","all"),
+    ...ifSelect(context, "category","all"),
+    ...ifSelect(context, "program","not selected"),
   ]);
 }
 
@@ -55,8 +57,8 @@ Widget pageTargets(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifSelect(context, "target"),
-    ...ifSelect(context, "enviroment"),
+    ...ifSelect(context, "target","not selected"),
+    ...ifSelect(context, "enviroment","not selected"),
   ]);
 }
 
@@ -67,8 +69,8 @@ Widget pageModulations(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifSelect(context, "multi"),
-    ...ifSelect(context, "modulation"),
+    ...ifSelect(context, "multi","not selected"),
+    ...ifSelect(context, "modulation","not selected"),
   ]);
 }
 
@@ -79,7 +81,7 @@ Widget pageDevices(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifSelect(context, "oscillator"),
+    ...ifSelect(context, "oscillator","not selected"),
   ]);
 }
 
@@ -92,7 +94,7 @@ Widget pageSettings(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifSelect(context, "angle"),
+    ...ifSelect(context, "angle","not selected"),
   ]);
 }
 
