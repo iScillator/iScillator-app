@@ -4,7 +4,7 @@ import '/elements/selectbutton.dart';
 
 import '/globals.dart' as globals;
 
-List<Widget> ifSelect(BuildContext context, item, item0) {
+List<Widget> ifSelect(BuildContext context, page, item, item0) {
 /*
   print(item);
   print(items);
@@ -14,7 +14,8 @@ List<Widget> ifSelect(BuildContext context, item, item0) {
 */
   return [
     //Text(item),
-    if (globals.select[item] != null)
+    //if (globals.select[item] != null)
+    if (globals.config["pages"][page].contains(item))
       SelectButton(
         item: item,
         buttonName: globals.selected[item]??item0
@@ -27,7 +28,7 @@ List<Widget> ifSelect(BuildContext context, item, item0) {
       ),
       //globals.userSettings
       //globals.select_rev["program"]
-    if (globals.select[item] != null)
+    if (globals.config["pages"][page].contains(item))
       Divider(
         indent: 60,
         endIndent: 60,
@@ -44,9 +45,9 @@ Widget pagePrograms(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifSelect(context, "folder","all"),
-    ...ifSelect(context, "category","all"),
-    ...ifSelect(context, "program","not selected"),
+    ...ifSelect(context, "programs","folder","all"),
+    ...ifSelect(context, "programs","category","all"),
+    ...ifSelect(context, "programs","program","not selected"),
   ]);
 }
 
@@ -57,8 +58,8 @@ Widget pageTargets(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifSelect(context, "target","not selected"),
-    ...ifSelect(context, "enviroment","not selected"),
+    ...ifSelect(context, "targets", "target","not selected"),
+    ...ifSelect(context, "targets", "enviroment","not selected"),
   ]);
 }
 
@@ -69,8 +70,9 @@ Widget pageModulations(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifSelect(context, "multi","not selected"),
-    ...ifSelect(context, "modulation","not selected"),
+    ...ifSelect(context, "modulations", "multi","not selected"),
+    ...ifSelect(context, "modulations", "modulation","not selected"),
+    ...ifSelect(context, "modulations", "waveform","not selected"),
   ]);
 }
 
@@ -81,7 +83,8 @@ Widget pageDevices(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifSelect(context, "oscillator","not selected"),
+    ...ifSelect(context, "devices","oscillator","not selected"),
+    ...ifSelect(context, "devices","emmiter","not selected"),
   ]);
 }
 
@@ -94,7 +97,8 @@ Widget pageSettings(BuildContext context) {
       endIndent: 60,
       color: Colors.white,
     ),
-    ...ifSelect(context, "angle","not selected"),
+    ...ifSelect(context,"settings", "audio","not selected"),
+    ...ifSelect(context,"settings", "angle","not selected"),
   ]);
 }
 

@@ -4,7 +4,7 @@
 import '/config/app.dart';
 
 const config_app_vl = {
-  "title": "SoundHealer",
+  "title": "SoundHealer VL",
   "description": "Vladimir Edition",
   "defaults": defaults_app_vl,
   "forces": forces_app_vl,
@@ -65,16 +65,16 @@ const config_app_dev = {
 };
 
 const config_app_pro = {
-  "title": "SoundHeale PRO",
+  "title": "SoundHealer PRO",
   "description": "PRO Edition",
   "defaults": defaults_app_pro,
   "forces": forces_app_pro,
   "pages": {
-    "programs": ["program"],
+    "programs": ["category","folder","program"],
     "targets": ["target", "enviroment"],
-    "modulations": ["multi", "modulation"],
-    //"devices": ["oscillator"],
-    "settings": ["angle"],
+    "modulations": ["multi", "modulation","waveform"],
+    "devices": ["oscillator","emmiter"],
+    "settings": ["audio","angle"],
   },
   "select": {
     "folder": folders_app,
@@ -88,11 +88,12 @@ const config_app_pro = {
     "channel": channels_app,
     "angle": angles_app,
     "oscillator": oscillators_app,
+    "emmiter": emmiters_app,
   },
   "visible":{
     "search": true,
     "description": false,
-    "build": false,
+    "build": true,
   }
 
 };

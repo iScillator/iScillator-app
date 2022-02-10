@@ -1,3 +1,9 @@
+const emmiters = {
+  "Default": 0,
+  "Катушка 300K": 300000,
+  "Тор+катушка": 300,
+};
+
 const emmiter_sound = {
   "Headphones/speakerphones": 0,
   "5.1 sound": 51,

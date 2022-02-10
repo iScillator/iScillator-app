@@ -1,8 +1,8 @@
 //const config_current = "com.soundhealer.dev";
 //const config_current = "com.soundhealer.yl";
-//const config_current = "com.soundhealer.pro";
+const config_current = "com.soundhealer.pro";
 //const config_current = "com.soundhealer";
-const config_current = "com.soundhealer.vl";
+//const config_current = "com.soundhealer.vl";
 
 //DEBUG android
 //const isIOS_change = true;

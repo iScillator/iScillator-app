@@ -69,6 +69,11 @@ class SelectWindow extends StatelessWidget {
                             Icons.close,
                             color: Colors.white,
                           ))),
+                  Divider(
+                                indent: 20,
+                                endIndent: 20,
+                                color: Colors.white,
+                              ),
                   Expanded(
                       child: ListView.builder(
                           itemCount: globals.filteredItems[item].length,

@@ -75,9 +75,13 @@ class _SelectButton extends State<SelectButton> {
                   child:
                   Align(
                                     child: 
-                                    Column(children: [
+                                    Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                      
+                                      children: [
 
-              Column(children: [
+              //Column(children: [
                Text(widget.buttonName,
                       style: TextStyle(
                           fontSize: 17.0/*19 */,
@@ -89,8 +93,9 @@ class _SelectButton extends State<SelectButton> {
                           
                           ]
                           
-                          )
-                                    ]),
+                          //)
+                                    //]
+                                    ),
                                     alignment:Alignment(0, 0)
                                     )
 
