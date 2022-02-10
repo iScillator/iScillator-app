@@ -19,9 +19,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    globals.mainContext=context;
-    globals.AppLocalizations = AppLocalizations.of(context);
-    
+    globals.mainContext = context;
+    globals.AppLocalizations = AppLocalizations;
 
     return MaterialApp(
       home: MainScreen(),

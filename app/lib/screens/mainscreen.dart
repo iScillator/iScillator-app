@@ -25,11 +25,11 @@ class _MainScreen extends State<MainScreen> {
   Timer? _timer;
 
   void getUserSetting(item) async {
-    var prefs_key=globals.prefs?.getString(item);
-    var default_key=globals.defaultSettings[item];
+    var prefs_key = globals.prefs?.getString(item);
+    var default_key = globals.defaultSettings[item];
 
-    if (prefs_key != null) if(globals.select[item][prefs_key]==null) prefs_key=null;
-    if (default_key != null) if(globals.select[item][default_key]==null) default_key=null;
+    if (prefs_key != null) if (globals.select[item][prefs_key] == null) prefs_key = null;
+    if (default_key != null) if (globals.select[item][default_key] == null) default_key = null;
 
     globals.selected[item] = prefs_key ?? default_key;
     globals.selected[item] ??= globals.select[item].keys.toList()[0];
@@ -50,7 +50,6 @@ class _MainScreen extends State<MainScreen> {
     getUserSetting("oscillator");
     getUserSetting("audio");
   }
-
 
   void saveUserSettingInt(item) async {
     await globals.prefs?.setInt(item, globals.selected[item]);
@@ -76,9 +75,6 @@ class _MainScreen extends State<MainScreen> {
     saveUserSettingString("target");
     saveUserSettingString("enviroment");
   }
-
-
-
 
   void setParams() {
     print("setParams() names=");
@@ -120,26 +116,20 @@ class _MainScreen extends State<MainScreen> {
       }
     });
 
-
-    
-
-
-      if (globals.isPlaying) {
-        _timer = Timer.periodic(Duration(seconds: 1), (timer) async{
-         double fr=await SoundGenerator.getFrequency;
-          globals.setState(() {
-            globals.frequency =  fr;
-          });
-        });
-      } else {
+    if (globals.isPlaying) {
+      _timer = Timer.periodic(Duration(seconds: 1), (timer) async {
+        double fr = await SoundGenerator.getFrequency;
         globals.setState(() {
-          _timer?.cancel();
-          _timer = null;
-          globals.frequency = 0;
+          globals.frequency = fr;
         });
-      }
-
-
+      });
+    } else {
+      globals.setState(() {
+        _timer?.cancel();
+        _timer = null;
+        globals.frequency = 0;
+      });
+    }
   }
 
   @override
@@ -149,7 +139,7 @@ class _MainScreen extends State<MainScreen> {
     // TODO: FIX:
     globals.setState = setState;
     globals.setParams = setParams;
-  
+
     globals.play = play;
 
     getUserSettings();
@@ -175,13 +165,12 @@ class _MainScreen extends State<MainScreen> {
       });
     });
     */
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: myAppBar(context),
+        appBar: mainAppBar(context),
         bottomNavigationBar: myBottomNavigationBar(context),
         body: Container(
             alignment: Alignment.center,

@@ -1,29 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sound_generator/sound_generator.dart';
 
 import '/globals.dart' as globals;
-
-import '/elements/selectwindow.dart';
 
 import '/components/pages.dart';
 import '/components/frequencysection.dart';
 import '/components/playbutton.dart';
-
-import '/config/version.dart';
-
-List ifWindow(BuildContext context, item) {
-  //print(ifWindow);
-  //print(globals.isWindowShown[item]);
-  return [
-    if (globals.isWindowShown[item] == true)
-      SelectWindow(
-        item: item,
-        //items: items,
-        //selectItem: _select,
-        //selectedItem: _selected,
-      )
-  ];
-}
 
 Widget mainBody(BuildContext context) {
   globals.pageController = PageController(initialPage: 0);
@@ -34,13 +15,8 @@ Widget mainBody(BuildContext context) {
       SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(children: [
-
-            Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
-                child: frequencySection(context)),
-            Padding(
-                padding: EdgeInsets.only(bottom: 20.0),
-                child: PlayButton(onPlayingChange: globals.play)),
+            Padding(padding: EdgeInsets.only(top: 20.0, bottom: 40.0), child: frequencySection(context)),
+            Padding(padding: EdgeInsets.only(bottom: 20.0), child: PlayButton(onPlayingChange: globals.play)),
             SizedBox(
                 height: 300.0,
                 child: PageView(
@@ -52,38 +28,19 @@ Widget mainBody(BuildContext context) {
                       });
                     },
                     children: [
-                      if (globals.pages["home"] != null)
-                        pageText(context, "Home"),
-                      if (globals.pages["programs"] != null)
-                        pagePrograms(context),
-                      if (globals.pages["mantras"] != null)
-                        pageText(context, "Mantras"),
-                      if (globals.pages["af"] != null)
-                        pageText(context, "Audio Frequencies"),
-                      if (globals.pages["rf"] != null)
-                        pageText(context, "Radio Frequencies"),
-                      if (globals.pages["targets"] != null)
-                        pageTargets(context),
-                      if (globals.pages["modulations"] != null)
-                        pageModulations(context),
-                      if (globals.pages["devices"] != null)
-                        pageDevices(context),
+                      if (globals.pages["home"] != null) pageText(context, "Home"),
+                      if (globals.pages["programs"] != null) pagePrograms(context),
+                      if (globals.pages["mantras"] != null) pageText(context, "Mantras"),
+                      if (globals.pages["af"] != null) pageText(context, "Audio Frequencies"),
+                      if (globals.pages["rf"] != null) pageText(context, "Radio Frequencies"),
+                      if (globals.pages["targets"] != null) pageTargets(context),
+                      if (globals.pages["modulations"] != null) pageModulations(context),
+                      if (globals.pages["devices"] != null) pageDevices(context),
                       if (globals.pages["d3d"] != null) pageText(context, "3D"),
-                      if (globals.pages["imask"] != null)
-                        pageText(context, "iMask"),
-                      if (globals.pages["settings"] != null)
-                        pageSettings(context),
+                      if (globals.pages["imask"] != null) pageText(context, "iMask"),
+                      if (globals.pages["settings"] != null) pageSettings(context),
                     ])),
           ])),
-      ...ifWindow(context, "folder"),
-      ...ifWindow(context, "category"),
-      ...ifWindow(context, "program"),
-      ...ifWindow(context, "oscillator"),
-      ...ifWindow(context, "angle"),
-      ...ifWindow(context, "enviroment"),
-      ...ifWindow(context, "modulation"),
-      ...ifWindow(context, "multi"),
-      ...ifWindow(context, "target"),
     ],
   );
 }

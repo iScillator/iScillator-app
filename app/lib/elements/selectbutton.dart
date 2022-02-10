@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/globals.dart' as globals;
+import '/screens/selectscreen.dart';
 import '/modules/l108.dart';
 
 class SelectButton extends StatefulWidget {
@@ -49,12 +50,14 @@ class _SelectButton extends State<SelectButton> {
 
   void showWindow() {
     print(widget.item);
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => SelectScreen()));
+
     globals.setState(() {
       globals.filterItemsAll();
 
       globals.isWindowShown[widget.item] = true;
 
-      globals.isSearchShown =true;
+      globals.isSearchShown = true;
       //print("222");
 
       //print(globals.isWindowShown);
@@ -72,34 +75,20 @@ class _SelectButton extends State<SelectButton> {
           child: Row(
             children: [
               Expanded(
-                  child:
-                  Align(
-                                    child: 
-                                    Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                      
-                                      children: [
+                  child: Align(
+                      child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                        //Column(children: [
+                        Text(widget.buttonName,
+                            style: TextStyle(fontSize: 17.0 /*19 */, color: _highlight ? Colors.white70 : Colors.white)),
+                        if (globals.l108t(widget.buttonName) != "")
+                          Text(globals.l108t(widget.buttonName),
+                              style: TextStyle(fontSize: 12.0, color: _highlight ? Colors.white54 : Colors.white70))
+                      ]
 
-              //Column(children: [
-               Text(widget.buttonName,
-                      style: TextStyle(
-                          fontSize: 17.0/*19 */,
-                          color: _highlight ? Colors.white70 : Colors.white)),
-               if(globals.l108t(widget.buttonName)!="") Text(globals.l108t(widget.buttonName),
-                      style: TextStyle(
-                          fontSize: 12.0,
-                          color: _highlight ? Colors.white54 : Colors.white70))
-                          
-                          ]
-                          
                           //)
-                                    //]
-                                    ),
-                                    alignment:Alignment(0, 0)
-                                    )
-
+                          //]
                           ),
+                      alignment: Alignment(0, 0))),
               Icon(
                 Icons.arrow_forward_ios_rounded,
                 color: _highlight ? Colors.white70 : Colors.white,
