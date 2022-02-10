@@ -71,6 +71,8 @@ const programs_essentials = {
 };
 
 const programs_chackras = {
+  "example": "{waveform:1,modulation_waveform:1,target:[144]}",
+
   "Flower of Life": "{target:[144]}",
   "Fundamental": "{target:[174]}",
   "Muladhara": "{target:[285]}",
