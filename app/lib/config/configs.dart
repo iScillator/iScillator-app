@@ -1,11 +1,12 @@
 //import 'package:soundhealer/config/oscillators.dart';
 
+import 'package:flutter/material.dart';
 
 import '/config/app.dart';
 
 const config_app_vl = {
-  "title": "SoundHealer VL",
-  "description": "Vladimir Edition",
+  "title": "FrequencyHealer",
+  "description": "Frequency Edition",
   "defaults": defaults_app_vl,
   "forces": forces_app_vl,
   "pages": {
@@ -25,9 +26,20 @@ const config_app_vl = {
   },
   "visible":{
     "search": true,
-    "description": true,
+    "description": false,
     "build": true,
-  }
+  },
+  "gradient": LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: [
+              Color.fromARGB(255, 232, 173, 12),
+              Color.fromARGB(255, 22, 82, 141),
+            ]),
+  "gradient2": LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+              Color.fromARGB(255, 232, 173, 12),
+              Color.fromARGB(255, 22, 82, 141),
+                        ]),
 };
 
 const config_app_dev = {
@@ -94,7 +106,18 @@ const config_app_pro = {
     "search": true,
     "description": false,
     "build": true,
-  }
+  },
+  "gradient": LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [
+              Color.fromRGBO(12, 232, 92, 1.0),
+              Color.fromRGBO(7, 117, 229, 1.0),
+            ]),
+  "gradient2":LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromRGBO(7, 117, 229, 1.0),
+                          Color.fromRGBO(12, 232, 92, 1.0),
+                        ])
 
 };
 
@@ -131,6 +154,6 @@ const Map<String, dynamic> configs = {
   "ios/com.soundhealer.pro": config_app_pro,
   "android/com.soundhealer.dev": config_app_dev,
   "ios/com.soundhealer.dev": config_app_dev,
-  "android/com.soundhealer.vl": config_app_vl,
+  "android/com.frequencyhealer": config_app_vl,
   //"yl.soundhealer.com": {"title": "SoundHealer Young Living Edition"}
 };

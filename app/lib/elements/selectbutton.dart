@@ -79,10 +79,10 @@ class _SelectButton extends State<SelectButton> {
                       child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
                         //Column(children: [
                         Text(widget.buttonName,
-                            style: TextStyle(fontSize: 17.0 /*19 */, color: _highlight ? Colors.white70 : Colors.white)),
+                            style: TextStyle(fontSize: 29.0 /*19 */, color: _highlight ? Colors.white70 : Colors.white)),
                         if (globals.l108t(widget.buttonName) != "")
                           Text(globals.l108t(widget.buttonName),
-                              style: TextStyle(fontSize: 12.0, color: _highlight ? Colors.white54 : Colors.white70))
+                              style: TextStyle(fontSize: 20/*12.0*/, color: _highlight ? Colors.red.shade600 : Colors.red.shade700))
                       ]
 
                           //)
@@ -96,7 +96,7 @@ class _SelectButton extends State<SelectButton> {
             ],
           ),
           width: 300.0,
-          height: 45.0,
+          height: 120.0,
           padding: EdgeInsets.only(left: 15.0, right: 5.0),
           decoration: BoxDecoration(
             border: Border.all(

@@ -2,7 +2,7 @@
     package="com.example.soundhealer">
    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> 
    <application
-        android:label="Sound Healer VLADIMIR"
+        android:label="Frequency Healer"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

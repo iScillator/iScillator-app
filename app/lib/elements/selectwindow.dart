@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import '/globals.dart' as globals;
 import '/modules/l108.dart';
 
+
+//https://github.com/flutterchina/azlistview
+//https://fluttercore.com/flutter-alphabet-list-scroll-view/
+
+
+
 class SelectWindow extends StatelessWidget {
   const SelectWindow({
     Key? key,
@@ -51,13 +57,7 @@ class SelectWindow extends StatelessWidget {
             child: Container(
                 constraints: BoxConstraints(maxWidth: 350),
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromRGBO(7, 117, 229, 1.0),
-                          Color.fromRGBO(12, 232, 92, 1.0),
-                        ]),
+                    gradient: globals.config["gradient2"],
                     border: Border.all(width: 3, color: Colors.white),
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(children: [
@@ -94,7 +94,7 @@ class SelectWindow extends StatelessWidget {
                                     if(globals.l108t(globals.filteredItems[item].keys.toList()[index])!="") Text(
                                       globals.l108t(globals.filteredItems[item].keys.toList()[index]),
                                       style: TextStyle(
-                                          color: Colors.white70, fontSize: 12.0),
+                                          color: Colors.red.shade700, fontSize: 12.0),
                                     )
                                     ])
                                     ,
