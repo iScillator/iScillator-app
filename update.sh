@@ -1,7 +1,7 @@
 read -t 3  COMMENT
 
-BUILDNAME=`cat build.name`
-BUILDNUMBER=`cat build.number`
+BUILDNAME=`cat app/build.name`
+BUILDNUMBER=`cat app/build.number`
 
 
 git add .
