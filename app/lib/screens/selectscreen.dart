@@ -6,8 +6,23 @@ import 'dart:convert';
 
 var _controller = TextEditingController();
 
-class SelectScreen extends StatelessWidget {
-  const SelectScreen({Key? key}) : super(key: key);
+
+class SelectScreen extends StatefulWidget {
+  SelectScreen({Key? key}) : super(key: key);
+
+  @override
+  _SelectScreen createState() => _SelectScreen();
+}
+
+class _SelectScreen extends State<SelectScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    globals.setStateSelect = setState;
+  }
+  
+
 
   List ifWindow(BuildContext context, item) {
     //print(ifWindow);
@@ -74,7 +89,7 @@ class SelectScreen extends StatelessWidget {
   }
 
   onSearchTextChanged(String text) async {
-    globals.setState(() {
+    globals.setStateSelect(() {
       globals.SearchText = text;
       filterItemsAll();
     });
@@ -82,7 +97,7 @@ class SelectScreen extends StatelessWidget {
 
   onClear() {
     _controller.clear();
-    globals.setState(() {
+    globals.setStateSelect(() {
       //var text="";
       globals.SearchText = "";
       filterItemsAll();
@@ -107,7 +122,7 @@ class SelectScreen extends StatelessWidget {
                 onPressed: onClear,
                 //onPressed: _controller.clear;
               ),
-              hintText: globals.AppLocalizations.of(context)!.searchHint /*'Search...'*/,
+              hintText: globals.AppLocalizationsOC!.searchHint /*'Search...'*/,
               border: InputBorder.none),
         ),
       ),
@@ -124,7 +139,7 @@ class SelectScreen extends StatelessWidget {
       // Navigate to the Search Screen
       if (globals.config["search"] == true)
         IconButton(
-            onPressed: () {globals.setState(() {globals.isSearchShown = !globals.isSearchShown;});},
+            onPressed: () {globals.setStateSelect(() {globals.isSearchShown = !globals.isSearchShown;});},
             icon: Icon(Icons.search))
     ],*/
             ));

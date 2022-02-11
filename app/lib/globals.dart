@@ -9,6 +9,7 @@ import '/modules/l108.dart' as l108;
 
 var play;
 var setState;
+var setStateSelect;
 var setParams;
 
 var pageController;
@@ -21,7 +22,7 @@ const l108t=l108.l108t;
 
 var mainContext;
 var AppLocalizations;
-
+var AppLocalizationsOC;
 
 SharedPreferences? prefs;
 

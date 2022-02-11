@@ -35,67 +35,67 @@ Widget myBottomNavigationBar(BuildContext context) {
         if (globals.pages["home"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: globals.AppLocalizations.of(context)!.home,
+            label: globals.AppLocalizationsOC!.home,
             backgroundColor: Colors.purple,
           ),
         if (globals.pages["programs"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.playlist_play),
-            label: globals.AppLocalizations.of(context)!.programs,
+            label: globals.AppLocalizationsOC!.programs,
             backgroundColor: Colors.purple,
           ),
         if (globals.pages["mantras"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.self_improvement),
-            label: globals.AppLocalizations.of(context)!.mantras,
+            label: globals.AppLocalizationsOC!.mantras,
             backgroundColor: Colors.purple,
           ),
         if (globals.pages["af"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.volume_up),
-            label: globals.AppLocalizations.of(context)!.af,
+            label: globals.AppLocalizationsOC!.af,
             backgroundColor: Colors.purple,
           ),
         if (globals.pages["rf"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_input_antenna),
-            label: globals.AppLocalizations.of(context)!.rf,
+            label: globals.AppLocalizationsOC!.rf,
             backgroundColor: Colors.purple,
           ),
         if (globals.pages["targets"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.grain),
-            label: globals.AppLocalizations.of(context)!.targets,
+            label: globals.AppLocalizationsOC!.targets,
             backgroundColor: Colors.purple,
           ),
         if (globals.pages["modulations"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.graphic_eq),
-            label: globals.AppLocalizations.of(context)!.modulation,
+            label: globals.AppLocalizationsOC!.modulation,
             backgroundColor: Colors.purple,
           ),
         if (globals.pages["devices"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_input_component_outlined),
-            label: globals.AppLocalizations.of(context)!.devices,
+            label: globals.AppLocalizationsOC!.devices,
             backgroundColor: Colors.purple,
           ),
         if (globals.pages["d3d"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.threed_rotation),
-            label: globals.AppLocalizations.of(context)!.d3d,
+            label: globals.AppLocalizationsOC!.d3d,
             backgroundColor: Colors.purple,
           ),
         if (globals.pages["imask"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.masks),
-            label: globals.AppLocalizations.of(context)!.imask,
+            label: globals.AppLocalizationsOC!.imask,
             backgroundColor: Colors.purple,
           ),
         if (globals.pages["settings"] != null)
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: globals.AppLocalizations.of(context)!.settings,
+            label: globals.AppLocalizationsOC!.settings,
             backgroundColor: Colors.purple,
           ),
       ],

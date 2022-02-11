@@ -53,7 +53,7 @@ class _SelectButton extends State<SelectButton> {
     Navigator.of(context).push(MaterialPageRoute(builder: (_) => SelectScreen()));
 
     globals.setState(() {
-      globals.filterItemsAll();
+      //globals.filterItemsAll();
 
       globals.isWindowShown[widget.item] = true;
 

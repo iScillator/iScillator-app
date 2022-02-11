@@ -17,8 +17,9 @@ class SelectWindow extends StatelessWidget {
   //final Function selectItem;
   //final int selectedItem;
 
-  void selectItem(int num) {
+  void selectItem(BuildContext context,int num) {
     globals.setState(() {
+    globals.setStateSelect(() {
       globals.isSearchShown =false;
       //print("111");
 
@@ -31,6 +32,8 @@ class SelectWindow extends StatelessWidget {
 
         globals.setParams();
       }
+      Navigator.pop(context);
+    });
     });
   }
 
@@ -63,7 +66,7 @@ class SelectWindow extends StatelessWidget {
                       child: IconButton(
                           iconSize: 35,
                           onPressed: () {
-                            selectItem(-1);
+                            selectItem(context,-1);
                           },
                           icon: Icon(
                             Icons.close,
@@ -100,7 +103,7 @@ class SelectWindow extends StatelessWidget {
                                         : Alignment(0, 0)),
                                         
                                 onTap: () {
-                                  selectItem(index);
+                                  selectItem(context,index);
                                 },
                                 leading: globals.selected[item] == globals.filteredItems[item].keys.toList()[index]
                                     ? Icon(

@@ -4,8 +4,12 @@ import 'package:sound_generator/sound_generator.dart';
 import 'package:sound_generator/waveTypes.dart';
 import 'package:volume_control/volume_control.dart';
 
+// https://docs.flutter.dev/development/accessibility-and-localization/internationalization
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:io' show Platform;
+//import 'dart:io' show Platform;
 import 'dart:async';
 
 import '/globals.dart' as globals;
@@ -169,6 +173,9 @@ class _MainScreen extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    globals.AppLocalizations = AppLocalizations;
+    globals.AppLocalizationsOC = AppLocalizations.of(context);
+
     return Scaffold(
         appBar: mainAppBar(context),
         bottomNavigationBar: myBottomNavigationBar(context),
