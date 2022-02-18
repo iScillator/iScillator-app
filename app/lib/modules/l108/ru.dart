@@ -1215,6 +1215,18 @@ const l108_categories_programs_ru={
 "Cestode Infections":"Цестодозные инфекции",
 "Chaetomium Globosum":"Хетомиум шаровидный",
 "Chagas Disease":"Болезнь Шагаса",
+
+
+
+
+
+
+
+
+
+
+
+
 "Chakra - Flower of Life":"Чакра - Цветок жизни",
 "Chakra - Fundamental":"Чакра - Фундаментальная",
 "Chakra - Muladhara":"Чакра - Муладхара",
@@ -3795,7 +3807,6 @@ const l108_categories_programs_ru={
 "Morgellons Internal Parasites":"Внутренние паразиты моргеллонов",
 "Morgellons Internal":"Моргеллоны Внутренние",
 "Morgellons Leishmania Amastigote":"Моргеллоны Leishmania Amastigote",
-"Morgellons Myiasis":"Моргеллонов миаз",
 "Morgellons Nancy DB":"Моргеллоны Нэнси ДБ",
 "Morgellons Plastics Detox":"Моргеллоны Пластик Детокс",
 "Morgellons Ruko Tick":"Моргеллоны руко клещ",
@@ -5304,6 +5315,10 @@ const l108_categories_programs_ru={
 
 
 
+
+
+
+
 "All":"Все",
 "Adrenals":"Надпочечники",
 "Allergies":"Аллергии",
@@ -5322,6 +5337,8 @@ const l108_categories_programs_ru={
 //"Brain":"Головной мозг",
 "Breast":"Грудь",
 //"Cancer":"Рак",
+"Bils":"Билы",
+"Chakra":"Чакры",
 "Cats":"Кошки",
 "Chest":"Грудь",
 //"Colon":"Двоеточие",

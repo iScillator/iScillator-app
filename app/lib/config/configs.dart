@@ -127,7 +127,7 @@ const config_app_lite = {
   "defaults": defaults_app_lite,
   "forces": forces_app_lite,
   "pages": {
-    "programs": ["program"],
+    "programs": ["categories","program"],
   },
   "select": {
     "program": programs_app_lite,
@@ -143,8 +143,18 @@ const config_app_lite = {
     "search": true,
     "description": false,
     "build": false,
-  }
-
+  },
+  "gradient": LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: [
+              Color.fromARGB(255, 232, 173, 12),
+              Color.fromARGB(255, 22, 82, 141),
+            ]),
+  "gradient2": LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+              Color.fromARGB(255, 232, 173, 12),
+              Color.fromARGB(255, 22, 82, 141),
+                        ]),
 };
 
 const Map<String, dynamic> configs = {
