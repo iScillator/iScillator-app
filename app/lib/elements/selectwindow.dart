@@ -58,7 +58,7 @@ class SelectWindow extends StatelessWidget {
                 constraints: BoxConstraints(maxWidth: 350),
                 decoration: BoxDecoration(
                     gradient: globals.config["gradient2"],
-                    border: Border.all(width: 3, color: Colors.white),
+                    border: Border.all(width: 3, color: globals.config["forecolor"]),
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(children: [
                   Align(
@@ -70,12 +70,12 @@ class SelectWindow extends StatelessWidget {
                           },
                           icon: Icon(
                             Icons.close,
-                            color: Colors.white,
+                            color: globals.config["forecolor"],
                           ))),
                   Divider(
                                 indent: 20,
                                 endIndent: 20,
-                                color: Colors.white,
+                                color: globals.config["forecolor"],
                               ),
                   Expanded(
                       child: ListView.builder(
@@ -89,12 +89,12 @@ class SelectWindow extends StatelessWidget {
                                     Text(
                                       globals.filteredItems[item].keys.toList()[index],
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 17.0),
+                                          color: globals.config["forecolor"], fontSize: 17.0),
                                     ),
                                     if(globals.l108t(globals.filteredItems[item].keys.toList()[index])!="") Text(
                                       globals.l108t(globals.filteredItems[item].keys.toList()[index]),
                                       style: TextStyle(
-                                          color: Colors.red.shade700, fontSize: 12.0),
+                                          color: globals.config["forecolor5"], fontSize: 12.0),
                                     )
                                     ])
                                     ,
@@ -108,14 +108,14 @@ class SelectWindow extends StatelessWidget {
                                 leading: globals.selected[item] == globals.filteredItems[item].keys.toList()[index]
                                     ? Icon(
                                         Icons.check,
-                                        color: Colors.white,
+                                        color: globals.config["forecolor"],
                                       )
                                     : null,
                               ),
                               Divider(
                                 indent: 20,
                                 endIndent: 20,
-                                color: Colors.white,
+                                color: globals.config["forecolor"],
                               )
                             ]);
                           }))

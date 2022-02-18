@@ -29,17 +29,22 @@ const config_app_vl = {
     "description": false,
     "build": true,
   },
-  "gradient": LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: [
-              Color.fromARGB(255, 232, 173, 12),
-              Color.fromARGB(255, 22, 82, 141),
+  "gradient": LinearGradient(begin: Alignment.topRight, end: Alignment.bottomRight, colors: [
+              Color.fromARGB(255, 209, 253, 255),
+              Color.fromARGB(255, 253, 219, 146),
             ]),
   "gradient2": LinearGradient(
-                        begin: Alignment.topLeft,
+                        begin: Alignment.topRight,
                         end: Alignment.bottomRight,
                         colors: [
-              Color.fromARGB(255, 232, 173, 12),
-              Color.fromARGB(255, 22, 82, 141),
+              Color.fromARGB(255, 209, 253, 255),
+              Color.fromARGB(255, 253, 219, 146),
                         ]),
+  "forecolor":  Color(0xFF468A81),
+  "forecolor2": Color(0xFF73AA84),
+  "forecolor3":  Color(0xFFB3C585),
+  "forecolor4":  Color(0xFFD32F2F),
+  "forecolor5":  Color(0xFFE53935),
 };
 
 const config_app_dev = {

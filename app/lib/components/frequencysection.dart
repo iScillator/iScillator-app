@@ -13,10 +13,10 @@ Widget frequencySection(BuildContext context) {
     clipBehavior: Clip.none,
     children: [
       Text('${(globals.frequency == 0) ? globals.AppLocalizationsOC!.noFrequency : Double2Str(globals.frequency) + " Hz"}',
-          style: TextStyle(color: Colors.white60, fontSize: 60.0)),
+          style: TextStyle(color: globals.config["forecolor"], fontSize: 60.0)),
       Positioned(
         child: Text(globals.AppLocalizationsOC!.frequency, // 'Frequency',
-            style: TextStyle(color: Colors.white54, fontSize: 20.0)),
+            style: TextStyle(color: globals.config["forecolor"], fontSize: 20.0)),
         top: 65.0,
       )
     ],

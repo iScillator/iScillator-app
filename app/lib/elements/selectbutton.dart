@@ -79,10 +79,10 @@ class _SelectButton extends State<SelectButton> {
                       child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
                         //Column(children: [
                         Text(widget.buttonName,
-                            style: TextStyle(fontSize: 29.0 /*19 */, color: _highlight ? Colors.white70 : Colors.white)),
+                            style: TextStyle(fontSize: 29.0 /*19 */, color: _highlight ? globals.config["forecolor"] : globals.config["forecolor3"])),
                         if (globals.l108t(widget.buttonName) != "")
                           Text(globals.l108t(widget.buttonName),
-                              style: TextStyle(fontSize: 20/*12.0*/, color: _highlight ? Colors.red.shade600 : Colors.red.shade700))
+                              style: TextStyle(fontSize: 20/*12.0*/, color: _highlight ? globals.config["forecolor5"] : globals.config["forecolor4"]))
                       ]
 
                           //)
@@ -91,7 +91,7 @@ class _SelectButton extends State<SelectButton> {
                       alignment: Alignment(0, 0))),
               Icon(
                 Icons.arrow_forward_ios_rounded,
-                color: _highlight ? Colors.white70 : Colors.white,
+                color: _highlight ? globals.config["forecolor2"] : globals.config["forecolor"],
               ),
             ],
           ),
@@ -100,7 +100,7 @@ class _SelectButton extends State<SelectButton> {
           padding: EdgeInsets.only(left: 15.0, right: 5.0),
           decoration: BoxDecoration(
             border: Border.all(
-              color: _highlight ? Colors.white70 : Colors.white,
+              color: _highlight ? globals.config["forecolor2"] : globals.config["forecolor"],
               width: 2.0,
             ),
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
