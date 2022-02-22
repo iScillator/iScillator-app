@@ -346,7 +346,12 @@ public class multiGenerator extends baseGenerator {
         if (program!="") {
             try {
                 JSONObject program_j = new JSONObject(program);
-                String target_s = program_j.getJSONArray("target");
+                //JSONArray target_a = program_j.getJSONArray("target");
+
+                String target_s = program_j.getString("target");
+                
+                android.util.Log.d("SoundHealer", "{target:["+target_s+"]}");
+
                 JSONObject target_j = new JSONObject("{target:["+target_s+"]}");
                 JSONArray target_a = target_j.getJSONArray("target");
                 targets_count=0;
