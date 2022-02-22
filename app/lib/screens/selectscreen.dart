@@ -74,6 +74,12 @@ class _SelectScreen extends State<SelectScreen> {
           //print(target_j);
           target_a = json.decode("{\"target\":["+t+"]}")["target"];
           //print(target_a);
+          target_a=target_a;
+          target_a.sort((a, b) => a.compareTo(b));
+          if (target_a[0]>20000) ok=false;
+          target_a.sort((b, a) => a.compareTo(b));
+          if (target_a[0]<70) ok=false;
+          
         } catch (e) {
           print("program " + pr +" catch (target)");
           print(t);
