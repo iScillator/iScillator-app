@@ -53,18 +53,38 @@ class _SelectScreen extends State<SelectScreen> {
         var val;
         var f = "";
         var c = "";
+        var t = "";
+        var target_j="";
+        var target_a="";
+        var ok=true;
 
         try {
           val = json.decode(s2);
           f = val["folder"];
           c = val["category"];
+          t = val["target"];
         } catch (e) {
+          print("program " + pr +" catch (program json)");
           print(e);
-          print("catch" + pr);
+          ok=false;
         }
+
+        try {
+          target_j = json.decode("{\"target\":["+t+"]}");
+          //print(target_j);
+          target_a = json.decode("{\"target\":["+t+"]}")["target"];
+          //print(target_a);
+        } catch (e) {
+          print("program " + pr +" catch (target)");
+          print(t);
+          print(e);
+          ok=false;
+        }
+
         var fs = globals.select["folder"][globals.selected["folder"]];
         var cs = globals.select["category"][globals.selected["category"]];
-        if (f.contains(fs)) if (c.contains(cs)) fp[pr] = src1[pr];
+        if(ok==true)
+          if (f.contains(fs)) if (c.contains(cs)) fp[pr] = src1[pr];
       } else {
         fp[pr] = src1[pr];
       }
