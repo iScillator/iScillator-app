@@ -346,7 +346,9 @@ public class multiGenerator extends baseGenerator {
         if (program!="") {
             try {
                 JSONObject program_j = new JSONObject(program);
-                JSONArray target_a = program_j.getJSONArray("target");
+                String target_s = program_j.getJSONArray("target");
+                JSONObject target_j = new JSONObject("{target:["+target_s+"]}");
+                JSONArray target_a = target_j.getJSONArray("target");
                 targets_count=0;
                 targets = new double[target_a.length()];
 
