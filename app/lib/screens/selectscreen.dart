@@ -54,8 +54,8 @@ class _SelectScreen extends State<SelectScreen> {
         var f = "";
         var c = "";
         var t = "";
-        var target_j="";
-        var target_a="";
+        var target_j;
+        var target_a;
         var ok=true;
 
         try {
