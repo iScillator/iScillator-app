@@ -3,6 +3,10 @@
     "frequency": "Частота",
     "noFrequency": "-",
 
+    "title": "Исцеллятор Авадхутовского",
+    "description": "iScellator Avadhutovsky",
+
+
     "home":"Главная",
     "programs":"Программы",
     "targets":"Цели",
