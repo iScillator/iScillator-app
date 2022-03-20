@@ -3,9 +3,9 @@ import '/globals.dart' as globals;
 
 import '/elements/selectwindow.dart';
 import 'dart:convert';
+import 'dart:math';
 
 var _controller = TextEditingController();
-
 
 class SelectScreen extends StatefulWidget {
   SelectScreen({Key? key}) : super(key: key);
@@ -15,14 +15,11 @@ class SelectScreen extends StatefulWidget {
 }
 
 class _SelectScreen extends State<SelectScreen> {
-
   @override
   void initState() {
     super.initState();
     globals.setStateSelect = setState;
   }
-  
-
 
   List ifWindow(BuildContext context, item) {
     //print(ifWindow);
@@ -55,8 +52,8 @@ class _SelectScreen extends State<SelectScreen> {
         var c = "";
         var t = "";
         var target_j;
-        var target_a;
-        var ok=true;
+        List target_a;
+        var ok = true;
 
         try {
           val = json.decode(s2);
@@ -64,33 +61,37 @@ class _SelectScreen extends State<SelectScreen> {
           c = val["category"];
           t = val["target"];
         } catch (e) {
-          print("program " + pr +" catch (program json)");
+          print("program " + pr + " catch (program json)");
           print(e);
-          ok=false;
+          ok = false;
         }
 
         try {
-          target_j = json.decode("{\"target\":["+t+"]}");
+          target_j = json.decode("{\"target\":[" + t + "]}");
           //print(target_j);
-          target_a = json.decode("{\"target\":["+t+"]}")["target"];
+          target_a = json.decode("{\"target\":[" + t + "]}")["target"];
           //print(target_a);
-          target_a=target_a;
+          target_a = target_a;
           target_a.sort((a, b) => a.compareTo(b));
-          if (target_a[0]>20000) ok=false;
+          if (target_a[0] > 20000) ok = false;
+          //if ([30000, ...target_a].reduce(min) > 20000) ok = false;
+          //if (target_a.fold(0, max) < 70) ok = false;
+          //if (target_a.reduce(min) > 20000) ok = false;
+
           target_a.sort((b, a) => a.compareTo(b));
-          if (target_a[0]<70) ok=false;
-          
+          //if (target_a.reduce(max) < 70) ok = false;
+          if (target_a[0] < 70) ok = false;
+          target_a = target_a;
         } catch (e) {
-          print("program " + pr +" catch (target)");
+          print("program " + pr + " catch (target)");
           print(t);
           print(e);
-          ok=false;
+          ok = false;
         }
 
         var fs = globals.select["folder"][globals.selected["folder"]];
         var cs = globals.select["category"][globals.selected["category"]];
-        if(ok==true)
-          if (f.contains(fs)) if (c.contains(cs)) fp[pr] = src1[pr];
+        if (ok == true) if (f.contains(fs)) if (c.contains(cs)) fp[pr] = src1[pr];
       } else {
         fp[pr] = src1[pr];
       }
@@ -196,9 +197,6 @@ class _SelectScreen extends State<SelectScreen> {
         appBar: searchAppBar(context),
         //bottomNavigationBar: myBottomNavigationBar(context),
         body: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                gradient: globals.config["gradient"]),
-            child: searchBody(context)));
+            alignment: Alignment.center, decoration: BoxDecoration(gradient: globals.config["gradient"]), child: searchBody(context)));
   }
 }
