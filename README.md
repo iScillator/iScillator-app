@@ -1,64 +1,69 @@
-# iScillator (SoundHealer)
+# iScillator-app
 
-A cross-platform Flutter application for procedural sound generation, focusing on smooth frequency transitions and sound presets inspired by solfeggio and chakra frequencies.
+## မှန်ထောင်စု
+**iScillator-app** သည် အသံထွက်များကို ဖန်တီးနိုင်သော အက်ပ်တစ်ခုဖြစ်ပါသည်။ ဤအက်ပ်အား **Flutter** (Dart) ဖြင့် ဖန်တီးထားပြီး **Android** နှင့် **iOS** စနစ်များတွင် အသုံးပြုနိုင်ပါသည်။
 
-## Features
-- **Procedural Sound Generation:** Generate tones with smooth frequency transitions.
-- **Preset System:** Choose from a set of sound presets (e.g., Muladhara, Svadhisthana, Manipura, etc.).
-- **Customizable Wave Types:** Supports sinusoidal, square, triangle, sawtooth, and multi-wave types.
-- **User Settings:** Save and load user preferences (wave type, balance, etc.).
-- **Modern UI:** Gradient backgrounds, large frequency display, and intuitive controls.
-- **Cross-Platform:** Runs on Android and iOS (with AudioKit integration for iOS).
+အသံထွက်များကို စင်နပ်၊ တရိယာ၊ saw နှင့် ပုန်လျှော စသည်တို့ လှိုင်းပုံစံများတွင် အလွယ်တကူ ရွေးချယ်ထည့်သွင်းကာ ဖန်တီးနိုင်ပါတယ်။
 
-## Screenshots
-Add screenshots of the app UI here (e.g., from `app/images/` if available).
+## အင်္ဂါရပ်များ
+* **Flutter** (Dart) ဖြင့် ဖန်တီးထားသော GUI ပါရှိပါသည်
+* **Android** နှင့် **iOS** စနစ်များအတွက် အထောက်အပံ့ပေးထားပါသည်
+* အသံထွက်အမျိုးအစားများ (စင်နပ်၊ တရိယာ၊ saw၊ ပုန်လျှော စသည်) ထည့်သွင်းနိုင်ပါသည်
+* ဖိုင်တင်ပြီး အသံထုတ်လွှင့်နိုင်သော စနစ်ပါရှိပါသည်
+* **Git** နှင့် **GitHub** အသုံးပြု၍ ထုတ်လွှင်းထားပါသည်
 
-## Getting Started
+## လိုအပ်ချက်များ
+1. **Flutter SDK** ကို ထည့်သွင်းထားရမည်
+2. **Android Studio** (Android အတွက်) သို့မဟုတ် **Xcode** (iOS အတွက်) ထည့်သွင်းထားရမည်
+3. **Git** ထည့်သွင်းထားရမည်
+4. **GitHub** အကောင့်ရှိရမည်
 
-### Prerequisites
-- [Flutter SDK](https://flutter.dev/docs/get-started/install)
-- Xcode (for iOS)
-- Android Studio (for Android)
+## ထည့်သွင်းနည်းနှင့် အသုံးပြုနည်း
 
-### Installation
-```sh
-# Clone the repository
- git clone <your-repo-url>
- cd iScillator-app/app
+### ထည့်သွင်းခြင်း
+```bash
+# Repository ကို clone လုပ်ရန်
+git clone https://github.com/iScillator/iScillator-app.git
 
-# Get dependencies
- flutter pub get
+# Project folder သို့ ဝင်ရန်
+cd iScillator-app
+
+# Dependencies များကို ထည့်သွင်းရန်
+flutter pub get
 ```
 
-### Running the App
-```sh
-# For Android
-dart
-flutter run -d <android-device-id>
-
-# For iOS
-flutter run -d <ios-device-id>
+### အသုံးပြုခြင်း
+```bash
+# အက်ပ်ကို စတင်ရန်
+flutter run
 ```
 
-## Project Structure
-- `app/lib/` - Main Flutter source code
-  - `main.dart` - App entry point
-  - `screens/` - UI screens (main, settings, etc.)
-  - `models/` - Data models (e.g., user settings)
-  - `plugins/` - Plugin registrant
-  - `packages/sound_generator/` - Local sound generation package
-- `app/images/` - UI assets (play/pause buttons)
-- `app/android/`, `app/ios/` - Platform-specific code
-- `build_apk.sh`, `build_bundle.sh` - Build scripts
-- `docs/` - Additional documentation
+### အပတ်စဉ် Update လုပ်ခြင်း
+```bash
+# နောက်ဆုံးပြောင်းလဲမှုများကို ရယူရန်
+git pull origin main
 
-## Building for Release
-- **Android:** Use `build_apk.sh` or `build_bundle.sh` for APK/AAB builds.
-- **iOS:** Open `ios/Runner.xcworkspace` in Xcode for signing and App Store upload.
+# Dependencies များကို update လုပ်ရန်
+flutter pub get
+```
 
-## Contribution
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+## အသေးစိတ်သတ်မှတ်ချက်များ
+အသေးစိတ်သတ်မှတ်ချက်များအတွက် GitHub Repository ရှိ လမ်းညွှန်စာတမ်းများကို ကြည့်ရှုနိုင်ပါသည်။
 
-## License
-See the `LICENSE` file in the `app/lib/packages/sound_generator/` directory for details.
+## လိုင်စင်
+**iScillator-app** သည် **MIT လိုင်စင်** ဖြင့် ဖြန့်ဝေထားပါသည်။ အသုံးပြုသူများသည် အခမဲ့ပြင်ဆင်၊ ပြန်လည်ဖြန့်ဝေနိုင်ပါသည်။ သို့သော် MIT လိုင်စင် စည်းကမ်းများကို လိုက်နာရမည်ဖြစ်သည်।
 
+## ဆက်သွယ်ရန်နှင့် အထောက်အကူ
+* ဤပရောဂျက်နှင့် ပတ်သက်၍ အထောက်အကူလိုပါက **GitHub Issues** တွင် ဆွေးနွေးမှု တင်ပြနိوင်ပါသည်
+* ပိုမိုသိရှိလိုပါက [iScillator-app GitHub Repository](https://github.com/iScillator/iScillator-app) သို့ လည်ပတ်နိုင်ပါသည်
+* မေးခွန်းများရှိပါက GitHub Issues တွင် မေးမြန်းနိုင်ပါသည်
+
+## Contributing
+ပရောဂျက်တွင် ပါဝင်ကူညီလိုပါက:
+1. Repository ကို fork လုပ်ပါ
+2. မိမိ၏ feature branch တစ်ခု ဖန်တီးပါ
+3. ပြောင်းလဲမှုများ commit လုပ်ပါ  
+4. Pull Request တင်ပြပါ
+
+---
+**ကျေးဇူးတင်ပါသည်**
